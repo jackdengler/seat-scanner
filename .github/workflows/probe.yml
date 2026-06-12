@@ -1,5 +1,6 @@
 name: probe-seatmap
 
+# Phase 0 throwaway: manual trigger only.
 on:
   workflow_dispatch:
     inputs:
