@@ -1,0 +1,16 @@
+name: probe-seatmap
+
+on:
+  workflow_dispatch:
+    inputs:
+      showtimeId:
+        description: AMC showtime ID
+        required: true
+        default: "144132590"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 scripts/probe.py "${{ github.event.inputs.showtimeId }}"
