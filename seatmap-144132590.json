@@ -1,6 +1,6 @@
 {
   "columns": 19,
-  "fetchedAtUtc": "2026-06-13T01:13:58Z",
+  "fetchedAtUtc": "2026-06-13T01:47:24Z",
   "movie": null,
   "rows": 9,
   "seats": [
@@ -432,7 +432,7 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": false,
+      "available": true,
       "column": 18,
       "name": "D2",
       "row": 5,
@@ -544,7 +544,7 @@
       "type": "LoveSeatLeft"
     },
     {
-      "available": true,
+      "available": false,
       "column": 15,
       "name": "E5",
       "row": 6,
@@ -740,7 +740,7 @@
       "type": "LoveSeatLeft"
     },
     {
-      "available": true,
+      "available": false,
       "column": 5,
       "name": "G15",
       "row": 8,
