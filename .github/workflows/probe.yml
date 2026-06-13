@@ -1,6 +1,9 @@
 name: probe-seatmap
 
-# Phase 0 throwaway: manual trigger only.
+# Phase 0 throwaway. Two ways to trigger:
+#   - Actions tab "Run workflow" button (workflow_dispatch)
+#   - pushing a change to probe-trigger.txt, whose content is the showtime ID
+#     (workaround: the session's API token can't call the dispatch endpoint)
 on:
   workflow_dispatch:
     inputs:
@@ -8,10 +11,18 @@ on:
         description: AMC showtime ID
         required: true
         default: "144132590"
+  push:
+    paths:
+      - probe-trigger.txt
 
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/probe.py "${{ github.event.inputs.showtimeId }}"
+      - run: |
+          ID="${{ github.event.inputs.showtimeId }}"
+          if [ -z "$ID" ]; then
+            ID=$(tr -d '[:space:]' < probe-trigger.txt)
+          fi
+          python3 scripts/probe.py "$ID"
