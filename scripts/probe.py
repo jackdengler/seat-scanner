@@ -5,17 +5,20 @@ Usage:
     python3 probe.py <showtimeId>        # fetch live page, parse, print
     python3 probe.py <path-to-html>      # parse a saved HTML file (offline test)
 
-Stdlib only. No cookies are sent — this deliberately tests whether an
-anonymous plain-HTTP request from this machine (e.g. a GitHub Actions
-runner) gets past Cloudflare / Queue-It.
+Stdlib only. Starts anonymous (empty cookie jar) and follows the
+cookie-test / Queue-It redirect chain in plain HTTP, emulating the one
+JS redirect the cookie-test page performs. Logs every hop so we can see
+exactly which protection layer stops us, if any.
 """
 
+import http.cookiejar
 import json
 import os
 import re
 import sys
-import urllib.request
 import urllib.error
+import urllib.parse
+import urllib.request
 
 HEADERS = {
     "User-Agent": (
@@ -39,24 +42,70 @@ HEADERS = {
 
 FLIGHT_RE = re.compile(r'self\.__next_f\.push\(\[1,\s*"((?:\\.|[^"\\])*)"\]\)')
 
+# JS redirects we know how to emulate without a browser
+COOKIE_TEST_RE = re.compile(r"document\.location\.href\s*=\s*decodeURIComponent\('([^']+)'\)")
+META_REFRESH_RE = re.compile(
+    r'http-equiv=["\']refresh["\'][^>]*?url\s*=\s*([^"\'>\s]+)', re.I)
+WINDOW_LOC_RE = re.compile(r"""window\.location(?:\.href)?\s*=\s*["']([^"']+)["']""")
+
+MAX_HOPS = 8
+
 
 def fetch(showtime_id):
+    jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
     url = f"https://www.amctheatres.com/showtimes/{showtime_id}/seats"
-    print(f"GET {url} (no cookies)")
-    req = urllib.request.Request(url, headers=HEADERS)
-    try:
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            body = resp.read().decode("utf-8", errors="replace")
-            print(f"HTTP {resp.status}, {len(body)} bytes")
+
+    for hop in range(1, MAX_HOPS + 1):
+        print(f"[hop {hop}] GET {url}")
+        req = urllib.request.Request(url, headers=HEADERS)
+        try:
+            with opener.open(req, timeout=60) as resp:
+                body = resp.read().decode("utf-8", errors="replace")
+                final_url = resp.geturl()
+                status = resp.status
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", errors="replace")
+            print(f"[hop {hop}] HTTP {e.code}, {len(body)} bytes")
+            diagnose(body)
+            sys.exit(1)
+        except Exception as e:
+            print(f"[hop {hop}] FETCH FAILED: {type(e).__name__}: {e}")
+            sys.exit(1)
+
+        # never print cookie values: this log is public
+        names = sorted({c.name for c in jar})
+        print(f"[hop {hop}] HTTP {status}, {len(body)} bytes, "
+              f"landed on {final_url}, cookies: {names or 'none'}")
+
+        if "__next_f" in body:
+            print(f"[hop {hop}] flight data present — done after {hop} hop(s)")
             return body
-    except urllib.error.HTTPError as e:
-        body = e.read().decode("utf-8", errors="replace")
-        print(f"HTTP {e.code}, {len(body)} bytes")
-        diagnose(body)
-        sys.exit(1)
-    except Exception as e:
-        print(f"FETCH FAILED: {type(e).__name__}: {e}")
-        sys.exit(1)
+
+        target = None
+        m = COOKIE_TEST_RE.search(body)
+        if m:
+            target = urllib.parse.unquote(m.group(1))
+            print(f"[hop {hop}] cookie-test page; emulating its JS redirect")
+        if target is None:
+            m = META_REFRESH_RE.search(body)
+            if m:
+                target = m.group(1)
+                print(f"[hop {hop}] meta-refresh redirect")
+        if target is None:
+            m = WINDOW_LOC_RE.search(body)
+            if m:
+                target = m.group(1)
+                print(f"[hop {hop}] window.location JS redirect")
+        if target is None:
+            print(f"[hop {hop}] no flight data and no followable redirect")
+            diagnose(body)
+            sys.exit(1)
+
+        url = urllib.parse.urljoin(final_url, target)
+
+    print(f"Gave up after {MAX_HOPS} hops (redirect loop?)")
+    sys.exit(1)
 
 
 def diagnose(body):
