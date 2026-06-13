@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seat Scanner</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#b91c1c">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 16px; padding-top: max(16px, env(safe-area-inset-top));
+    background: #1a1a1e; color: #eee;
+    font: 16px/1.45 -apple-system, system-ui, sans-serif;
+    max-width: 640px; margin-inline: auto;
+  }
+  h1 { font-size: 22px; margin: 4px 0 14px; }
+  h1 small { color: #888; font-weight: normal; font-size: 13px; }
+  .card { background: #242429; border-radius: 12px; padding: 14px; margin-bottom: 14px; }
+  .card h2 { font-size: 15px; margin: 0 0 10px; color: #f4f4f5; }
+  label { display: block; font-size: 13px; color: #aaa; margin: 8px 0 3px; }
+  input[type=text], input[type=password], input[type=number] {
+    width: 100%; padding: 9px 10px; border-radius: 8px; border: 1px solid #3a3a40;
+    background: #1a1a1e; color: #eee; font-size: 16px;
+  }
+  input[type=number] { width: 70px; }
+  button {
+    background: #b91c1c; color: #fff; border: 0; border-radius: 8px;
+    padding: 10px 14px; font-size: 15px; font-weight: 600; margin-top: 10px;
+  }
+  button.secondary { background: #3a3a40; }
+  button:disabled { opacity: .5; }
+  .muted { color: #888; font-size: 13px; }
+  .ok { color: #4ade80; } .warn { color: #fbbf24; } .err { color: #f87171; }
+  #grid { margin: 12px 0; overflow-x: auto; }
+  .seatrow { display: flex; gap: 3px; margin-bottom: 3px; align-items: center; }
+  .rowlabel { width: 18px; font-size: 11px; color: #888; flex: none; }
+  .seat {
+    width: 26px; height: 26px; flex: none; border-radius: 6px 6px 3px 3px;
+    font-size: 9px; display: flex; align-items: center; justify-content: center;
+    color: #0008; background: #4ade80; border: 1px solid transparent;
+  }
+  .seat.taken { background: #3a3a40; color: #777; }
+  .seat.special { background: #60a5fa; }
+  .seat.special.taken { background: #31425c; color: #779; }
+  .seat.gap { visibility: hidden; }
+  .seat.sel { border: 2px solid #fff; box-shadow: 0 0 0 2px #b91c1c; }
+  .watch { border-top: 1px solid #333; padding: 10px 0; }
+  .watch:first-of-type { border-top: 0; }
+  .watch b { font-size: 15px; }
+  .watch .del { float: right; background: none; border: 0; color: #f87171; font-size: 13px; margin: 0; padding: 2px 6px; }
+  .pill { display: inline-block; background: #1a1a1e; border-radius: 20px; padding: 1px 9px; font-size: 12px; color: #aaa; margin: 2px 3px 0 0; }
+  fieldset { border: 0; padding: 0; margin: 8px 0 0; }
+  fieldset label { display: inline-flex; align-items: center; gap: 5px; margin-right: 14px; color: #ccc; font-size: 14px; }
+  #toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+    background: #000c; padding: 10px 18px; border-radius: 10px; display: none; max-width: 90%;
+  }
+</style>
+</head>
+<body>
+<h1>🎬 Seat Scanner <small id="repoLabel"></small></h1>
+
+<div class="card" id="installCard" hidden>
+  <h2>Install on your iPhone</h2>
+  <p class="muted">Push notifications only work once this page is installed:
+  tap <b>Share</b> → <b>Add to Home Screen</b>, then open it from the home screen.</p>
+</div>
+
+<div class="card">
+  <h2>Setup</h2>
+  <label for="pat">GitHub fine-grained token (stored only on this device)</label>
+  <input type="password" id="pat" placeholder="github_pat_…" autocomplete="off">
+  <p class="muted">Needs <b>Contents: read/write</b> and <b>Actions: read/write</b> on this repo only.</p>
+  <button id="saveTok">Save token</button>
+  <button id="notifBtn" class="secondary">Enable notifications</button>
+  <div id="setupStatus" class="muted"></div>
+</div>
+
+<div class="card">
+  <h2>Add a watch</h2>
+  <label for="showtime">AMC showtime link or ID</label>
+  <input type="text" id="showtime" placeholder="https://www.amctheatres.com/showtimes/144132590/seats" inputmode="url">
+  <button id="loadBtn">Load seat map</button>
+  <div id="loadStatus" class="muted"></div>
+  <div id="picker" hidden>
+    <div id="showMeta" class="muted"></div>
+    <div id="grid"></div>
+    <p class="muted">Tap green seats to watch specific ones, or leave none selected to watch
+    by row / whole room. Blue = wheelchair &amp; companion spots.</p>
+    <label for="rows">Watch whole rows (letters, e.g. <i>D,E</i> — ignored if seats are tapped)</label>
+    <input type="text" id="rows" placeholder="">
+    <label for="adj">Need this many adjacent open seats</label>
+    <input type="number" id="adj" value="2" min="1" max="10">
+    <fieldset>
+      <label><input type="checkbox" id="exWheel" checked> ignore wheelchair</label>
+      <label><input type="checkbox" id="exComp" checked> ignore companion</label>
+    </fieldset>
+    <label for="label">Label</label>
+    <input type="text" id="label">
+    <button id="saveWatch">Start watching</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Watches</h2>
+  <div id="watches" class="muted">Loading…</div>
+</div>
+
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
