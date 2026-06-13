@@ -92,14 +92,34 @@ async function init() {
   loadConfigAndWatches();
 }
 
-function saveToken() {
+async function saveToken() {
   const v = $("pat").value.trim();
   if (!v) { toast("paste a token first"); return; }
   localStorage.setItem("pat", v);
   $("pat").value = "";
-  $("pat").placeholder = "saved ✓ (paste to replace)";
-  toast("token saved on this device");
-  loadConfigAndWatches();
+  $("setupStatus").textContent = "checking token…";
+  try {
+    const res = await fetch(`${API}/repos/${OWNER}/${REPO}`, { headers: headers() });
+    if (res.status === 401) {
+      localStorage.removeItem("pat");
+      $("pat").placeholder = "github_pat_…";
+      toast("GitHub rejected the token (401) — re-copy the full value; if it's gone, generate a new one", 8000);
+    } else if (res.status === 404 || res.status === 403) {
+      toast("Token works but can't see this repo — grant it access to " + OWNER + "/" + REPO, 8000);
+    } else {
+      const j = await res.json();
+      if (!(j.permissions && j.permissions.push)) {
+        toast("Token can read but not write — set Contents to read/write", 8000);
+      } else {
+        $("pat").placeholder = "saved ✓ (paste to replace)";
+        toast("token works ✓");
+        loadConfigAndWatches();
+      }
+    }
+  } catch (e) {
+    toast("couldn't reach GitHub: " + e.message, 6000);
+  }
+  refreshSetupStatus();
 }
 
 function refreshSetupStatus() {
