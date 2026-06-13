@@ -7,9 +7,9 @@ at the path given by --data.
 
 Check cadence per watch, by time until the showtime:
     more than 7 days        every 6 hours
-    1 to 7 days             every hour
-    2 to 24 hours           every 15 minutes
-    last 2 hours            every run
+    1 to 7 days             every 30 minutes
+    4 to 24 hours           every 15 minutes
+    last 4 hours            every run
     showtime passed         mark done, stop checking
 
 Notifies at most once per distinct seat-set match, and sends a
@@ -56,12 +56,12 @@ def save_json(path, obj):
 
 
 def interval_minutes(minutes_to_show):
-    if minutes_to_show <= 120:
+    if minutes_to_show <= 4 * 60:
         return 0          # every run
     if minutes_to_show <= 24 * 60:
         return 15
     if minutes_to_show <= 7 * 24 * 60:
-        return 60
+        return 30
     return 6 * 60
 
 

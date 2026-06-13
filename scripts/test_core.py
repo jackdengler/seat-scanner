@@ -103,6 +103,19 @@ class MatcherTests(unittest.TestCase):
         self.assertNotEqual(a, c)
 
 
+class TierTests(unittest.TestCase):
+    def test_intervals(self):
+        import check
+        day = 24 * 60
+        self.assertEqual(check.interval_minutes(30), 0)
+        self.assertEqual(check.interval_minutes(4 * 60), 0)
+        self.assertEqual(check.interval_minutes(5 * 60), 15)
+        self.assertEqual(check.interval_minutes(day), 15)
+        self.assertEqual(check.interval_minutes(2 * day), 30)
+        self.assertEqual(check.interval_minutes(7 * day), 30)
+        self.assertEqual(check.interval_minutes(8 * day), 360)
+
+
 class FlightDecodeTests(unittest.TestCase):
     def test_chunks_concatenated(self):
         with open(FIXTURE, encoding="utf-8") as f:
