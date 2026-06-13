@@ -1,6 +1,6 @@
 {
   "columns": 19,
-  "fetchedAtUtc": "2026-06-13T01:54:16Z",
+  "fetchedAtUtc": "2026-06-13T01:57:34Z",
   "movie": null,
   "rows": 9,
   "seats": [
@@ -964,7 +964,7 @@
       "type": "LoveSeatLeft"
     },
     {
-      "available": false,
+      "available": true,
       "column": 19,
       "name": "H1",
       "row": 9,
