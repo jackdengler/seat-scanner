@@ -7,8 +7,8 @@ the seats you want open up. Fully serverless:
   showtimes, seats, and adjacency rules.
 - **GitHub Actions** does all the AMC fetching (browsers can't — CORS) on a
   tiered schedule: every 6h when the show is >7 days out, every 30 min
-  inside a week, every 15 min inside 24h, and every run (~5 min) in the
-  last 4 hours.
+  inside a week, every 15 min inside 24h, and ~every 90s (a jittered in-run burst on
+  top of the 5-min cron) in the last 4 hours.
 - The **`data` branch** holds machine-written state (`state.json`,
   `seatmap-<id>.json`) so the code branch stays clean.
 - Notifications are **Web Push** straight to the installed PWA — no

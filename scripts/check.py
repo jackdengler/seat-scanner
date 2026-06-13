@@ -9,8 +9,12 @@ Check cadence per watch, by time until the showtime:
     more than 7 days        every 6 hours
     1 to 7 days             every 30 minutes
     4 to 24 hours           every 15 minutes
-    last 4 hours            every run
+    last 4 hours            every run, plus an in-run burst (~90s, jittered)
     showtime passed         mark done, stop checking
+
+The 5-minute cron is a floor; inside the final 4 hours one run loops a
+few extra times with randomized spacing so the effective cadence is
+~90 seconds without a robotic, fingerprintable pattern.
 
 Notifies at most once per distinct seat-set match, and sends a
 "watcher broken" alert after 3 consecutive fetch failures (once).
@@ -22,7 +26,9 @@ import argparse
 import datetime
 import json
 import os
+import random
 import sys
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,7 +36,15 @@ import amc
 import matcher
 
 FAILURE_ALERT_THRESHOLD = 3
-CRON_SLACK_MIN = 2  # cron jitter allowance when deciding if a check is due
+CRON_SLACK_MIN = 1  # cron jitter allowance when deciding if a check is due
+
+# In the final hours the cron's 5-minute floor isn't fast enough, so a
+# single run loops a few times with randomized spacing — more responsive
+# without a robotic, easily-fingerprinted cadence. Kept short so the run
+# ends before the next scheduled tick.
+BURST_WINDOW_MIN = 4 * 60      # only burst when a watch is within this window
+BURST_MAX_SECONDS = 240        # stop bursting before the next 5-min cron tick
+BURST_SLEEP_RANGE = (70, 110)  # jittered seconds between passes
 
 
 def now_utc():
@@ -161,20 +175,38 @@ def main():
         "subscriptions"]
     state_path = os.path.join(args.data, "state.json")
     state = load_json(state_path, {"watches": {}})
-    now = now_utc()
 
-    active = 0
-    for watch in config.get("watches", []):
-        sid = str(watch.get("showtimeId", ""))
-        if not sid or not watch.get("showtimeIso"):
-            print(f"skipping malformed watch: {watch}")
-            continue
-        ws = state["watches"].setdefault(sid, {})
-        if ws.get("done") or watch.get("done"):
-            continue
-        check_watch(watch, ws, subscriptions, state, args.data, now)
-        if not ws.get("done"):
-            active += 1
+    def one_pass():
+        now = now_utc()
+        active = 0
+        soonest = None  # minutes to the nearest active showtime
+        for watch in config.get("watches", []):
+            sid = str(watch.get("showtimeId", ""))
+            if not sid or not watch.get("showtimeIso"):
+                print(f"skipping malformed watch: {watch}")
+                continue
+            ws = state["watches"].setdefault(sid, {})
+            if ws.get("done") or watch.get("done"):
+                continue
+            check_watch(watch, ws, subscriptions, state, args.data, now)
+            if not ws.get("done"):
+                active += 1
+                mins = (parse_iso(watch["showtimeIso"]) - now).total_seconds() / 60
+                soonest = mins if soonest is None else min(soonest, mins)
+        return active, soonest
+
+    active, soonest = one_pass()
+
+    # Burst: keep re-checking within one run while a showtime is imminent.
+    deadline = time.monotonic() + BURST_MAX_SECONDS
+    while (active and soonest is not None and 0 < soonest <= BURST_WINDOW_MIN
+           and time.monotonic() < deadline):
+        nap = random.uniform(*BURST_SLEEP_RANGE)
+        if time.monotonic() + nap >= deadline:
+            break
+        print(f"burst: showtime in {soonest:.0f}min; re-checking in {nap:.0f}s")
+        time.sleep(nap)
+        active, soonest = one_pass()
 
     save_json(state_path, state)
     print(f"ALL_DONE={'true' if active == 0 else 'false'}")
