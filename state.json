@@ -11,7 +11,8 @@
     "144132590": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-06-13T03:12:14Z"
+      "done": true,
+      "lastCheckedAt": "2026-06-13T03:14:10Z"
     }
   }
 }
