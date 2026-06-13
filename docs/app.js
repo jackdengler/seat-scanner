@@ -45,14 +45,16 @@ async function gh(path, opts = {}) {
 }
 
 async function getFile(path, ref) {
-  const res = await gh(`/contents/${path}?ref=${ref}&t=${Date.now()}`,
+  const refq = ref ? `ref=${ref}&` : "";
+  const res = await gh(`/contents/${path}?${refq}t=${Date.now()}`,
     { headers: { Accept: "application/vnd.github.raw+json" } });
   if (res.status === 404) return null;
   return { text: await res.text(), sha: res.headers.get("etag") };
 }
 
 async function getFileWithSha(path, ref) {
-  const res = await gh(`/contents/${path}?ref=${ref}&t=${Date.now()}`);
+  const refq = ref ? `ref=${ref}&` : "";
+  const res = await gh(`/contents/${path}?${refq}t=${Date.now()}`);
   if (res.status === 404) return null;
   const j = await res.json();
   return { json: JSON.parse(atob(j.content.replace(/\n/g, ""))), sha: j.sha };
@@ -129,7 +131,7 @@ async function enableNotifications() {
       userVisibleOnly: true,
       applicationServerKey: b64ToBytes(config.vapidPublicKey),
     });
-    const cur = await getFileWithSha("subscriptions.json", "HEAD");
+    const cur = await getFileWithSha("subscriptions.json");
     const obj = cur ? cur.json : { subscriptions: [] };
     const json = sub.toJSON();
     if (!obj.subscriptions.some((s) => s.endpoint === json.endpoint)) {
@@ -256,7 +258,7 @@ async function saveWatch() {
     excludeTypes: exclude,
   };
   try {
-    const cur = await getFileWithSha("config.json", "HEAD");
+    const cur = await getFileWithSha("config.json");
     const obj = cur ? cur.json : { watches: [] };
     obj.watches = obj.watches.filter((w) => String(w.showtimeId) !== String(watch.showtimeId));
     obj.watches.push(watch);
@@ -284,7 +286,7 @@ async function loadState() {
 
 async function loadConfigAndWatches() {
   try {
-    const f = await getFile("config.json", "HEAD");
+    const f = await getFile("config.json");
     if (f) config = JSON.parse(f.text);
     renderWatches(config.watches || [], await loadState());
   } catch (e) {
@@ -321,7 +323,7 @@ function renderWatches(watches, state) {
 
 async function removeWatch(sid) {
   try {
-    const cur = await getFileWithSha("config.json", "HEAD");
+    const cur = await getFileWithSha("config.json");
     cur.json.watches = cur.json.watches.filter((w) => String(w.showtimeId) !== String(sid));
     await putFile("config.json", cur.json, `unwatch ${sid}`, cur.sha);
     config = cur.json;
