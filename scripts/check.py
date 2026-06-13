@@ -209,6 +209,12 @@ def main():
         active, soonest = one_pass()
 
     save_json(state_path, state)
+    # CHAIN tells the workflow to re-dispatch itself: GitHub's cron is too
+    # unreliable to carry the final hours, so runs hand off to each other
+    # while a showtime is inside the burst window.
+    chain = bool(active and soonest is not None
+                 and 0 < soonest <= BURST_WINDOW_MIN)
+    print(f"CHAIN={'true' if chain else 'false'}")
     print(f"ALL_DONE={'true' if active == 0 else 'false'}")
 
 
