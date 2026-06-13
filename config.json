@@ -1,4 +1,23 @@
 {
   "vapidPublicKey": "BKTvcmjIcSclER25SkHDSxhHGGxYyBfnEf9ZcPjuI1AG57OfBsNAlcABF4R5hV9491m1hflYQbxSzMkLZHLl2a0",
-  "watches": []
+  "watches": [
+    {
+      "showtimeId": "144132590",
+      "showtimeIso": "2026-06-13T03:15:00.000Z",
+      "label": "#144132590 Fri 8:15 PM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "D",
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "adjacentRequired": 2,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    }
+  ]
 }
