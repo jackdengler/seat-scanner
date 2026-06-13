@@ -1,0 +1,23 @@
+# The UI saves config.json / subscriptions.json with the user's PAT; that
+# push lands here, which re-enables polling (it disables itself when all
+# watches finish) and kicks an immediate check so the UI gets fresh data.
+name: wake
+
+on:
+  push:
+    paths:
+      - config.json
+      - subscriptions.json
+
+permissions:
+  actions: write
+
+jobs:
+  wake:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow enable poll.yml -R "$GITHUB_REPOSITORY" || true
+          gh workflow run poll.yml -R "$GITHUB_REPOSITORY" || true
