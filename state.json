@@ -11,7 +11,10 @@
     "143822608": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-06-18T14:26:21Z"
+      "lastCheckedAt": "2026-06-18T22:23:03Z",
+      "notifiedSignatures": [
+        "8bfd4f0cfc2173ff"
+      ]
     },
     "144132590": {
       "alertedBroken": false,
