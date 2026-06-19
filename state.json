@@ -10,7 +10,7 @@
     },
     "143822608": {
       "alertedBroken": false,
-      "consecutiveFailures": 0,
+      "consecutiveFailures": 1,
       "lastCheckedAt": "2026-06-19T13:46:01Z",
       "notifiedSignatures": [
         "8bfd4f0cfc2173ff"
