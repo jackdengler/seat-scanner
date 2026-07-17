@@ -9,9 +9,9 @@
       ]
     },
     "143822608": {
-      "alertedBroken": true,
-      "consecutiveFailures": 3,
-      "lastCheckedAt": "2026-07-17T00:48:57Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-17T00:55:09Z",
       "notifiedSignatures": [
         "8bfd4f0cfc2173ff",
         "cdc66a1e3dbde326",
@@ -22,7 +22,8 @@
         "6a1e8d096a90976c",
         "7f97745dcb10dca6",
         "a439b286197f925e",
-        "9eacd8ce376dbc20"
+        "9eacd8ce376dbc20",
+        "ac6c1cbb197e7ea1"
       ]
     },
     "144132590": {
