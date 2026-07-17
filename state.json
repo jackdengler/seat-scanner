@@ -11,7 +11,7 @@
     "143822608": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-17T00:00:54Z",
+      "lastCheckedAt": "2026-07-17T00:04:03Z",
       "notifiedSignatures": [
         "8bfd4f0cfc2173ff",
         "cdc66a1e3dbde326",
@@ -19,7 +19,8 @@
         "27dd08ce77f266c3",
         "4ab28bc029a5e5fa",
         "4df06309f4523088",
-        "6a1e8d096a90976c"
+        "6a1e8d096a90976c",
+        "7f97745dcb10dca6"
       ]
     },
     "144132590": {
