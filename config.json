@@ -1,5 +1,29 @@
 {
   "vapidPublicKey": "BKTvcmjIcSclER25SkHDSxhHGGxYyBfnEf9ZcPjuI1AG57OfBsNAlcABF4R5hV9491m1hflYQbxSzMkLZHLl2a0",
-  "watches": [],
+  "watches": [
+    {
+      "showtimeId": "143822627",
+      "showtimeIso": "2026-07-22T01:00:00.000Z",
+      "label": "#143822627 Tue 6:00 PM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "f",
+        "g",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "n"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    }
+  ],
   "kickedAt": "2026-06-13T01:45:00Z"
 }
