@@ -192,6 +192,22 @@ async function defaultBranch() {
   return j.default_branch;
 }
 
+// Make sure the poll workflow is running so a freshly added watch actually
+// gets checked. poll.yml disables itself once every watch has finished
+// (see the "Disable polling when no active watches remain" step), so a watch
+// added afterwards would sit at "first check pending" forever until the
+// workflow is manually re-enabled. Re-enable it (no-op if already active) and
+// kick a run so the first check lands promptly.
+async function ensurePolling() {
+  const wf = "poll.yml";
+  await gh(`/actions/workflows/${wf}/enable`, { method: "PUT" });
+  const ref = await defaultBranch();
+  await gh(`/actions/workflows/${wf}/dispatches`, {
+    method: "POST",
+    body: JSON.stringify({ ref }),
+  });
+}
+
 async function loadSeatmap(sidArg) {
   const sid = sidArg || showtimeIdFromInput($("showtime").value.trim());
   if (!sid) { toast("paste an AMC showtime link or numeric ID"); return; }
@@ -464,7 +480,13 @@ async function bulkWatch() {
     }
     await putFile("config.json", obj, `watch ${showings.length} show(s)`, cur && cur.sha);
     config = obj;
-    toast(`watching ${showings.length} show(s) ✓ — first check runs within a minute`);
+    try {
+      await ensurePolling();
+      toast(`watching ${showings.length} show(s) ✓ — first check runs within a minute`);
+    } catch (e) {
+      toast(`watching ${showings.length} show(s) ✓ — but couldn't start the poller (` +
+        e.message + "); enable the poll workflow in the Actions tab", 8000);
+    }
     clearSelection();
     renderWatches(obj.watches, await loadState());
   } catch (e) {
@@ -547,7 +569,13 @@ async function saveWatch() {
     obj.watches.push(watch);
     await putFile("config.json", obj, `watch ${watch.label}`, cur && cur.sha);
     config = obj;
-    toast("watching ✓ — first check runs within a minute");
+    try {
+      await ensurePolling();
+      toast("watching ✓ — first check runs within a minute");
+    } catch (e) {
+      toast("watching ✓ — but couldn't start the poller (" + e.message +
+        "); enable the poll workflow in the Actions tab", 8000);
+    }
     $("picker").hidden = true;
     $("showtime").value = "";
     renderWatches(obj.watches, await loadState());
