@@ -66,7 +66,8 @@
     width: auto; padding: 9px 10px; border-radius: 8px; border: 1px solid #3a3a40;
     background: #1a1a1e; color: #eee; font-size: 16px;
   }
-  #movieFilter { margin: 6px 0; }
+  #filterRow { margin: 6px 0; gap: 8px; }
+  #movieFilter { flex: 1; min-width: 130px; }
   .dayhdr { font-size: 13px; color: #cbd5e1; font-weight: 600; margin: 10px 0 2px; }
   #showlist { margin-top: 6px; }
   .movie { border-top: 1px solid #333; padding: 10px 0 4px; }
@@ -126,7 +127,10 @@
   </div>
   <div id="browseStatus" class="muted"></div>
   <p class="muted" id="browseHint" hidden>Tap showtimes to select them, then set criteria below and watch them all at once.</p>
-  <input type="text" id="movieFilter" placeholder="Filter by movie…" hidden>
+  <div class="row" id="filterRow" hidden>
+    <input type="text" id="movieFilter" placeholder="Filter by movie…">
+    <select id="formatFilter"><option value="">All formats</option></select>
+  </div>
   <div id="showlist"></div>
 
   <div id="bulkbar" hidden>
