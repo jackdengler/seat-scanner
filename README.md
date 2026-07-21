@@ -40,9 +40,17 @@ the seats you want open up. Fully serverless:
 "Browse shows" (e.g.
 `https://www.amctheatres.com/movie-theatres/boston/amc-boston-common-19`) —
 it's remembered on this device. Pick a date, tap **Find showtimes**, and the
-app lists every movie and showtime for that day; tap a time to load its seat
-map. (Under the hood this asks Actions to fetch the theatre's showtimes page
-and writes `browse.json` to the `data` branch, which the app renders.)
+app lists every movie and showtime for that day. (Under the hood this asks
+Actions to fetch the theatre's showtimes page and writes `browse.json` to
+the `data` branch, which the app renders.)
+
+**Bulk-watch (same criteria for many shows).** Tap any number of showtimes to
+select them — selection persists as you change dates — then set the row /
+adjacency / wheelchair-companion rules once and tap **Watch selected shows**
+to create a watch for each. Because those watches share rules rather than
+hand-picked seats, no seat maps need loading; the showtime IDs and times come
+straight from the listing. To hand-pick exact seats instead, select a single
+show and tap **Pick exact seats** (or use "Add a watch by link").
 
 **Or add by link.** You can still paste an AMC showtime URL (the
 `/showtimes/<id>/seats` page) or bare showtime ID into "Add a watch by link".

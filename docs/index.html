@@ -77,6 +77,10 @@
     border-radius: 8px; padding: 6px 10px; font-size: 14px; font-weight: 600; margin: 0;
   }
   .time.past { opacity: .4; }
+  .time.sel { border-color: #fff; background: #b91c1c; color: #fff; box-shadow: 0 0 0 1px #b91c1c; }
+  #bulkbar { border-top: 1px solid #333; margin-top: 12px; padding-top: 10px; }
+  .bulkhead { display: flex; align-items: center; justify-content: space-between; }
+  .linkbtn { background: none; border: 0; color: #f87171; font-size: 13px; margin: 0; padding: 2px 6px; }
 </style>
 </head>
 <body>
@@ -110,7 +114,26 @@
     <button id="browseBtn">Find showtimes</button>
   </div>
   <div id="browseStatus" class="muted"></div>
+  <p class="muted" id="browseHint" hidden>Tap showtimes to select them, then set criteria below and watch them all at once.</p>
   <div id="showlist"></div>
+
+  <div id="bulkbar" hidden>
+    <div class="bulkhead">
+      <b><span id="selCount">0</span> show(s) selected</b>
+      <button id="clearSel" class="linkbtn">clear</button>
+    </div>
+    <label for="brows">Watch whole rows (letters, e.g. <i>D,E</i> — leave blank for anywhere)</label>
+    <input type="text" id="brows" placeholder="">
+    <label for="badj">Need this many adjacent open seats</label>
+    <input type="number" id="badj" value="2" min="1" max="10">
+    <fieldset>
+      <label><input type="checkbox" id="bexWheel" checked> ignore wheelchair</label>
+      <label><input type="checkbox" id="bexComp" checked> ignore companion</label>
+    </fieldset>
+    <button id="bulkWatch">Watch selected shows</button>
+    <button id="pickSeats" class="secondary" disabled>Pick exact seats</button>
+    <p class="muted">“Pick exact seats” opens the seat map (one show at a time). Bulk watching uses the row/adjacency rules above for every selected show.</p>
+  </div>
 </div>
 
 <div class="card">
