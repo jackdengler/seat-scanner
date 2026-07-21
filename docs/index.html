@@ -63,6 +63,16 @@
   .watchfilter select { flex: 1; min-width: 140px; }
   .watchhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
   .watchhead .removeall { color: #f87171; font-weight: 600; }
+  #alertsCard h2 { color: #4ade80; }
+  .alert { border-top: 1px solid #333; padding: 12px 0; }
+  .alert:first-child { border-top: 0; }
+  .alert b { font-size: 15px; overflow-wrap: anywhere; }
+  .alert .seats { color: #4ade80; font-size: 14px; margin: 3px 0; overflow-wrap: anywhere; }
+  a.book {
+    display: inline-block; text-decoration: none; background: #b91c1c; color: #fff;
+    border-radius: 8px; padding: 9px 14px; font-size: 14px; font-weight: 700; margin-top: 6px;
+  }
+  .alert .dismiss { background: none; border: 0; color: #888; font-size: 13px; margin: 0 0 0 10px; padding: 2px 6px; }
   .pill { display: inline-block; background: #1a1a1e; border-radius: 20px; padding: 1px 9px; font-size: 12px; color: #aaa; margin: 2px 3px 0 0; overflow-wrap: anywhere; }
   fieldset { border: 0; padding: 0; margin: 8px 0 0; }
   fieldset label { display: inline-flex; align-items: center; gap: 5px; margin-right: 14px; color: #ccc; font-size: 14px; }
@@ -192,6 +202,11 @@
     <input type="text" id="label">
     <button id="saveWatch">Start watching</button>
   </div>
+</div>
+
+<div class="card" id="alertsCard" hidden>
+  <h2>🔔 Seats opened — book now</h2>
+  <div id="alerts"></div>
 </div>
 
 <div class="card">

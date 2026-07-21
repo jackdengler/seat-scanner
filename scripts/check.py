@@ -176,6 +176,22 @@ def check_watch(watch, ws, subscriptions, state, data_dir, now):
     }, state)
     ws.setdefault("notifiedSignatures", []).append(sig)
 
+    # Record the alert in a durable, newest-first feed the PWA renders, so a
+    # missed/mis-handled notification tap still shows which show(s) opened and
+    # a one-tap link to book. Keyed by (sid, sig) so re-runs don't duplicate.
+    alerts = state.setdefault("alerts", [])
+    key = f"{sid}-{sig}"
+    if not any(a.get("key") == key for a in alerts):
+        alerts.insert(0, {
+            "key": key,
+            "sid": sid,
+            "label": label,
+            "seats": seats_text,
+            "showtimeIso": watch.get("showtimeIso"),
+            "at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+        })
+        del alerts[30:]
+
 
 def main():
     ap = argparse.ArgumentParser()

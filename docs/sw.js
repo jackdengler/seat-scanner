@@ -21,8 +21,20 @@ self.addEventListener("notificationclick", (event) => {
   const url = new URL(raw, self.registration.scope).href;
   event.waitUntil((async () => {
     const all = await clients.matchAll({ type: "window", includeUncontrolled: true });
+    // Already showing the target page → just focus it.
     for (const c of all) {
       if (c.url === url && "focus" in c) return c.focus();
+    }
+    // A PWA window is open but elsewhere: iOS standalone apps often won't honor
+    // openWindow, so focus the existing window and steer it to the target —
+    // via navigate(), falling back to a postMessage the page acts on.
+    for (const c of all) {
+      if ("focus" in c) {
+        try { await c.focus(); } catch (e) { /* ignore */ }
+        if ("navigate" in c) { try { return await c.navigate(url); } catch (e) { /* fall through */ } }
+        c.postMessage({ type: "navigate", url });
+        return;
+      }
     }
     return clients.openWindow(url);
   })());

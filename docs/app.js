@@ -109,6 +109,11 @@ async function init() {
 
   if ("serviceWorker" in navigator) {
     try { await navigator.serviceWorker.register("sw.js"); } catch (e) { /* preview contexts */ }
+    // The SW asks us to navigate when a notification is tapped and it couldn't
+    // open the target itself (common for installed iOS PWAs).
+    navigator.serviceWorker.addEventListener("message", (e) => {
+      if (e.data && e.data.type === "navigate" && e.data.url) location.href = e.data.url;
+    });
   }
   refreshSetupStatus();
   loadConfigAndWatches();
@@ -698,10 +703,54 @@ async function loadConfigAndWatches() {
   try {
     const f = await getFile("config.json");
     if (f) config = JSON.parse(f.text);
-    renderWatches(config.watches || [], await loadState());
+    const state = await loadState();
+    renderWatches(config.watches || [], state);
+    renderAlerts(state);
     repairCorruptedLabels();
   } catch (e) {
     $("watches").textContent = "couldn't load: " + e.message;
+  }
+}
+
+// The poller writes newest-first "alerts" into state.json each time seats open.
+// Render them as a book-now list so a missed notification is never a dead end.
+function renderAlerts(state) {
+  const card = $("alertsCard");
+  const host = $("alerts");
+  if (!card || !host) return;
+  const dismissed = JSON.parse(localStorage.getItem("dismissedAlerts") || "[]");
+  const alerts = ((state && state.alerts) || []).filter(
+    (a) => !dismissed.includes(a.key || `${a.sid}-${a.at}`));
+  if (!alerts.length) { card.hidden = true; return; }
+  card.hidden = false;
+  host.innerHTML = "";
+  for (const a of alerts) {
+    const sid = String(a.sid || "").replace(/[^0-9]/g, "");
+    const div = document.createElement("div");
+    div.className = "alert";
+    div.innerHTML =
+      `<b>${esc(a.label || ("showtime " + sid))}</b>` +
+      `<div class="seats">Open seats: ${esc(a.seats || "—")}</div>` +
+      `<div class="muted">${a.at ? "alerted " + timeAgo(a.at) : ""}</div>`;
+    const book = document.createElement("a");
+    book.className = "book";
+    book.href = "https://www.amctheatres.com/showtimes/" + sid + "/seats";
+    book.textContent = "🎟 Book in the AMC app";
+    const dismiss = document.createElement("button");
+    dismiss.className = "dismiss";
+    dismiss.textContent = "dismiss";
+    dismiss.onclick = () => {
+      const key = a.key || `${a.sid}-${a.at}`;
+      const d = JSON.parse(localStorage.getItem("dismissedAlerts") || "[]");
+      if (!d.includes(key)) d.push(key);
+      localStorage.setItem("dismissedAlerts", JSON.stringify(d.slice(-100)));
+      renderAlerts(state);
+    };
+    const actions = document.createElement("div");
+    actions.appendChild(book);
+    actions.appendChild(dismiss);
+    div.appendChild(actions);
+    host.appendChild(div);
   }
 }
 
