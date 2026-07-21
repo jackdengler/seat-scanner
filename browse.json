@@ -1,7 +1,7 @@
 {
   "date": "2026-07-21",
   "days": 14,
-  "fetchedAtUtc": "2026-07-21T18:02:08Z",
+  "fetchedAtUtc": "2026-07-21T19:21:49Z",
   "movies": [
     {
       "showings": [
@@ -347,12 +347,6 @@
     },
     {
       "showings": [
-        {
-          "format": "PRIME at AMC",
-          "showDateTimeUtc": "2026-07-21T18:05:00.000Z",
-          "showtimeId": 143822501,
-          "time": "11:05 am"
-        },
         {
           "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-21T19:00:00.000Z",
@@ -2113,16 +2107,10 @@
         }
       ],
       "slug": "the-odyssey-76238",
-      "title": "$"
+      "title": "The Odyssey"
     },
     {
       "showings": [
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-21T18:00:00.000Z",
-          "showtimeId": 145203961,
-          "time": "11:00 am"
-        },
         {
           "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-21T19:00:00.000Z",
@@ -2521,12 +2509,6 @@
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-21T18:40:00.000Z",
-          "showtimeId": 144525314,
-          "time": "11:40 am"
-        },
-        {
-          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-21T21:30:00.000Z",
           "showtimeId": 144525313,
           "time": "2:30 pm"
@@ -2783,12 +2765,6 @@
     },
     {
       "showings": [
-        {
-          "format": "RealD 3D",
-          "showDateTimeUtc": "2026-07-21T18:00:00.000Z",
-          "showtimeId": 145203841,
-          "time": "11:00 am"
-        },
         {
           "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-21T21:00:00.000Z",
@@ -3163,12 +3139,6 @@
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-21T18:10:00.000Z",
-          "showtimeId": 145203853,
-          "time": "11:10 am"
-        },
-        {
-          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-21T20:40:00.000Z",
           "showtimeId": 145203840,
           "time": "1:40 pm"
@@ -3509,12 +3479,6 @@
     },
     {
       "showings": [
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-21T18:00:00.000Z",
-          "showtimeId": 145203946,
-          "time": "11:00 am"
-        },
         {
           "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-21T20:50:00.000Z",
