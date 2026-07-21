@@ -1,6 +1,6 @@
 {
   "columns": 20,
-  "fetchedAtUtc": "2026-07-21T14:51:13Z",
+  "fetchedAtUtc": "2026-07-21T14:59:29Z",
   "movie": null,
   "rows": 10,
   "seats": [
@@ -1188,8 +1188,8 @@
       "type": "LoveSeatRight"
     }
   ],
-  "showDateTimeUtc": "2026-08-02T23:00:00.000Z",
+  "showDateTimeUtc": null,
   "showtimeId": "144163098",
-  "theatre": "AMC Century City 15",
-  "utcOffset": "-07:00"
+  "theatre": null,
+  "utcOffset": null
 }
