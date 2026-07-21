@@ -99,6 +99,7 @@ async function init() {
   $("formatFilter").onchange = () => { if (currentListing) renderShowlist(currentListing); };
   $("theatre").value = localStorage.getItem("theatre") || "";
   $("theatre").onchange = () => localStorage.setItem("theatre", $("theatre").value.trim());
+  renderPresets();
   $("date").value = todayLocal();
   if (token()) $("pat").placeholder = "saved ✓ (paste to replace)";
 
@@ -270,6 +271,39 @@ function theatrePath(v) {
   if (m) return m[1];
   const cleaned = v.trim().replace(/^\/+|\/+$/g, "").split("?")[0];
   return /^[a-z0-9-]+(\/[a-z0-9-]+)?$/i.test(cleaned) ? cleaned : null;
+}
+
+// One-tap LA theatres so you don't have to paste a link. `path` is the
+// market/slug after /movie-theatres/ — note CityWalk's listing lives under its
+// internal "universal-cinema-an-amc-theatre" slug (the marketing URL slug
+// doesn't match the ids the showtimes markup is keyed on).
+const THEATRE_PRESETS = [
+  { label: "Century City", path: "los-angeles/amc-century-city-15" },
+  { label: "CityWalk", path: "los-angeles/universal-cinema-an-amc-theatre" },
+  { label: "The Grove", path: "los-angeles/amc-the-grove-14" },
+];
+
+function renderPresets() {
+  const host = $("presets");
+  if (!host) return;
+  host.innerHTML = "";
+  const lbl = document.createElement("span");
+  lbl.className = "muted presetlbl";
+  lbl.textContent = "LA quick picks:";
+  host.appendChild(lbl);
+  for (const p of THEATRE_PRESETS) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "preset";
+    b.textContent = p.label;
+    b.onclick = () => {
+      const url = "https://www.amctheatres.com/movie-theatres/" + p.path;
+      $("theatre").value = url;
+      localStorage.setItem("theatre", url);
+      browseShowtimes();
+    };
+    host.appendChild(b);
+  }
 }
 
 async function browseShowtimes() {
