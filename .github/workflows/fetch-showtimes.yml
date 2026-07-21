@@ -21,9 +21,12 @@ on:
 permissions:
   contents: write
 
+# A user-initiated browse must never sit behind (and be cancelled by) the
+# self-chaining poll run, so it gets its own group rather than sharing "poll".
+# A newer browse dispatch supersedes an older queued one (latest-wins).
 concurrency:
-  group: poll
-  cancel-in-progress: false
+  group: fetch-showtimes
+  cancel-in-progress: true
 
 jobs:
   fetch:
@@ -61,4 +64,17 @@ jobs:
           git config user.name "seat-scanner"
           git config user.email "seat-scanner@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || { git commit -m "fetch-showtimes: ${{ github.event.inputs.theatre }} ${{ github.event.inputs.date }}"; git push origin HEAD:data; }
+          git diff --cached --quiet && { echo "nothing to push"; exit 0; }
+          git commit -m "fetch-showtimes: ${{ github.event.inputs.theatre }} ${{ github.event.inputs.date }}"
+          # No longer serialized against poll via the concurrency group, so a
+          # concurrent poll push can win the race; rebase our commit on top and
+          # retry rather than failing the whole browse. -X theirs keeps our
+          # file if the (near-impossible) same-file conflict ever happens.
+          for attempt in 1 2 3 4 5; do
+            git push origin HEAD:data && exit 0
+            echo "push rejected (attempt $attempt); rebasing on origin/data"
+            git fetch origin data
+            git rebase -X theirs origin/data
+            sleep "$attempt"
+          done
+          git push origin HEAD:data
