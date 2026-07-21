@@ -77,8 +77,12 @@ async function init() {
   $("repoLabel").textContent = `${OWNER}/${REPO}`;
   $("saveTok").onclick = saveToken;
   $("notifBtn").onclick = enableNotifications;
-  $("loadBtn").onclick = loadSeatmap;
+  $("loadBtn").onclick = () => loadSeatmap();
   $("saveWatch").onclick = saveWatch;
+  $("browseBtn").onclick = browseShowtimes;
+  $("theatre").value = localStorage.getItem("theatre") || "";
+  $("theatre").onchange = () => localStorage.setItem("theatre", $("theatre").value.trim());
+  $("date").value = todayLocal();
   if (token()) $("pat").placeholder = "saved ✓ (paste to replace)";
 
   const standalone = matchMedia("(display-mode: standalone)").matches || navigator.standalone;
@@ -180,8 +184,8 @@ async function defaultBranch() {
   return j.default_branch;
 }
 
-async function loadSeatmap() {
-  const sid = showtimeIdFromInput($("showtime").value.trim());
+async function loadSeatmap(sidArg) {
+  const sid = sidArg || showtimeIdFromInput($("showtime").value.trim());
   if (!sid) { toast("paste an AMC showtime link or numeric ID"); return; }
   if (!token()) { toast("save your token first"); return; }
   const btn = $("loadBtn");
@@ -215,6 +219,107 @@ async function loadSeatmap() {
     status("failed: " + e.message);
   } finally {
     btn.disabled = false;
+  }
+}
+
+/* ---------- browse a theatre by date ---------- */
+
+function todayLocal() {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
+// Path after /movie-theatres/ (market/slug), from a full URL or bare path.
+function theatrePath(v) {
+  const m = v.match(/movie-theatres\/([a-z0-9-]+\/[a-z0-9-]+)/i)
+    || v.match(/movie-theatres\/([a-z0-9-]+)/i);
+  if (m) return m[1];
+  const cleaned = v.trim().replace(/^\/+|\/+$/g, "").split("?")[0];
+  return /^[a-z0-9-]+(\/[a-z0-9-]+)?$/i.test(cleaned) ? cleaned : null;
+}
+
+async function browseShowtimes() {
+  const theatre = theatrePath($("theatre").value.trim());
+  const date = $("date").value || todayLocal();
+  // AMC needs the market segment too (market/slug), not a bare slug.
+  if (!theatre || !theatre.includes("/")) {
+    toast("paste your theatre's full AMC page link (…/movie-theatres/<city>/<theatre>)", 6000);
+    return;
+  }
+  if (!token()) { toast("save your token first"); return; }
+  localStorage.setItem("theatre", $("theatre").value.trim());
+  const btn = $("browseBtn");
+  btn.disabled = true;
+  $("showlist").innerHTML = "";
+  const status = (m) => ($("browseStatus").textContent = m);
+  try {
+    status("asking GitHub Actions to fetch showtimes…");
+    const ref = await defaultBranch();
+    const res = await gh(`/actions/workflows/fetch-showtimes.yml/dispatches`, {
+      method: "POST",
+      body: JSON.stringify({ ref, inputs: { theatre, date } }),
+    });
+    if (!res.ok) throw new Error("dispatch failed — check token Actions permission");
+    const started = Date.now();
+    while (Date.now() - started < 4 * 60 * 1000) {
+      await new Promise((r) => setTimeout(r, 5000));
+      status(`waiting for showtimes… ${Math.round((Date.now() - started) / 1000)}s`);
+      const f = await getFile("browse.json", "data");
+      if (f) {
+        const listing = JSON.parse(f.text);
+        if (listing.theatre === theatre && listing.date === date
+            && new Date(listing.fetchedAtUtc).getTime() > started - 60_000) {
+          status("");
+          renderShowlist(listing);
+          return;
+        }
+      }
+    }
+    status("timed out — check the fetch-showtimes run in the Actions tab.");
+  } catch (e) {
+    status("failed: " + e.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function renderShowlist(listing) {
+  const host = $("showlist");
+  host.innerHTML = "";
+  if (!listing.movies || !listing.movies.length) {
+    host.innerHTML = '<p class="muted">No showtimes listed for that date.</p>';
+    return;
+  }
+  const now = Date.now();
+  for (const mv of listing.movies) {
+    const div = document.createElement("div");
+    div.className = "movie";
+    div.innerHTML = `<b>${esc(mv.title)}</b>`;
+    // group this movie's showings by format
+    const byFmt = {};
+    for (const s of mv.showings) (byFmt[s.format || ""] ||= []).push(s);
+    for (const [fmt, showings] of Object.entries(byFmt)) {
+      if (fmt) {
+        const f = document.createElement("div");
+        f.className = "fmt";
+        f.textContent = fmt;
+        div.appendChild(f);
+      }
+      const times = document.createElement("div");
+      times.className = "times";
+      for (const s of showings) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "time";
+        b.textContent = s.time;
+        if (new Date(s.showDateTimeUtc).getTime() < now) b.classList.add("past");
+        b.onclick = () => loadSeatmap(String(s.showtimeId));
+        times.appendChild(b);
+      }
+      div.appendChild(times);
+    }
+    host.appendChild(div);
   }
 }
 
@@ -260,6 +365,7 @@ function renderPicker(sm) {
     grid.appendChild(div);
   }
   $("picker").hidden = false;
+  $("picker").scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
 async function saveWatch() {

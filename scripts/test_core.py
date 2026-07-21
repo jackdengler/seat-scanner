@@ -1,5 +1,6 @@
 """Unit tests for the parser and matcher. Run: python3 -m unittest discover scripts"""
 
+import json
 import os
 import unittest
 
@@ -108,12 +109,79 @@ class TierTests(unittest.TestCase):
         import check
         day = 24 * 60
         self.assertEqual(check.interval_minutes(30), 0)
-        self.assertEqual(check.interval_minutes(4 * 60), 0)
-        self.assertEqual(check.interval_minutes(5 * 60), 15)
-        self.assertEqual(check.interval_minutes(day), 15)
-        self.assertEqual(check.interval_minutes(2 * day), 30)
-        self.assertEqual(check.interval_minutes(7 * day), 30)
-        self.assertEqual(check.interval_minutes(8 * day), 360)
+        self.assertEqual(check.interval_minutes(8 * 60), 0)
+        self.assertEqual(check.interval_minutes(12 * 60), 5)
+        self.assertEqual(check.interval_minutes(day), 5)
+        self.assertEqual(check.interval_minutes(2 * day), 15)
+        self.assertEqual(check.interval_minutes(7 * day), 15)
+        self.assertEqual(check.interval_minutes(8 * day), 180)
+
+
+def _showtimes_html(flight):
+    """Wrap a raw flight string into a seats-page-style HTML fixture,
+    JSON-escaping it the way Next.js emits self.__next_f.push chunks."""
+    return "<script>self.__next_f.push([1," + json.dumps(flight) + "])</script>"
+
+
+# A trimmed but structurally-real theatre showtimes flight: two movies, one
+# with two formats, mirroring the id/showtime/movie-link shapes AMC renders.
+SHOWTIMES_FLIGHT = (
+    '"href":"/movies/moana-72474","target":"_self"}],"children":"Moana"}'
+    '"id":"moana-72474-amc-testtown-1-reald3d-0",'
+    '"children":[["$","span",null,{"children":"RealD 3D"}]]'
+    '{"showtimeId":111,"status":"Sellable",'
+    '"showDateTimeUtc":"2026-07-21T16:00:00.000Z",'
+    '"display":{"time":"12:00","amPm":"pm"}}'
+    '{"showtimeId":112,"status":"Sellable",'
+    '"showDateTimeUtc":"2026-07-21T22:30:00.000Z",'
+    '"display":{"time":"6:30","amPm":"pm"}}'
+    '"id":"moana-72474-amc-testtown-1-standard-1",'
+    '"children":[["$","span",null,{"children":"Standard"}]]'
+    '{"showtimeId":113,"status":"Sellable",'
+    '"showDateTimeUtc":"2026-07-21T18:00:00.000Z",'
+    '"display":{"time":"2:00","amPm":"pm"}}'
+    '"href":"/movies/the-odyssey-76238","target":"_self"}],'
+    '"children":"The Odyssey"}'
+    '"id":"the-odyssey-76238-amc-testtown-1-imax-0",'
+    '"children":[["$","span",null,{"children":"IMAX"}]]'
+    '{"showtimeId":114,"status":"Sellable",'
+    '"showDateTimeUtc":"2026-07-21T23:00:00.000Z",'
+    '"display":{"time":"7:00","amPm":"pm"}}'
+)
+
+
+class ShowtimesParseTests(unittest.TestCase):
+    def setUp(self):
+        html = _showtimes_html(SHOWTIMES_FLIGHT)
+        self.listing = amc.parse_showtimes(html, "boston/amc-testtown-1")
+
+    def test_theatre_slug_from_path(self):
+        self.assertEqual(self.listing["theatreSlug"], "amc-testtown-1")
+
+    def test_movies_and_titles(self):
+        titles = [m["title"] for m in self.listing["movies"]]
+        self.assertEqual(titles, ["Moana", "The Odyssey"])
+
+    def test_showings_grouped_and_counted(self):
+        moana = self.listing["movies"][0]
+        self.assertEqual(len(moana["showings"]), 3)
+        odyssey = self.listing["movies"][1]
+        self.assertEqual(len(odyssey["showings"]), 1)
+
+    def test_showing_fields(self):
+        first = self.listing["movies"][0]["showings"][0]
+        self.assertEqual(first["showtimeId"], 111)
+        self.assertEqual(first["time"], "12:00 pm")
+        self.assertEqual(first["format"], "RealD 3D")
+        self.assertEqual(first["showDateTimeUtc"], "2026-07-21T16:00:00.000Z")
+
+    def test_format_follows_header(self):
+        formats = {s["format"] for s in self.listing["movies"][0]["showings"]}
+        self.assertEqual(formats, {"RealD 3D", "Standard"})
+
+    def test_pretty_slug_fallback(self):
+        self.assertEqual(amc._pretty_slug("young-washington-80772"),
+                         "Young Washington")
 
 
 class FlightDecodeTests(unittest.TestCase):

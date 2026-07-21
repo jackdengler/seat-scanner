@@ -64,11 +64,14 @@ def diagnose(body):
     return "unrecognized"
 
 
-def fetch_html(showtime_id, log=lambda msg: None):
-    """Fetch the seats page HTML, following the Queue-It redirect chain."""
+def fetch_page(url, log=lambda msg: None):
+    """Fetch an AMC page's HTML, following the Queue-It redirect chain.
+
+    Returns the first response body that carries Next.js flight data
+    (``__next_f``); raises FetchBlocked if the protection stack stops us.
+    """
     jar = http.cookiejar.CookieJar()
     opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
-    url = f"https://www.amctheatres.com/showtimes/{showtime_id}/seats"
 
     for hop in range(1, MAX_HOPS + 1):
         req = urllib.request.Request(url, headers=HEADERS)
@@ -98,6 +101,12 @@ def fetch_html(showtime_id, log=lambda msg: None):
         url = urllib.parse.urljoin(final_url, target)
 
     raise FetchBlocked("redirect-loop")
+
+
+def fetch_html(showtime_id, log=lambda msg: None):
+    """Fetch the seats page HTML, following the Queue-It redirect chain."""
+    return fetch_page(
+        f"https://www.amctheatres.com/showtimes/{showtime_id}/seats", log)
 
 
 def decode_flight(html):
@@ -235,3 +244,114 @@ def parse_seatmap(html, showtime_id=None):
 
 def fetch_seatmap(showtime_id, log=lambda msg: None):
     return parse_seatmap(fetch_html(showtime_id, log), showtime_id)
+
+
+# ---- showtimes listing (browse a theatre by date) ----
+#
+# The theatre showtimes page renders each showing as a React server-component
+# tree rather than a clean JSON blob, so parsing keys off three stable shapes:
+#   * a format-group heading  "id":"<movie-slug>-<theatre-slug>-<format>-<n>"
+#   * a showtime object       {"showtimeId":N,...,"showDateTimeUtc":"...",
+#                              "display":{"time":"12:00","amPm":"pm"}}
+#   * a movie link+title       href":"/movies/<slug>" ... "children":"<Title>"
+# Showings are grouped under whichever heading most recently preceded them.
+
+_THEATRE_SLUG_RE = re.compile(r"[a-z0-9-]+$")
+_SHOWTIME_RE = re.compile(
+    r'\{"showtimeId":(\d+),.*?"showDateTimeUtc":"([^"]+)"'
+    r'.*?"time":"([^"]+)","amPm":"([^"]+)"\}')
+
+
+def _theatre_slug(theatre):
+    """Last path segment of a theatre path/URL, e.g. 'amc-boston-common-19'."""
+    m = _THEATRE_SLUG_RE.search(theatre.strip().strip("/").split("?")[0])
+    return m.group(0) if m else theatre.strip("/")
+
+
+def _movie_titles(flight):
+    """Map movie slug -> human title, from movie links and poster alts."""
+    titles = {}
+    for m in re.finditer(
+            r'/movies/([a-z0-9-]+)"[^\]]{0,160}?"children":(?:"|\[")'
+            r'([^"]{1,90})"', flight, re.S):
+        titles.setdefault(m.group(1), m.group(2))
+    for m in re.finditer(
+            r'/movies/([a-z0-9-]+)"(?:.{0,500}?)"alt":"([^"]{1,90})"',
+            flight, re.S):
+        titles.setdefault(m.group(1), m.group(2))
+    return titles
+
+
+def _pretty_slug(slug):
+    """Fallback title when a movie link/alt wasn't found: de-slug the id."""
+    return re.sub(r"-\d+$", "", slug).replace("-", " ").title() or slug
+
+
+def parse_showtimes(html, theatre_slug):
+    """Parse a theatre showtimes page into a list of movies with showings.
+
+    Returns {"theatreSlug", "movies": [{"slug","title","showings":[
+      {"showtimeId","showDateTimeUtc","time","format"}]}]}, movies and
+    showings in page order.
+    """
+    flight = decode_flight(html)
+    if not flight:
+        raise FetchBlocked("no-flight-data:" + diagnose(html), html)
+
+    slug = _theatre_slug(theatre_slug)
+    titles = _movie_titles(flight)
+    header_re = re.compile(
+        r'"id":"([a-z0-9-]+?-\d+)-' + re.escape(slug) + r'-([a-z0-9]+)-\d+"')
+
+    # Collect group headers and showtimes as (position, kind, data), ordered.
+    tokens = []
+    for m in header_re.finditer(flight):
+        # First visible label after the id is the format name ("RealD 3D").
+        fmt = re.search(r'"children":"([^"]{1,40})"', flight[m.end():m.end() + 400])
+        tokens.append((m.start(), "hdr",
+                       (m.group(1), fmt.group(1) if fmt else m.group(2))))
+    for m in _SHOWTIME_RE.finditer(flight):
+        tokens.append((m.start(), "show", m.groups()))
+    tokens.sort(key=lambda t: t[0])
+
+    movies = {}   # slug -> movie dict (insertion order preserved)
+    order = []
+    current = None
+    for _, kind, data in tokens:
+        if kind == "hdr":
+            movie_slug, current_fmt = data
+            current = movie_slug
+            if movie_slug not in movies:
+                movies[movie_slug] = {
+                    "slug": movie_slug,
+                    "title": titles.get(movie_slug) or _pretty_slug(movie_slug),
+                    "showings": [],
+                }
+                order.append(movie_slug)
+        elif current is not None:
+            sid, utc, tm, ampm = data
+            movies[current]["showings"].append({
+                "showtimeId": int(sid),
+                "showDateTimeUtc": utc,
+                "time": f"{tm} {ampm}",
+                "format": current_fmt,
+            })
+
+    return {"theatreSlug": slug, "movies": [movies[s] for s in order]}
+
+
+def fetch_showtimes(theatre, date, log=lambda msg: None):
+    """Fetch and parse a theatre's showtimes for a date (YYYY-MM-DD).
+
+    ``theatre`` is the path after /movie-theatres/, e.g.
+    'boston/amc-boston-common-19' (market/slug); a bare slug also works.
+    """
+    path = theatre.strip().strip("/").split("?")[0]
+    url = (f"https://www.amctheatres.com/movie-theatres/{path}/showtimes"
+           f"?date={date}")
+    result = parse_showtimes(fetch_page(url, log), path)
+    result["date"] = date
+    result["theatre"] = path
+    result["fetchedAtUtc"] = (datetime.datetime.now(datetime.timezone.utc)
+                              .strftime("%Y-%m-%dT%H:%M:%SZ"))
+    return result
