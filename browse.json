@@ -1,0 +1,62 @@
+{
+  "date": "2026-07-20",
+  "fetchedAtUtc": "2026-07-21T05:42:15Z",
+  "movies": [
+    {
+      "showings": [
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-07-21T06:00:00.000Z",
+          "showtimeId": 144020689,
+          "time": "11:00 pm"
+        },
+        {
+          "format": "70mm",
+          "showDateTimeUtc": "2026-07-21T05:30:00.000Z",
+          "showtimeId": 143822559,
+          "time": "10:30 pm"
+        }
+      ],
+      "slug": "the-odyssey-76238",
+      "title": "The Odyssey"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-21T06:00:00.000Z",
+          "showtimeId": 144525317,
+          "time": "11:00 pm"
+        }
+      ],
+      "slug": "evil-dead-burn-80306",
+      "title": "Evil Dead Burn"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-21T05:15:00.000Z",
+          "showtimeId": 145182270,
+          "time": "10:15 pm"
+        }
+      ],
+      "slug": "toy-story-5-72482",
+      "title": "Toy Story 5"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-21T05:15:00.000Z",
+          "showtimeId": 145182262,
+          "time": "10:15 pm"
+        }
+      ],
+      "slug": "the-invite-82975",
+      "title": "The Invite"
+    }
+  ],
+  "theatre": "los-angeles/universal-cinema-an-amc-theatre",
+  "theatreSlug": "universal-cinema-an-amc-theatre"
+}
