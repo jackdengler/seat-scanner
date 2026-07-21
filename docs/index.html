@@ -76,6 +76,12 @@
     width: auto; padding: 9px 10px; border-radius: 8px; border: 1px solid #3a3a40;
     background: #1a1a1e; color: #eee; font-size: 16px;
   }
+  .presets { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 8px 0 2px; }
+  .presetlbl { margin-right: 2px; }
+  .preset {
+    background: #2b2b31; border: 1px solid #3a3a40; color: #eee;
+    border-radius: 20px; padding: 6px 12px; font-size: 13px; font-weight: 600; margin: 0;
+  }
   #filterRow { margin: 6px 0; gap: 8px; }
   #movieFilter { flex: 1; min-width: 130px; }
   .dayhdr { font-size: 13px; color: #cbd5e1; font-weight: 600; margin: 10px 0 2px; }
@@ -119,6 +125,7 @@
   <h2>Browse shows</h2>
   <label for="theatre">Your AMC theatre (paste its page link once)</label>
   <input type="text" id="theatre" placeholder="https://www.amctheatres.com/movie-theatres/boston/amc-boston-common-19" inputmode="url">
+  <div id="presets" class="presets"></div>
   <div class="row">
     <div>
       <label for="date">From</label>
