@@ -16,6 +16,8 @@ const $ = (id) => document.getElementById(id);
 let config = { watches: [], vapidPublicKey: "" };
 let currentSeatmap = null;
 let selected = new Set();
+// Bulk browse selection: showtimeId -> {showtimeId, showDateTimeUtc, title, time}
+let selectedShowings = new Map();
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -80,6 +82,9 @@ async function init() {
   $("loadBtn").onclick = () => loadSeatmap();
   $("saveWatch").onclick = saveWatch;
   $("browseBtn").onclick = browseShowtimes;
+  $("bulkWatch").onclick = bulkWatch;
+  $("pickSeats").onclick = pickSeatsForSelected;
+  $("clearSel").onclick = clearSelection;
   $("theatre").value = localStorage.getItem("theatre") || "";
   $("theatre").onchange = () => localStorage.setItem("theatre", $("theatre").value.trim());
   $("date").value = todayLocal();
@@ -288,9 +293,11 @@ function renderShowlist(listing) {
   const host = $("showlist");
   host.innerHTML = "";
   if (!listing.movies || !listing.movies.length) {
+    $("browseHint").hidden = true;
     host.innerHTML = '<p class="muted">No showtimes listed for that date.</p>';
     return;
   }
+  $("browseHint").hidden = false;
   const now = Date.now();
   for (const mv of listing.movies) {
     const div = document.createElement("div");
@@ -314,13 +321,96 @@ function renderShowlist(listing) {
         b.className = "time";
         b.textContent = s.time;
         if (new Date(s.showDateTimeUtc).getTime() < now) b.classList.add("past");
-        b.onclick = () => loadSeatmap(String(s.showtimeId));
+        // tapping selects/deselects; selection survives re-renders/date changes
+        if (selectedShowings.has(s.showtimeId)) b.classList.add("sel");
+        b.onclick = () => toggleShowing(s, mv.title, b);
         times.appendChild(b);
       }
       div.appendChild(times);
     }
     host.appendChild(div);
   }
+  updateBulkBar();
+}
+
+function toggleShowing(s, title, el) {
+  if (selectedShowings.has(s.showtimeId)) {
+    selectedShowings.delete(s.showtimeId);
+    el.classList.remove("sel");
+  } else {
+    selectedShowings.set(s.showtimeId, {
+      showtimeId: s.showtimeId,
+      showDateTimeUtc: s.showDateTimeUtc,
+      title,
+      time: s.time,
+    });
+    el.classList.add("sel");
+  }
+  updateBulkBar();
+}
+
+function updateBulkBar() {
+  const n = selectedShowings.size;
+  $("bulkbar").hidden = n === 0;
+  $("selCount").textContent = n;
+  $("pickSeats").disabled = n !== 1;
+}
+
+function clearSelection() {
+  selectedShowings.clear();
+  document.querySelectorAll(".time.sel").forEach((el) => el.classList.remove("sel"));
+  updateBulkBar();
+}
+
+function watchLabel(showing) {
+  const when = new Date(showing.showDateTimeUtc).toLocaleString(undefined,
+    { weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  return `${showing.title} — ${when}`;
+}
+
+async function bulkWatch() {
+  const showings = [...selectedShowings.values()];
+  if (!showings.length) return;
+  if (!token()) { toast("save your token first"); return; }
+  const rows = $("brows").value.split(",").map((s) => s.trim()).filter(Boolean);
+  const adj = Math.max(1, parseInt($("badj").value, 10) || 1);
+  const exclude = [];
+  if ($("bexWheel").checked) exclude.push("Wheelchair");
+  if ($("bexComp").checked) exclude.push("Companion");
+  const btn = $("bulkWatch");
+  btn.disabled = true;
+  try {
+    const cur = await getFileWithSha("config.json");
+    const obj = cur ? cur.json : { watches: [] };
+    for (const s of showings) {
+      const watch = {
+        showtimeId: s.showtimeId,
+        showtimeIso: s.showDateTimeUtc,
+        label: watchLabel(s),
+        watchedSeats: [],
+        watchedRows: rows,
+        adjacentRequired: adj,
+        excludeTypes: exclude,
+      };
+      obj.watches = obj.watches.filter((w) => String(w.showtimeId) !== String(watch.showtimeId));
+      obj.watches.push(watch);
+    }
+    await putFile("config.json", obj, `watch ${showings.length} show(s)`, cur && cur.sha);
+    config = obj;
+    toast(`watching ${showings.length} show(s) ✓ — first check runs within a minute`);
+    clearSelection();
+    renderWatches(obj.watches, await loadState());
+  } catch (e) {
+    toast("save failed: " + e.message, 6000);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function pickSeatsForSelected() {
+  if (selectedShowings.size !== 1) return;
+  const [s] = selectedShowings.values();
+  loadSeatmap(String(s.showtimeId));
 }
 
 function renderPicker(sm) {
