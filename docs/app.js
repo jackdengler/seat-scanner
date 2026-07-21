@@ -699,12 +699,25 @@ function renderWatches(watches, state) {
     (!watchFilter.theatre || w.theatre === watchFilter.theatre) &&
     (!watchFilter.format || w.format === watchFilter.format));
 
-  if (watchFilter.theatre || watchFilter.format) {
-    const count = document.createElement("div");
-    count.className = "muted watchcount";
-    count.textContent = `${filtered.length} of ${watches.length} watches`;
-    host.appendChild(count);
+  const isFiltered = !!(watchFilter.theatre || watchFilter.format);
+  const header = document.createElement("div");
+  header.className = "watchhead";
+  const count = document.createElement("span");
+  count.className = "muted";
+  count.textContent = isFiltered
+    ? `${filtered.length} of ${watches.length} watches`
+    : `${watches.length} watch${watches.length === 1 ? "" : "es"}`;
+  header.appendChild(count);
+  if (filtered.length) {
+    const rm = document.createElement("button");
+    rm.className = "linkbtn removeall";
+    rm.textContent = isFiltered ? `Remove these ${filtered.length}` : "Remove all";
+    rm.onclick = () => removeMany(filtered.map((w) => w.showtimeId),
+      isFiltered ? "remove filtered watches" : "remove all watches");
+    header.appendChild(rm);
   }
+  host.appendChild(header);
+
   if (!filtered.length) {
     const none = document.createElement("div");
     none.className = "muted";
@@ -731,7 +744,7 @@ function renderWatches(watches, state) {
     else status = '<span class="warn">first check pending</span>';
     if ((ws.notifiedSignatures || []).length) status += ` · ${ws.notifiedSignatures.length} match alert(s) sent`;
     div.innerHTML =
-      `<div class="whead"><b>${esc(w.label)}</b><button class="del">remove</button></div>` +
+      `<div class="whead"><b>${esc(w.label)}</b><button class="del" aria-label="Remove watch">✕ Remove</button></div>` +
       `<div class="wpills">${pills.map((r) => `<span class="pill">${esc(r)}</span>`).join("")}</div>` +
       `<div class="muted wstatus">${status}</div>`;
     div.querySelector(".del").onclick = () => removeWatch(w.showtimeId);
@@ -740,13 +753,24 @@ function renderWatches(watches, state) {
 }
 
 async function removeWatch(sid) {
+  await removeMany([sid], `unwatch ${sid}`);
+}
+
+// Remove any number of watches in a single config write. Confirms first when
+// clearing more than one so a stray tap can't wipe the list.
+async function removeMany(sids, desc) {
+  if (!sids || !sids.length) return;
+  if (sids.length > 1 &&
+      !confirm(`Remove ${sids.length} watches? This can't be undone.`)) return;
   try {
     const cur = await getFileWithSha("config.json");
-    cur.json.watches = cur.json.watches.filter((w) => String(w.showtimeId) !== String(sid));
-    await putFile("config.json", cur.json, `unwatch ${sid}`, cur.sha);
+    const drop = new Set(sids.map(String));
+    cur.json.watches = (cur.json.watches || [])
+      .filter((w) => !drop.has(String(w.showtimeId)));
+    await putFile("config.json", cur.json, desc, cur.sha);
     config = cur.json;
     renderWatches(config.watches, await loadState());
-    toast("removed");
+    toast(sids.length === 1 ? "removed" : `removed ${sids.length} watches`);
   } catch (e) {
     toast("remove failed: " + e.message, 6000);
   }
