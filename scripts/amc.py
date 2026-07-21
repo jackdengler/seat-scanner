@@ -269,14 +269,19 @@ def _theatre_slug(theatre):
 
 
 def _movie_titles(flight):
-    """Map movie slug -> human title, from movie links and poster alts."""
+    """Map movie slug -> human title, from movie links and poster alts.
+
+    The ``(?!\\$)`` guard skips Next.js flight placeholders: a component child
+    rendered as ``"children":["$","$L3e",...]`` would otherwise be captured as
+    the literal ``$``, clobbering the real title (e.g. "The Odyssey").
+    """
     titles = {}
     for m in re.finditer(
             r'/movies/([a-z0-9-]+)"[^\]]{0,160}?"children":(?:"|\[")'
-            r'([^"]{1,90})"', flight, re.S):
+            r'(?!\$)([^"]{1,90})"', flight, re.S):
         titles.setdefault(m.group(1), m.group(2))
     for m in re.finditer(
-            r'/movies/([a-z0-9-]+)"(?:.{0,500}?)"alt":"([^"]{1,90})"',
+            r'/movies/([a-z0-9-]+)"(?:.{0,500}?)"alt":"(?!\$)([^"]{1,90})"',
             flight, re.S):
         titles.setdefault(m.group(1), m.group(2))
     return titles
