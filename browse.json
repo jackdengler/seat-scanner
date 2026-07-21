@@ -1,20 +1,242 @@
 {
-  "date": "2026-07-20",
-  "fetchedAtUtc": "2026-07-21T05:57:20Z",
+  "date": "2026-07-22",
+  "fetchedAtUtc": "2026-07-21T06:13:18Z",
   "movies": [
     {
       "showings": [
         {
+          "format": "RealD 3D",
+          "showDateTimeUtc": "2026-07-22T19:00:00.000Z",
+          "showtimeId": 145203875,
+          "time": "12:00 pm"
+        },
+        {
+          "format": "RealD 3D",
+          "showDateTimeUtc": "2026-07-22T22:00:00.000Z",
+          "showtimeId": 145203876,
+          "time": "3:00 pm"
+        },
+        {
+          "format": "RealD 3D",
+          "showDateTimeUtc": "2026-07-23T01:00:00.000Z",
+          "showtimeId": 145203877,
+          "time": "6:00 pm"
+        },
+        {
+          "format": "RealD 3D",
+          "showDateTimeUtc": "2026-07-23T04:00:00.000Z",
+          "showtimeId": 145203878,
+          "time": "9:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T17:00:00.000Z",
+          "showtimeId": 145203791,
+          "time": "10:00 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T20:00:00.000Z",
+          "showtimeId": 145203792,
+          "time": "1:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:00:00.000Z",
+          "showtimeId": 145203793,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T02:00:00.000Z",
+          "showtimeId": 145204047,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T05:30:00.000Z",
+          "showtimeId": 145204003,
+          "time": "10:30 pm"
+        }
+      ],
+      "slug": "moana-72474",
+      "title": "Moana"
+    },
+    {
+      "showings": [
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-07-22T13:05:00.000Z",
+          "showtimeId": 144500190,
+          "time": "6:05 am"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-07-22T17:00:00.000Z",
+          "showtimeId": 143822626,
+          "time": "10:00 am"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-07-22T21:00:00.000Z",
+          "showtimeId": 143822628,
+          "time": "2:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-07-23T01:00:00.000Z",
+          "showtimeId": 143822631,
+          "time": "6:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-07-23T05:00:00.000Z",
+          "showtimeId": 143822629,
+          "time": "10:00 pm"
+        },
+        {
           "format": "PRIME at AMC",
-          "showDateTimeUtc": "2026-07-21T06:00:00.000Z",
-          "showtimeId": 144020689,
+          "showDateTimeUtc": "2026-07-22T18:05:00.000Z",
+          "showtimeId": 143822504,
+          "time": "11:05 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-07-22T22:05:00.000Z",
+          "showtimeId": 143822506,
+          "time": "3:05 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-07-23T02:10:00.000Z",
+          "showtimeId": 143822505,
+          "time": "7:10 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-07-23T06:00:00.000Z",
+          "showtimeId": 144020690,
           "time": "11:00 pm"
         },
         {
           "format": "70mm",
-          "showDateTimeUtc": "2026-07-21T05:30:00.000Z",
-          "showtimeId": 143822559,
+          "showDateTimeUtc": "2026-07-22T17:30:00.000Z",
+          "showtimeId": 144020739,
+          "time": "10:30 am"
+        },
+        {
+          "format": "70mm",
+          "showDateTimeUtc": "2026-07-22T21:30:00.000Z",
+          "showtimeId": 143822554,
+          "time": "2:30 pm"
+        },
+        {
+          "format": "70mm",
+          "showDateTimeUtc": "2026-07-23T01:30:00.000Z",
+          "showtimeId": 143822552,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "70mm",
+          "showDateTimeUtc": "2026-07-23T05:30:00.000Z",
+          "showtimeId": 143822553,
           "time": "10:30 pm"
+        },
+        {
+          "format": "Open Caption (On-screen Subtitles)",
+          "showDateTimeUtc": "2026-07-23T04:30:00.000Z",
+          "showtimeId": 145203953,
+          "time": "9:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-07-22T15:30:00.000Z",
+          "showtimeId": 145203897,
+          "time": "8:30 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-07-22T19:30:00.000Z",
+          "showtimeId": 145203896,
+          "time": "12:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-07-22T23:30:00.000Z",
+          "showtimeId": 145203895,
+          "time": "4:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-07-23T03:30:00.000Z",
+          "showtimeId": 145203894,
+          "time": "8:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T15:00:00.000Z",
+          "showtimeId": 144509618,
+          "time": "8:00 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T16:00:00.000Z",
+          "showtimeId": 144509630,
+          "time": "9:00 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T16:30:00.000Z",
+          "showtimeId": 145203952,
+          "time": "9:30 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T19:00:00.000Z",
+          "showtimeId": 144333670,
+          "time": "12:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T20:00:00.000Z",
+          "showtimeId": 144333692,
+          "time": "1:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T20:30:00.000Z",
+          "showtimeId": 145203951,
+          "time": "1:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:00:00.000Z",
+          "showtimeId": 144333671,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T00:00:00.000Z",
+          "showtimeId": 144333693,
+          "time": "5:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T00:30:00.000Z",
+          "showtimeId": 145203954,
+          "time": "5:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T03:00:00.000Z",
+          "showtimeId": 144333672,
+          "time": "8:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T04:00:00.000Z",
+          "showtimeId": 144333694,
+          "time": "9:00 pm"
         }
       ],
       "slug": "the-odyssey-76238",
@@ -23,14 +245,374 @@
     {
       "showings": [
         {
+          "format": "RealD 3D",
+          "showDateTimeUtc": "2026-07-22T19:00:00.000Z",
+          "showtimeId": 145203966,
+          "time": "12:00 pm"
+        },
+        {
+          "format": "RealD 3D",
+          "showDateTimeUtc": "2026-07-22T21:30:00.000Z",
+          "showtimeId": 145203967,
+          "time": "2:30 pm"
+        },
+        {
+          "format": "RealD 3D",
+          "showDateTimeUtc": "2026-07-23T00:15:00.000Z",
+          "showtimeId": 145203968,
+          "time": "5:15 pm"
+        },
+        {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-21T06:00:00.000Z",
-          "showtimeId": 144525317,
+          "showDateTimeUtc": "2026-07-22T16:30:00.000Z",
+          "showtimeId": 145203962,
+          "time": "9:30 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T18:00:00.000Z",
+          "showtimeId": 145203865,
+          "time": "11:00 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T20:30:00.000Z",
+          "showtimeId": 145203866,
+          "time": "1:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:00:00.000Z",
+          "showtimeId": 145203867,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T01:30:00.000Z",
+          "showtimeId": 145203868,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T04:00:00.000Z",
+          "showtimeId": 145203869,
+          "time": "9:00 pm"
+        }
+      ],
+      "slug": "minions-monsters-77563",
+      "title": "Minions & Monsters"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T18:40:00.000Z",
+          "showtimeId": 144525310,
+          "time": "11:40 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T21:30:00.000Z",
+          "showtimeId": 144525309,
+          "time": "2:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T00:20:00.000Z",
+          "showtimeId": 144525308,
+          "time": "5:20 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T03:10:00.000Z",
+          "showtimeId": 144525316,
+          "time": "8:10 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T06:00:00.000Z",
+          "showtimeId": 144525315,
           "time": "11:00 pm"
         }
       ],
       "slug": "evil-dead-burn-80306",
       "title": "Evil Dead Burn"
+    },
+    {
+      "showings": [
+        {
+          "format": "RealD 3D",
+          "showDateTimeUtc": "2026-07-22T18:00:00.000Z",
+          "showtimeId": 145203846,
+          "time": "11:00 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T21:00:00.000Z",
+          "showtimeId": 145203849,
+          "time": "2:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:45:00.000Z",
+          "showtimeId": 145203850,
+          "time": "4:45 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T02:30:00.000Z",
+          "showtimeId": 145203851,
+          "time": "7:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T05:15:00.000Z",
+          "showtimeId": 145203852,
+          "time": "10:15 pm"
+        }
+      ],
+      "slug": "toy-story-5-72482",
+      "title": "Toy Story 5"
+    },
+    {
+      "showings": [
+        {
+          "format": "Fan Faves",
+          "showDateTimeUtc": "2026-07-22T17:15:00.000Z",
+          "showtimeId": 142849394,
+          "time": "10:15 am"
+        }
+      ],
+      "slug": "sonic-the-hedgehog-3-83810",
+      "title": "Sonic The Hedgehog 3"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T18:10:00.000Z",
+          "showtimeId": 145203848,
+          "time": "11:10 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T20:40:00.000Z",
+          "showtimeId": 145203845,
+          "time": "1:40 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:30:00.000Z",
+          "showtimeId": 145203844,
+          "time": "4:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T02:20:00.000Z",
+          "showtimeId": 145203842,
+          "time": "7:20 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T05:15:00.000Z",
+          "showtimeId": 145203843,
+          "time": "10:15 pm"
+        }
+      ],
+      "slug": "the-invite-82975",
+      "title": "The Invite"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T19:45:00.000Z",
+          "showtimeId": 145204050,
+          "time": "12:45 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:00:00.000Z",
+          "showtimeId": 145204049,
+          "time": "4:00 pm"
+        }
+      ],
+      "slug": "young-washington-a-founder-s-story-80772",
+      "title": "Young Washington"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T17:30:00.000Z",
+          "showtimeId": 145204000,
+          "time": "10:30 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T20:20:00.000Z",
+          "showtimeId": 145203999,
+          "time": "1:20 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:35:00.000Z",
+          "showtimeId": 145203950,
+          "time": "4:35 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T05:00:00.000Z",
+          "showtimeId": 145204046,
+          "time": "10:00 pm"
+        }
+      ],
+      "slug": "obsession-82063",
+      "title": "Obsession"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T17:00:00.000Z",
+          "showtimeId": 145204048,
+          "time": "10:00 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T20:20:00.000Z",
+          "showtimeId": 145271206,
+          "time": "1:20 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:10:00.000Z",
+          "showtimeId": 145203998,
+          "time": "4:10 pm"
+        }
+      ],
+      "slug": "supergirl-77031",
+      "title": "Supergirl"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T17:00:00.000Z",
+          "showtimeId": 145203891,
+          "time": "10:00 am"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T20:05:00.000Z",
+          "showtimeId": 145203890,
+          "time": "1:05 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T01:50:00.000Z",
+          "showtimeId": 145203893,
+          "time": "6:50 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T05:10:00.000Z",
+          "showtimeId": 145203892,
+          "time": "10:10 pm"
+        }
+      ],
+      "slug": "backrooms-everything-must-go-edition-w-bonus-footage-84307",
+      "title": "Backrooms: Everything Must Go Edition w/ Bonus Footage"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T19:00:00.000Z",
+          "showtimeId": 145204012,
+          "time": "12:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T22:25:00.000Z",
+          "showtimeId": 145204013,
+          "time": "3:25 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T02:00:00.000Z",
+          "showtimeId": 145204002,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-23T04:45:00.000Z",
+          "showtimeId": 145204011,
+          "time": "9:45 pm"
+        }
+      ],
+      "slug": "disclosure-day-77140",
+      "title": "Disclosure Day"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-07-22T23:15:00.000Z",
+          "showtimeId": 145203889,
+          "time": "4:15 pm"
+        }
+      ],
+      "slug": "gail-daughtry-and-the-celebrity-sex-pass-83185",
+      "title": "Gail Daughtry and the Celebrity Sex Pass"
+    },
+    {
+      "showings": [
+        {
+          "format": "Japanese Spoken with English Subtitles",
+          "showDateTimeUtc": "2026-07-23T02:00:00.000Z",
+          "showtimeId": 144530064,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "Japanese Spoken with English Subtitles",
+          "showDateTimeUtc": "2026-07-23T02:15:00.000Z",
+          "showtimeId": 145275067,
+          "time": "7:15 pm"
+        },
+        {
+          "format": "Japanese Spoken with English Subtitles",
+          "showDateTimeUtc": "2026-07-23T02:30:00.000Z",
+          "showtimeId": 145203948,
+          "time": "7:30 pm"
+        },
+        {
+          "format": "Japanese Spoken with English Subtitles",
+          "showDateTimeUtc": "2026-07-23T03:00:00.000Z",
+          "showtimeId": 144888603,
+          "time": "8:00 pm"
+        },
+        {
+          "format": "Japanese Spoken with English Subtitles",
+          "showDateTimeUtc": "2026-07-23T04:30:00.000Z",
+          "showtimeId": 144888600,
+          "time": "9:30 pm"
+        },
+        {
+          "format": "Japanese Spoken with English Subtitles",
+          "showDateTimeUtc": "2026-07-23T05:00:00.000Z",
+          "showtimeId": 145203949,
+          "time": "10:00 pm"
+        },
+        {
+          "format": "Japanese Spoken with English Subtitles",
+          "showDateTimeUtc": "2026-07-23T05:30:00.000Z",
+          "showtimeId": 145203963,
+          "time": "10:30 pm"
+        }
+      ],
+      "slug": "the-end-of-evangelion-evangelion-30th-movie-fest-83872",
+      "title": "The End Of Evangelion (Evangelion 30th Movie Fest)"
     }
   ],
   "theatre": "los-angeles/universal-cinema-an-amc-theatre",
