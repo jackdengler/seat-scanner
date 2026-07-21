@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-21T06:42:30Z",
+  "fetchedAtUtc": "2026-07-21T06:42:44Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -2546,7 +2546,7 @@
       "type": "Companion"
     },
     {
-      "available": true,
+      "available": false,
       "column": 16,
       "name": "N14",
       "row": 13,
@@ -2644,8 +2644,8 @@
       "type": "CanReserve"
     }
   ],
-  "showDateTimeUtc": "2026-07-22T01:00:00.000Z",
-  "showtimeId": "143822627",
+  "showDateTimeUtc": "2026-07-25T18:00:00.000Z",
+  "showtimeId": "143822638",
   "theatre": "Universal Cinema - an AMC Theatre",
   "utcOffset": "-07:00"
 }

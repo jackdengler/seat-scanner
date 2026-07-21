@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-21T06:42:30Z",
+  "fetchedAtUtc": "2026-07-21T06:42:56Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -1279,7 +1279,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 5,
       "name": "G24",
       "row": 7,
@@ -1440,7 +1440,7 @@
       "type": "Companion"
     },
     {
-      "available": true,
+      "available": false,
       "column": 28,
       "name": "G1",
       "row": 7,
@@ -2504,14 +2504,14 @@
       "type": "Companion"
     },
     {
-      "available": true,
+      "available": false,
       "column": 10,
       "name": "N20",
       "row": 13,
       "type": "Wheelchair"
     },
     {
-      "available": true,
+      "available": false,
       "column": 11,
       "name": "N19",
       "row": 13,
@@ -2546,14 +2546,14 @@
       "type": "Companion"
     },
     {
-      "available": true,
+      "available": false,
       "column": 16,
       "name": "N14",
       "row": 13,
       "type": "Wheelchair"
     },
     {
-      "available": true,
+      "available": false,
       "column": 17,
       "name": "N13",
       "row": 13,
@@ -2588,14 +2588,14 @@
       "type": "Companion"
     },
     {
-      "available": true,
+      "available": false,
       "column": 22,
       "name": "N8",
       "row": 13,
       "type": "Wheelchair"
     },
     {
-      "available": true,
+      "available": false,
       "column": 23,
       "name": "N7",
       "row": 13,
@@ -2644,8 +2644,8 @@
       "type": "CanReserve"
     }
   ],
-  "showDateTimeUtc": "2026-07-22T01:00:00.000Z",
-  "showtimeId": "143822627",
+  "showDateTimeUtc": "2026-07-27T02:00:00.000Z",
+  "showtimeId": "143822647",
   "theatre": "Universal Cinema - an AMC Theatre",
   "utcOffset": "-07:00"
 }
