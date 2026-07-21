@@ -87,6 +87,7 @@ async function init() {
   $("pickSeats").onclick = pickSeatsForSelected;
   $("clearSel").onclick = clearSelection;
   $("movieFilter").oninput = () => { if (currentListing) renderShowlist(currentListing); };
+  $("formatFilter").onchange = () => { if (currentListing) renderShowlist(currentListing); };
   $("theatre").value = localStorage.getItem("theatre") || "";
   $("theatre").onchange = () => localStorage.setItem("theatre", $("theatre").value.trim());
   $("date").value = todayLocal();
@@ -283,6 +284,7 @@ async function browseShowtimes() {
             && String(listing.days || 1) === String(days)
             && new Date(listing.fetchedAtUtc).getTime() > started - 60_000) {
           status("");
+          populateFormatFilter(listing);
           renderShowlist(listing);
           return;
         }
@@ -307,6 +309,22 @@ function dayLabel(utc) {
     { weekday: "short", month: "short", day: "numeric" });
 }
 
+// Fill the format dropdown from the formats present in a fresh listing,
+// keeping the current pick if it still exists. Called once per new listing,
+// not on every filter re-render.
+function populateFormatFilter(listing) {
+  const sel = $("formatFilter");
+  const prev = sel.value;
+  const fmts = new Set();
+  for (const mv of listing.movies || []) {
+    for (const s of mv.showings) if (s.format) fmts.add(s.format);
+  }
+  const sorted = [...fmts].sort();
+  sel.innerHTML = '<option value="">All formats</option>' +
+    sorted.map((f) => `<option value="${esc(f)}">${esc(f)}</option>`).join("");
+  sel.value = sorted.includes(prev) ? prev : "";
+}
+
 function renderShowlist(listing) {
   currentListing = listing;
   const host = $("showlist");
@@ -314,14 +332,15 @@ function renderShowlist(listing) {
   const movies = listing.movies || [];
   if (!movies.length) {
     $("browseHint").hidden = true;
-    $("movieFilter").hidden = true;
+    $("filterRow").hidden = true;
     host.innerHTML = '<p class="muted">No showtimes listed for those dates.</p>';
     return;
   }
   $("browseHint").hidden = false;
-  $("movieFilter").hidden = false;
+  $("filterRow").hidden = false;
 
   const filter = $("movieFilter").value.trim().toLowerCase();
+  const fmtFilter = $("formatFilter").value;
   const now = Date.now();
   // day headers only when the listing actually spans more than one day
   const allDays = new Set();
@@ -331,13 +350,17 @@ function renderShowlist(listing) {
   let shown = 0;
   for (const mv of movies) {
     if (filter && !mv.title.toLowerCase().includes(filter)) continue;
+    const showings = fmtFilter
+      ? mv.showings.filter((s) => (s.format || "") === fmtFilter)
+      : mv.showings;
+    if (!showings.length) continue;
     shown++;
     const div = document.createElement("div");
     div.className = "movie";
     div.innerHTML = `<b>${esc(mv.title)}</b>`;
 
     const byDay = {};
-    for (const s of mv.showings) (byDay[dayKey(s.showDateTimeUtc)] ||= []).push(s);
+    for (const s of showings) (byDay[dayKey(s.showDateTimeUtc)] ||= []).push(s);
     for (const dk of Object.keys(byDay).sort()) {
       const dayShowings = byDay[dk];
       if (multiDay) {
@@ -373,7 +396,7 @@ function renderShowlist(listing) {
     }
     host.appendChild(div);
   }
-  if (!shown) host.innerHTML = '<p class="muted">No movies match that filter.</p>';
+  if (!shown) host.innerHTML = '<p class="muted">No shows match those filters.</p>';
   updateBulkBar();
 }
 
