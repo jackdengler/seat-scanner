@@ -2,30 +2,9 @@
   "vapidPublicKey": "BKTvcmjIcSclER25SkHDSxhHGGxYyBfnEf9ZcPjuI1AG57OfBsNAlcABF4R5hV9491m1hflYQbxSzMkLZHLl2a0",
   "watches": [
     {
-      "showtimeId": 143822625,
-      "showtimeIso": "2026-07-22T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Tue, Jul 21 at 10:00 PM",
-      "watchedSeats": [],
-      "watchedRows": [
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N"
-      ],
-      "adjacentRequired": 1,
-      "excludeTypes": [
-        "Wheelchair",
-        "Companion"
-      ]
-    },
-    {
       "showtimeId": 143822631,
       "showtimeIso": "2026-07-23T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Wed, Jul 22 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Wed, Jul 22 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -46,7 +25,7 @@
     {
       "showtimeId": 143822629,
       "showtimeIso": "2026-07-23T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Wed, Jul 22 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Wed, Jul 22 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -67,7 +46,7 @@
     {
       "showtimeId": 143822635,
       "showtimeIso": "2026-07-24T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Thu, Jul 23 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Thu, Jul 23 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -88,7 +67,7 @@
     {
       "showtimeId": 143822633,
       "showtimeIso": "2026-07-24T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Thu, Jul 23 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Thu, Jul 23 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -109,7 +88,7 @@
     {
       "showtimeId": 143822639,
       "showtimeIso": "2026-07-25T02:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Fri, Jul 24 at 7:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Fri, Jul 24 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -130,7 +109,7 @@
     {
       "showtimeId": 143822637,
       "showtimeIso": "2026-07-25T06:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Fri, Jul 24 at 11:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Fri, Jul 24 at 11:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -151,7 +130,7 @@
     {
       "showtimeId": 143822638,
       "showtimeIso": "2026-07-25T18:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Jul 25 at 11:00 AM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sat, Jul 25 at 11:00 AM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -172,7 +151,7 @@
     {
       "showtimeId": 143822640,
       "showtimeIso": "2026-07-25T22:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Jul 25 at 3:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sat, Jul 25 at 3:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -193,7 +172,7 @@
     {
       "showtimeId": 143822643,
       "showtimeIso": "2026-07-26T02:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Jul 25 at 7:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sat, Jul 25 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -214,7 +193,7 @@
     {
       "showtimeId": 143822641,
       "showtimeIso": "2026-07-26T06:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Jul 25 at 11:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sat, Jul 25 at 11:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -235,7 +214,7 @@
     {
       "showtimeId": 143822642,
       "showtimeIso": "2026-07-26T18:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Jul 26 at 11:00 AM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Jul 26 at 11:00 AM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -256,7 +235,7 @@
     {
       "showtimeId": 143822644,
       "showtimeIso": "2026-07-26T22:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Jul 26 at 3:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Jul 26 at 3:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -277,7 +256,7 @@
     {
       "showtimeId": 143822647,
       "showtimeIso": "2026-07-27T02:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Jul 26 at 7:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Jul 26 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -298,7 +277,7 @@
     {
       "showtimeId": 143822645,
       "showtimeIso": "2026-07-27T06:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Jul 26 at 11:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Jul 26 at 11:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -319,7 +298,7 @@
     {
       "showtimeId": 143822662,
       "showtimeIso": "2026-07-28T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Mon, Jul 27 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Mon, Jul 27 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -340,7 +319,7 @@
     {
       "showtimeId": 143822660,
       "showtimeIso": "2026-07-28T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Mon, Jul 27 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Mon, Jul 27 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -361,7 +340,7 @@
     {
       "showtimeId": 143822667,
       "showtimeIso": "2026-07-29T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Tue, Jul 28 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Tue, Jul 28 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -382,7 +361,7 @@
     {
       "showtimeId": 143822664,
       "showtimeIso": "2026-07-29T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Tue, Jul 28 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Tue, Jul 28 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -403,7 +382,7 @@
     {
       "showtimeId": 143822659,
       "showtimeIso": "2026-07-30T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Wed, Jul 29 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Wed, Jul 29 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -424,7 +403,7 @@
     {
       "showtimeId": 143822657,
       "showtimeIso": "2026-07-30T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Wed, Jul 29 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Wed, Jul 29 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -445,7 +424,7 @@
     {
       "showtimeId": 143822655,
       "showtimeIso": "2026-07-31T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Thu, Jul 30 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Thu, Jul 30 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -466,7 +445,7 @@
     {
       "showtimeId": 143822653,
       "showtimeIso": "2026-07-31T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Thu, Jul 30 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Thu, Jul 30 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -487,7 +466,7 @@
     {
       "showtimeId": 143822651,
       "showtimeIso": "2026-08-01T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Fri, Jul 31 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Fri, Jul 31 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -508,7 +487,7 @@
     {
       "showtimeId": 143822649,
       "showtimeIso": "2026-08-01T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Fri, Jul 31 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Fri, Jul 31 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -529,7 +508,7 @@
     {
       "showtimeId": 143822650,
       "showtimeIso": "2026-08-01T17:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Aug 1 at 10:00 AM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sat, Aug 1 at 10:00 AM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -550,7 +529,7 @@
     {
       "showtimeId": 143822607,
       "showtimeIso": "2026-08-01T21:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Aug 1 at 2:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sat, Aug 1 at 2:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -571,7 +550,7 @@
     {
       "showtimeId": 143822606,
       "showtimeIso": "2026-08-02T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Aug 1 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sat, Aug 1 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -592,7 +571,7 @@
     {
       "showtimeId": 143822604,
       "showtimeIso": "2026-08-02T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Aug 1 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sat, Aug 1 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -613,7 +592,7 @@
     {
       "showtimeId": 144500188,
       "showtimeIso": "2026-08-02T13:05:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Aug 2 at 6:05 AM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Aug 2 at 6:05 AM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -634,7 +613,7 @@
     {
       "showtimeId": 143822605,
       "showtimeIso": "2026-08-02T17:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Aug 2 at 10:00 AM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Aug 2 at 10:00 AM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -655,7 +634,7 @@
     {
       "showtimeId": 143822603,
       "showtimeIso": "2026-08-02T21:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Aug 2 at 2:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Aug 2 at 2:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -676,7 +655,7 @@
     {
       "showtimeId": 143822602,
       "showtimeIso": "2026-08-03T01:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Aug 2 at 6:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Aug 2 at 6:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -697,7 +676,7 @@
     {
       "showtimeId": 143822600,
       "showtimeIso": "2026-08-03T05:00:00.000Z",
-      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Aug 2 at 10:00 PM",
+      "label": "The Odyssey ÃÂÃÂ¢ÃÂÃÂÃÂÃÂ Sun, Aug 2 at 10:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "G",
@@ -718,7 +697,7 @@
     {
       "showtimeId": 143811818,
       "showtimeIso": "2026-07-22T02:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Tue, Jul 21 at 7:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Tue, Jul 21 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -737,7 +716,7 @@
     {
       "showtimeId": 143811809,
       "showtimeIso": "2026-07-23T02:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Wed, Jul 22 at 7:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Wed, Jul 22 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -756,7 +735,7 @@
     {
       "showtimeId": 143811812,
       "showtimeIso": "2026-07-24T02:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Thu, Jul 23 at 7:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Thu, Jul 23 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -775,7 +754,7 @@
     {
       "showtimeId": 143811803,
       "showtimeIso": "2026-07-25T02:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Fri, Jul 24 at 7:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Fri, Jul 24 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -794,7 +773,7 @@
     {
       "showtimeId": 143811806,
       "showtimeIso": "2026-07-26T02:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Sat, Jul 25 at 7:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Jul 25 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -813,7 +792,7 @@
     {
       "showtimeId": 143811804,
       "showtimeIso": "2026-07-25T18:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Sat, Jul 25 at 11:00 AM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Jul 25 at 11:00 AM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -832,7 +811,7 @@
     {
       "showtimeId": 143811805,
       "showtimeIso": "2026-07-25T22:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Sat, Jul 25 at 3:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Jul 25 at 3:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -851,7 +830,7 @@
     {
       "showtimeId": 144055697,
       "showtimeIso": "2026-07-26T06:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Sat, Jul 25 at 11:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sat, Jul 25 at 11:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -870,7 +849,7 @@
     {
       "showtimeId": 143811807,
       "showtimeIso": "2026-07-26T18:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Sun, Jul 26 at 11:00 AM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Jul 26 at 11:00 AM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -889,7 +868,7 @@
     {
       "showtimeId": 143811796,
       "showtimeIso": "2026-07-26T22:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Sun, Jul 26 at 3:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Jul 26 at 3:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -908,7 +887,7 @@
     {
       "showtimeId": 143811797,
       "showtimeIso": "2026-07-27T02:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Sun, Jul 26 at 7:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Jul 26 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -927,7 +906,7 @@
     {
       "showtimeId": 144055698,
       "showtimeIso": "2026-07-27T06:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Sun, Jul 26 at 11:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Sun, Jul 26 at 11:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -946,7 +925,7 @@
     {
       "showtimeId": 144880228,
       "showtimeIso": "2026-07-28T02:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Mon, Jul 27 at 7:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Mon, Jul 27 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -965,7 +944,7 @@
     {
       "showtimeId": 143811795,
       "showtimeIso": "2026-07-29T02:00:00.000Z",
-      "label": "The Odyssey Ã¢ÂÂ Tue, Jul 28 at 7:00 PM",
+      "label": "The Odyssey ÃÂ¢ÃÂÃÂ Tue, Jul 28 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -984,7 +963,7 @@
     {
       "showtimeId": 144163082,
       "showtimeIso": "2026-08-01T02:30:00.000Z",
-      "label": "Spider-Man: Brand New Day â Fri, Jul 31 at 7:30 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Fri, Jul 31 at 7:30 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1003,7 +982,7 @@
     {
       "showtimeId": 144163094,
       "showtimeIso": "2026-08-01T19:30:00.000Z",
-      "label": "Spider-Man: Brand New Day â Sat, Aug 1 at 12:30 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Sat, Aug 1 at 12:30 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1022,7 +1001,7 @@
     {
       "showtimeId": 144163093,
       "showtimeIso": "2026-08-01T23:00:00.000Z",
-      "label": "Spider-Man: Brand New Day â Sat, Aug 1 at 4:00 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Sat, Aug 1 at 4:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1041,7 +1020,7 @@
     {
       "showtimeId": 144163091,
       "showtimeIso": "2026-08-02T02:30:00.000Z",
-      "label": "Spider-Man: Brand New Day â Sat, Aug 1 at 7:30 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Sat, Aug 1 at 7:30 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1060,7 +1039,7 @@
     {
       "showtimeId": 144163098,
       "showtimeIso": "2026-08-02T23:00:00.000Z",
-      "label": "Spider-Man: Brand New Day â Sun, Aug 2 at 4:00 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Sun, Aug 2 at 4:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1079,7 +1058,7 @@
     {
       "showtimeId": 144163096,
       "showtimeIso": "2026-08-03T02:30:00.000Z",
-      "label": "Spider-Man: Brand New Day â Sun, Aug 2 at 7:30 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Sun, Aug 2 at 7:30 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1098,7 +1077,7 @@
     {
       "showtimeId": 144163099,
       "showtimeIso": "2026-08-02T19:30:00.000Z",
-      "label": "Spider-Man: Brand New Day â Sun, Aug 2 at 12:30 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Sun, Aug 2 at 12:30 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1117,7 +1096,7 @@
     {
       "showtimeId": 144163111,
       "showtimeIso": "2026-08-04T02:30:00.000Z",
-      "label": "Spider-Man: Brand New Day â Mon, Aug 3 at 7:30 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Mon, Aug 3 at 7:30 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1136,7 +1115,7 @@
     {
       "showtimeId": 144163116,
       "showtimeIso": "2026-08-05T02:30:00.000Z",
-      "label": "Spider-Man: Brand New Day â Tue, Aug 4 at 7:30 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Tue, Aug 4 at 7:30 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1155,7 +1134,7 @@
     {
       "showtimeId": 144163121,
       "showtimeIso": "2026-08-06T02:30:00.000Z",
-      "label": "Spider-Man: Brand New Day â Wed, Aug 5 at 7:30 PM",
+      "label": "Spider-Man: Brand New Day Ã¢ÂÂ Wed, Aug 5 at 7:30 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
@@ -1174,7 +1153,7 @@
     {
       "showtimeId": 144072623,
       "showtimeIso": "2026-07-31T02:00:00.000Z",
-      "label": "Spider-Man: Brand New Day Dolby Opening Night Fan Event â Thu, Jul 30 at 7:00 PM",
+      "label": "Spider-Man: Brand New Day Dolby Opening Night Fan Event Ã¢ÂÂ Thu, Jul 30 at 7:00 PM",
       "watchedSeats": [],
       "watchedRows": [
         "E",
