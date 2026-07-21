@@ -11,8 +11,12 @@ on:
         description: Theatre path after /movie-theatres/ (e.g. boston/amc-boston-common-19)
         required: true
       date:
-        description: Date to list (YYYY-MM-DD)
+        description: First date to list (YYYY-MM-DD)
         required: true
+      days:
+        description: How many consecutive days to fetch
+        required: false
+        default: "1"
 
 permissions:
   contents: write
@@ -34,6 +38,7 @@ jobs:
         env:
           THEATRE: ${{ github.event.inputs.theatre }}
           DATE: ${{ github.event.inputs.date }}
+          DAYS: ${{ github.event.inputs.days }}
         run: |
           python3 - <<'EOF'
           import json, os, sys
@@ -41,11 +46,13 @@ jobs:
           import amc
           theatre = os.environ["THEATRE"].strip()
           date = os.environ["DATE"].strip()
-          listing = amc.fetch_showtimes(theatre, date, log=print)
+          days = int((os.environ.get("DAYS") or "1").strip() or "1")
+          listing = amc.fetch_showtimes_range(theatre, date, days, log=print)
           with open("data/browse.json", "w") as f:
               json.dump(listing, f, indent=2, sort_keys=True)
               f.write("\n")
-          print(f"wrote data/browse.json: {len(listing['movies'])} movies,",
+          print(f"wrote data/browse.json: {days} day(s),",
+                f"{len(listing['movies'])} movies,",
                 sum(len(m["showings"]) for m in listing["movies"]), "showings")
           EOF
       - name: Push to data branch
