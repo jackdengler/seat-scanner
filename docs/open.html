@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Book this showing</title>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#b91c1c">
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px 16px; padding-top: max(24px, env(safe-area-inset-top));
+    background: #1a1a1e; color: #eee;
+    font: 16px/1.45 -apple-system, system-ui, sans-serif;
+    max-width: 640px; margin-inline: auto;
+  }
+  h1 { font-size: 22px; margin: 4px 0 6px; }
+  .muted { color: #888; font-size: 14px; }
+  .card { background: #242429; border-radius: 12px; padding: 16px; margin: 16px 0; }
+  .seats { color: #4ade80; font-size: 15px; margin-top: 8px; word-break: break-word; }
+  a.book {
+    display: block; text-align: center; text-decoration: none;
+    background: #b91c1c; color: #fff; border-radius: 10px;
+    padding: 16px; font-size: 18px; font-weight: 700; margin-top: 20px;
+  }
+  a.plain { display: inline-block; color: #9ab; font-size: 14px; margin-top: 16px; }
+  .hint { color: #888; font-size: 13px; margin-top: 10px; text-align: center; }
+</style>
+</head>
+<body>
+  <h1 id="title">Your seats opened up</h1>
+
+  <div class="card">
+    <div class="muted">Matching seats</div>
+    <div class="seats" id="seats">—</div>
+  </div>
+
+  <a class="book" id="book" href="#">🎟&nbsp; Book in the AMC app</a>
+  <div class="hint">Opens the AMC app if it's installed, otherwise amctheatres.com. Seats go fast — grab them now.</div>
+  <a class="plain" id="web" href="#">Open on amctheatres.com instead</a>
+
+<script>
+  const q = new URLSearchParams(location.search);
+  const sid = (q.get("sid") || "").replace(/[^0-9]/g, "");
+  const label = q.get("label");
+  const seats = q.get("seats");
+
+  // The seats page IS the booking page; AMC claims this path as a universal
+  // link, so a genuine tap here hands off to the native app when installed.
+  const bookUrl = sid
+    ? "https://www.amctheatres.com/showtimes/" + sid + "/seats"
+    : "https://www.amctheatres.com/";
+
+  if (label) document.getElementById("title").textContent = label;
+  if (seats) document.getElementById("seats").textContent = seats;
+  const book = document.getElementById("book");
+  const web = document.getElementById("web");
+  book.href = bookUrl;
+  web.href = bookUrl;
+</script>
+</body>
+</html>
