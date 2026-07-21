@@ -5,18 +5,19 @@ Reads config.json (watches, written by the UI) and subscriptions.json
 state.json plus per-showtime seatmaps from the data branch checked out
 at the path given by --data.
 
-Check cadence per watch, by time until the showtime:
-    more than 7 days        every 3 hours
-    1 to 7 days             every 15 minutes
-    8 to 24 hours           every 5 minutes (every cron run)
-    last 8 hours            every run, plus an in-run burst (~30s, jittered)
-    showtime passed         mark done, stop checking
+Check cadence: every active watch is checked ~every 30 seconds, the whole
+time it's active, regardless of how far off the showtime is. A watch stops
+only once its showtime passes (it's marked done).
 
-The 5-minute cron is a floor; inside the final 8 hours one run loops
-several extra times with randomized spacing so the effective cadence is
-~30 seconds, and runs self-chain (see CHAIN below) so coverage stays
-continuous even when GitHub's cron skips a tick. The jitter keeps the
-pattern from looking robotic/fingerprintable.
+The 5-minute cron is just a floor/heartbeat; each run loops many times with
+randomized ~30s spacing, and runs self-chain (see CHAIN below) so a fresh
+run is always queued and coverage stays continuous even when GitHub's cron
+skips a tick. The jitter keeps the pattern from looking robotic.
+
+NOTE: this checks *every* show at ~30s even weeks out, which is deliberately
+aggressive — it means a lot of requests to AMC per watch per day and can get
+rate-limited/blocked if AMC objects. Raise CHECK_INTERVAL_MIN below to slow
+it down.
 
 Notifies at most once per distinct seat-set match, and sends a
 "watcher broken" alert after 3 consecutive fetch failures (once).
@@ -40,12 +41,15 @@ import matcher
 FAILURE_ALERT_THRESHOLD = 3
 CRON_SLACK_MIN = 1  # cron jitter allowance when deciding if a check is due
 
-# In the final hours the cron's 5-minute floor isn't fast enough, so a
-# single run loops many times with randomized spacing — as responsive as
-# Actions practically allows, without a robotic, easily-fingerprinted
-# cadence. Kept just under the 5-min tick so the run ends before the next
-# scheduled one, and the self-chain keeps a fresh run always queued.
-BURST_WINDOW_MIN = 8 * 60      # only burst when a watch is within this window
+# Flat cadence: every active watch is checked this often, no matter how far
+# out the showtime is. 0 = every pass (the burst runs ~every 30s). Bump this
+# up (e.g. 5 or 15) to check less aggressively.
+CHECK_INTERVAL_MIN = 0
+
+# The cron's 5-minute floor isn't fast enough for ~30s checks, so a single
+# run loops many times with randomized spacing and self-chains, keeping a
+# fresh run always queued. Kept just under the 5-min tick so the run ends
+# before the next scheduled one.
 BURST_MAX_SECONDS = 270        # stop bursting before the next 5-min cron tick
 BURST_SLEEP_RANGE = (25, 40)   # jittered seconds between passes (~30s)
 
@@ -73,13 +77,8 @@ def save_json(path, obj):
 
 
 def interval_minutes(minutes_to_show):
-    if minutes_to_show <= 8 * 60:
-        return 0          # every run (plus in-run burst)
-    if minutes_to_show <= 24 * 60:
-        return 5
-    if minutes_to_show <= 7 * 24 * 60:
-        return 15
-    return 3 * 60
+    # Flat: same interval for every watch regardless of time to showtime.
+    return CHECK_INTERVAL_MIN
 
 
 def is_due(ws, minutes_to_show, now):
@@ -200,23 +199,23 @@ def main():
 
     active, soonest = one_pass()
 
-    # Burst: keep re-checking within one run while a showtime is imminent.
+    # Burst: keep re-checking within one run as long as any watch is active,
+    # so every show is checked ~every 30s regardless of how far out it is.
     deadline = time.monotonic() + BURST_MAX_SECONDS
-    while (active and soonest is not None and 0 < soonest <= BURST_WINDOW_MIN
-           and time.monotonic() < deadline):
+    while active and time.monotonic() < deadline:
         nap = random.uniform(*BURST_SLEEP_RANGE)
         if time.monotonic() + nap >= deadline:
             break
-        print(f"burst: showtime in {soonest:.0f}min; re-checking in {nap:.0f}s")
+        soon = f"{soonest:.0f}min" if soonest is not None else "?"
+        print(f"burst: nearest showtime in {soon}; re-checking in {nap:.0f}s")
         time.sleep(nap)
         active, soonest = one_pass()
 
     save_json(state_path, state)
     # CHAIN tells the workflow to re-dispatch itself: GitHub's cron is too
-    # unreliable to carry the final hours, so runs hand off to each other
-    # while a showtime is inside the burst window.
-    chain = bool(active and soonest is not None
-                 and 0 < soonest <= BURST_WINDOW_MIN)
+    # unreliable to carry a ~30s cadence, so runs hand off to each other as
+    # long as any watch is active.
+    chain = bool(active)
     print(f"CHAIN={'true' if chain else 'false'}")
     print(f"ALL_DONE={'true' if active == 0 else 'false'}")
 

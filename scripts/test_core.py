@@ -105,16 +105,12 @@ class MatcherTests(unittest.TestCase):
 
 
 class TierTests(unittest.TestCase):
-    def test_intervals(self):
+    def test_intervals_are_flat(self):
+        # Every watch uses the same interval regardless of time to showtime.
         import check
         day = 24 * 60
-        self.assertEqual(check.interval_minutes(30), 0)
-        self.assertEqual(check.interval_minutes(8 * 60), 0)
-        self.assertEqual(check.interval_minutes(12 * 60), 5)
-        self.assertEqual(check.interval_minutes(day), 5)
-        self.assertEqual(check.interval_minutes(2 * day), 15)
-        self.assertEqual(check.interval_minutes(7 * day), 15)
-        self.assertEqual(check.interval_minutes(8 * day), 180)
+        for mins in (5, 30, 8 * 60, day, 7 * day, 30 * day):
+            self.assertEqual(check.interval_minutes(mins), check.CHECK_INTERVAL_MIN)
 
 
 def _showtimes_html(flight):
