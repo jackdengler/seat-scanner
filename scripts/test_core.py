@@ -180,6 +180,22 @@ class ShowtimesParseTests(unittest.TestCase):
                          "Young Washington")
 
 
+class MovieTitleTests(unittest.TestCase):
+    def test_flight_placeholder_child_not_captured_as_title(self):
+        # A component child renders as ["$","$L3e",...]; the real title lives in
+        # the poster alt. The literal "$" must not win (regression: CityWalk
+        # showed "The Odyssey" as "$").
+        flight = ('"href":"/movies/the-odyssey-76238"}],"children":["$","$L3e",'
+                  'null,{"alt":"The Odyssey","height":203}]')
+        titles = amc._movie_titles(flight)
+        self.assertEqual(titles.get("the-odyssey-76238"), "The Odyssey")
+
+    def test_plain_string_child_title_captured(self):
+        flight = ('"href":"/movies/moana-72474","target":"_self"},'
+                  '"children":"Moana"}')
+        self.assertEqual(amc._movie_titles(flight).get("moana-72474"), "Moana")
+
+
 class MergeShowtimesTests(unittest.TestCase):
     def _listing(self, showings):
         return {"movies": [{"slug": "moana-72474", "title": "Moana",
