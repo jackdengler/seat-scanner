@@ -65,7 +65,11 @@ async function getFileWithSha(path, ref) {
   const res = await gh(`/contents/${path}?${refq}t=${Date.now()}`);
   if (res.status === 404) return null;
   const j = await res.json();
-  return { json: JSON.parse(atob(j.content.replace(/\n/g, ""))), sha: j.sha };
+  // Mirror putFile's UTF-8 encoding: atob yields raw bytes, so decodeURIComponent
+  // (escape(...)) turns them back into the original Unicode. A bare atob would
+  // read UTF-8 as Latin-1 and mangle non-ASCII (e.g. the em dash in labels),
+  // and each read-modify-write would compound the corruption.
+  return { json: JSON.parse(decodeURIComponent(escape(atob(j.content.replace(/\n/g, ""))))), sha: j.sha };
 }
 
 async function putFile(path, obj, message, sha) {
@@ -661,8 +665,45 @@ async function loadConfigAndWatches() {
     const f = await getFile("config.json");
     if (f) config = JSON.parse(f.text);
     renderWatches(config.watches || [], await loadState());
+    repairCorruptedLabels();
   } catch (e) {
     $("watches").textContent = "couldn't load: " + e.message;
+  }
+}
+
+// A run of two-or-more consecutive high bytes is the signature of a label whose
+// em dash was mangled by the old bare-atob decode (see getFileWithSha).
+function repairLabel(label) {
+  const DASH = String.fromCharCode(0x2014); // em dash
+  let first = -1, last = -1, run = 0, corrupt = false;
+  for (let k = 0; k < label.length; k++) {
+    const c = label.charCodeAt(k);
+    if (c > 0x7f) { if (first < 0) first = k; last = k; }
+    if (c >= 0x80 && c <= 0xff) { run++; if (run >= 2) corrupt = true; } else { run = 0; }
+  }
+  if (!corrupt || first < 0) return label;   // no mangled run — leave it alone
+  const title = label.slice(0, first).trim();
+  const rest = label.slice(last + 1).trim();
+  return rest ? title + " " + DASH + " " + rest : title;
+}
+
+// One-time cleanup of labels corrupted by the earlier encoding bug. The garbled
+// middle (a mangled em dash) is dropped and the clean title/date rejoined.
+async function repairCorruptedLabels() {
+  const fixes = (config.watches || []).map((w) => repairLabel(w.label || ""));
+  if (!fixes.some((fixed, i) => fixed !== (config.watches[i].label || ""))) return;
+  config.watches.forEach((w, i) => (w.label = fixes[i]));
+  renderWatches(config.watches, lastState);
+  if (!token()) return;
+  try {
+    const cur = await getFileWithSha("config.json");
+    if (!cur) return;
+    for (const w of cur.json.watches || []) w.label = repairLabel(w.label || "");
+    await putFile("config.json", cur.json, "repair corrupted watch labels", cur.sha);
+    config = cur.json;
+    renderWatches(config.watches, await loadState());
+  } catch (e) {
+    /* in-memory repair still stands; it'll retry next load */
   }
 }
 
