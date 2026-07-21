@@ -6,15 +6,17 @@ state.json plus per-showtime seatmaps from the data branch checked out
 at the path given by --data.
 
 Check cadence per watch, by time until the showtime:
-    more than 7 days        every 6 hours
-    1 to 7 days             every 30 minutes
-    4 to 24 hours           every 15 minutes
-    last 4 hours            every run, plus an in-run burst (~90s, jittered)
+    more than 7 days        every 3 hours
+    1 to 7 days             every 15 minutes
+    8 to 24 hours           every 5 minutes (every cron run)
+    last 8 hours            every run, plus an in-run burst (~30s, jittered)
     showtime passed         mark done, stop checking
 
-The 5-minute cron is a floor; inside the final 4 hours one run loops a
-few extra times with randomized spacing so the effective cadence is
-~90 seconds without a robotic, fingerprintable pattern.
+The 5-minute cron is a floor; inside the final 8 hours one run loops
+several extra times with randomized spacing so the effective cadence is
+~30 seconds, and runs self-chain (see CHAIN below) so coverage stays
+continuous even when GitHub's cron skips a tick. The jitter keeps the
+pattern from looking robotic/fingerprintable.
 
 Notifies at most once per distinct seat-set match, and sends a
 "watcher broken" alert after 3 consecutive fetch failures (once).
@@ -39,12 +41,13 @@ FAILURE_ALERT_THRESHOLD = 3
 CRON_SLACK_MIN = 1  # cron jitter allowance when deciding if a check is due
 
 # In the final hours the cron's 5-minute floor isn't fast enough, so a
-# single run loops a few times with randomized spacing — more responsive
-# without a robotic, easily-fingerprinted cadence. Kept short so the run
-# ends before the next scheduled tick.
-BURST_WINDOW_MIN = 4 * 60      # only burst when a watch is within this window
-BURST_MAX_SECONDS = 240        # stop bursting before the next 5-min cron tick
-BURST_SLEEP_RANGE = (70, 110)  # jittered seconds between passes
+# single run loops many times with randomized spacing — as responsive as
+# Actions practically allows, without a robotic, easily-fingerprinted
+# cadence. Kept just under the 5-min tick so the run ends before the next
+# scheduled one, and the self-chain keeps a fresh run always queued.
+BURST_WINDOW_MIN = 8 * 60      # only burst when a watch is within this window
+BURST_MAX_SECONDS = 270        # stop bursting before the next 5-min cron tick
+BURST_SLEEP_RANGE = (25, 40)   # jittered seconds between passes (~30s)
 
 
 def now_utc():
@@ -70,13 +73,13 @@ def save_json(path, obj):
 
 
 def interval_minutes(minutes_to_show):
-    if minutes_to_show <= 4 * 60:
-        return 0          # every run
+    if minutes_to_show <= 8 * 60:
+        return 0          # every run (plus in-run burst)
     if minutes_to_show <= 24 * 60:
-        return 15
+        return 5
     if minutes_to_show <= 7 * 24 * 60:
-        return 30
-    return 6 * 60
+        return 15
+    return 3 * 60
 
 
 def is_due(ws, minutes_to_show, now):

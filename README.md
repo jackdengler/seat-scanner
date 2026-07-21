@@ -6,9 +6,10 @@ the seats you want open up. Fully serverless:
 - **GitHub Pages** serves a small PWA (this repo's `docs/`) where you pick
   showtimes, seats, and adjacency rules.
 - **GitHub Actions** does all the AMC fetching (browsers can't — CORS) on a
-  tiered schedule: every 6h when the show is >7 days out, every 30 min
-  inside a week, every 15 min inside 24h, and ~every 90s (a jittered in-run burst on
-  top of the 5-min cron) in the last 4 hours.
+  tiered schedule: every 3h when the show is >7 days out, every 15 min
+  inside a week, every 5 min inside 24h, and ~every 30s (a jittered in-run burst on
+  top of the 5-min cron, with runs self-chaining so coverage stays continuous)
+  in the last 8 hours.
 - The **`data` branch** holds machine-written state (`state.json`,
   `seatmap-<id>.json`) so the code branch stays clean.
 - Notifications are **Web Push** straight to the installed PWA — no
@@ -34,15 +35,24 @@ the seats you want open up. Fully serverless:
 
 ## Using it
 
-Paste an AMC showtime URL (the `/showtimes/<id>/seats` page) into "Add a
-watch". The app asks Actions to fetch the live seat map, renders it, and
-you tap the seats you care about (or watch whole rows / the whole room),
-set how many adjacent seats you need, and save. You'll get at most one
-push per distinct set of matching seats, and a "watcher broken" alert if
-fetching fails 3 times in a row. Watches end automatically when the
-showtime passes, and polling disables itself when nothing is left to watch
-(saving your Actions minutes); it re-enables automatically when you add a
-watch.
+**Browse shows (no URLs).** Paste your AMC theatre's page link once into
+"Browse shows" (e.g.
+`https://www.amctheatres.com/movie-theatres/boston/amc-boston-common-19`) —
+it's remembered on this device. Pick a date, tap **Find showtimes**, and the
+app lists every movie and showtime for that day; tap a time to load its seat
+map. (Under the hood this asks Actions to fetch the theatre's showtimes page
+and writes `browse.json` to the `data` branch, which the app renders.)
+
+**Or add by link.** You can still paste an AMC showtime URL (the
+`/showtimes/<id>/seats` page) or bare showtime ID into "Add a watch by link".
+
+Either way, once the seat map renders you tap the seats you care about (or
+watch whole rows / the whole room), set how many adjacent seats you need, and
+save. You'll get at most one push per distinct set of matching seats, and a
+"watcher broken" alert if fetching fails 3 times in a row. Watches end
+automatically when the showtime passes, and polling disables itself when
+nothing is left to watch (saving your Actions minutes); it re-enables
+automatically when you add a watch.
 
 ## How the AMC fetch works (re-capture notes)
 
@@ -52,6 +62,16 @@ Safety Net" waiting room. Anonymous plain-HTTP works: request
 `/showtimes/<id>/seats`, follow the cookie-test page's JS redirect into
 `queue.amctheatres.com` with a cookie jar, get waved through, and parse
 `"seatingLayout"` out of the flight payload (`scripts/amc.py`).
+
+The **browse** feature fetches the same way from
+`/movie-theatres/<market>/<slug>/showtimes?date=<YYYY-MM-DD>`, but that page
+renders showtimes as React server-component markup rather than clean JSON, so
+`parse_showtimes` keys off three stable shapes in the flight: format-group
+headings (`"id":"<movie-slug>-<theatre-slug>-<format>-<n>"`), showtime objects
+(`{"showtimeId":…,"showDateTimeUtc":…,"display":{"time":…}}`), and movie
+link/title pairs. Each showtime is grouped under whichever heading last
+preceded it. If AMC changes this markup, re-capture as above and adjust those
+three patterns.
 
 If AMC changes this, re-capture by opening a seats page with DevTools →
 Network, and searching response bodies for a seat name like `A12`. Update

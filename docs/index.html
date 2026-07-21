@@ -60,6 +60,23 @@
     position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
     background: #000c; padding: 10px 18px; border-radius: 10px; display: none; max-width: 90%;
   }
+  .row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
+  .row button { margin-top: 0; }
+  input[type=date] {
+    width: auto; padding: 9px 10px; border-radius: 8px; border: 1px solid #3a3a40;
+    background: #1a1a1e; color: #eee; font-size: 16px;
+  }
+  #showlist { margin-top: 6px; }
+  .movie { border-top: 1px solid #333; padding: 10px 0 4px; }
+  .movie:first-child { border-top: 0; }
+  .movie b { font-size: 15px; }
+  .fmt { color: #888; font-size: 12px; margin: 6px 0 2px; }
+  .times { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 4px; }
+  .time {
+    background: #1a1a1e; border: 1px solid #3a3a40; color: #eee;
+    border-radius: 8px; padding: 6px 10px; font-size: 14px; font-weight: 600; margin: 0;
+  }
+  .time.past { opacity: .4; }
 </style>
 </head>
 <body>
@@ -82,7 +99,22 @@
 </div>
 
 <div class="card">
-  <h2>Add a watch</h2>
+  <h2>Browse shows</h2>
+  <label for="theatre">Your AMC theatre (paste its page link once)</label>
+  <input type="text" id="theatre" placeholder="https://www.amctheatres.com/movie-theatres/boston/amc-boston-common-19" inputmode="url">
+  <div class="row">
+    <div>
+      <label for="date">Date</label>
+      <input type="date" id="date">
+    </div>
+    <button id="browseBtn">Find showtimes</button>
+  </div>
+  <div id="browseStatus" class="muted"></div>
+  <div id="showlist"></div>
+</div>
+
+<div class="card">
+  <h2>Add a watch by link</h2>
   <label for="showtime">AMC showtime link or ID</label>
   <input type="text" id="showtime" placeholder="https://www.amctheatres.com/showtimes/144132590/seats" inputmode="url">
   <button id="loadBtn">Load seat map</button>
