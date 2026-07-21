@@ -1,7 +1,7 @@
 {
   "date": "2026-07-21",
   "days": 14,
-  "fetchedAtUtc": "2026-07-21T17:59:59Z",
+  "fetchedAtUtc": "2026-07-21T18:02:08Z",
   "movies": [
     {
       "showings": [
@@ -264,31 +264,31 @@
           "time": "9:50 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T16:45:00.000Z",
           "showtimeId": 145408580,
           "time": "9:45 am"
         },
         {
-          "format": "Digital",
+          "format": "RealD 3D",
           "showDateTimeUtc": "2026-07-28T19:45:00.000Z",
           "showtimeId": 145408581,
           "time": "12:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T22:45:00.000Z",
           "showtimeId": 145408582,
           "time": "3:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "RealD 3D",
           "showDateTimeUtc": "2026-07-29T01:45:00.000Z",
           "showtimeId": 145408584,
           "time": "6:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T04:45:00.000Z",
           "showtimeId": 145408583,
           "time": "9:45 pm"
@@ -347,12 +347,6 @@
     },
     {
       "showings": [
-        {
-          "format": "70mm",
-          "showDateTimeUtc": "2026-07-21T17:30:00.000Z",
-          "showtimeId": 143822557,
-          "time": "10:30 am"
-        },
         {
           "format": "PRIME at AMC",
           "showDateTimeUtc": "2026-07-21T18:05:00.000Z",
@@ -1512,7 +1506,7 @@
           "time": "8:00 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T15:30:00.000Z",
           "showtimeId": 145408487,
           "time": "8:30 am"
@@ -1524,7 +1518,7 @@
           "time": "9:00 am"
         },
         {
-          "format": "Digital",
+          "format": "XL at AMC",
           "showDateTimeUtc": "2026-07-28T16:30:00.000Z",
           "showtimeId": 145408441,
           "time": "9:30 am"
@@ -1542,7 +1536,7 @@
           "time": "11:00 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T18:30:00.000Z",
           "showtimeId": 145408486,
           "time": "11:30 am"
@@ -1554,7 +1548,7 @@
           "time": "12:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T19:30:00.000Z",
           "showtimeId": 145408488,
           "time": "12:30 pm"
@@ -1566,7 +1560,7 @@
           "time": "1:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "XL at AMC",
           "showDateTimeUtc": "2026-07-28T20:30:00.000Z",
           "showtimeId": 145408442,
           "time": "1:30 pm"
@@ -1584,7 +1578,7 @@
           "time": "3:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T22:30:00.000Z",
           "showtimeId": 145408485,
           "time": "3:30 pm"
@@ -1596,7 +1590,7 @@
           "time": "4:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T23:30:00.000Z",
           "showtimeId": 145408489,
           "time": "4:30 pm"
@@ -1608,7 +1602,7 @@
           "time": "5:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "XL at AMC",
           "showDateTimeUtc": "2026-07-29T00:30:00.000Z",
           "showtimeId": 145408443,
           "time": "5:30 pm"
@@ -1626,7 +1620,7 @@
           "time": "7:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T02:30:00.000Z",
           "showtimeId": 145408484,
           "time": "7:30 pm"
@@ -1638,7 +1632,7 @@
           "time": "8:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T03:30:00.000Z",
           "showtimeId": 145408490,
           "time": "8:30 pm"
@@ -1650,7 +1644,7 @@
           "time": "9:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "XL at AMC",
           "showDateTimeUtc": "2026-07-29T04:30:00.000Z",
           "showtimeId": 145408444,
           "time": "9:30 pm"
@@ -2424,43 +2418,43 @@
           "time": "9:50 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T15:45:00.000Z",
           "showtimeId": 145408445,
           "time": "8:45 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T17:30:00.000Z",
           "showtimeId": 145408562,
           "time": "10:30 am"
         },
         {
-          "format": "Digital",
+          "format": "RealD 3D",
           "showDateTimeUtc": "2026-07-28T18:15:00.000Z",
           "showtimeId": 145408446,
           "time": "11:15 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T20:45:00.000Z",
           "showtimeId": 145408447,
           "time": "1:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "RealD 3D",
           "showDateTimeUtc": "2026-07-28T23:15:00.000Z",
           "showtimeId": 145408448,
           "time": "4:15 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T01:45:00.000Z",
           "showtimeId": 145408449,
           "time": "6:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T04:15:00.000Z",
           "showtimeId": 145408450,
           "time": "9:15 pm"
@@ -2724,31 +2718,31 @@
           "time": "10:35 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T18:00:00.000Z",
           "showtimeId": 145408624,
           "time": "11:00 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T20:55:00.000Z",
           "showtimeId": 145408623,
           "time": "1:55 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T23:45:00.000Z",
           "showtimeId": 145408626,
           "time": "4:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T02:45:00.000Z",
           "showtimeId": 145408627,
           "time": "7:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T05:35:00.000Z",
           "showtimeId": 145408625,
           "time": "10:35 pm"
@@ -3048,55 +3042,55 @@
           "time": "9:35 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T15:30:00.000Z",
           "showtimeId": 145408381,
           "time": "8:30 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T17:15:00.000Z",
           "showtimeId": 145408286,
           "time": "10:15 am"
         },
         {
-          "format": "Digital",
+          "format": "RealD 3D",
           "showDateTimeUtc": "2026-07-28T18:15:00.000Z",
           "showtimeId": 145408385,
           "time": "11:15 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T20:00:00.000Z",
           "showtimeId": 145408288,
           "time": "1:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "RealD 3D",
           "showDateTimeUtc": "2026-07-28T21:00:00.000Z",
           "showtimeId": 145408384,
           "time": "2:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T22:45:00.000Z",
           "showtimeId": 145408289,
           "time": "3:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "RealD 3D",
           "showDateTimeUtc": "2026-07-28T23:45:00.000Z",
           "showtimeId": 145408383,
           "time": "4:45 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T02:30:00.000Z",
           "showtimeId": 145408382,
           "time": "7:30 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T04:25:00.000Z",
           "showtimeId": 145408560,
           "time": "9:25 pm"
@@ -3402,37 +3396,37 @@
           "time": "10:55 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T15:45:00.000Z",
           "showtimeId": 145408391,
           "time": "8:45 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T18:35:00.000Z",
           "showtimeId": 145408390,
           "time": "11:35 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T21:25:00.000Z",
           "showtimeId": 145408389,
           "time": "2:25 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T00:15:00.000Z",
           "showtimeId": 145408388,
           "time": "5:15 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T03:05:00.000Z",
           "showtimeId": 145408386,
           "time": "8:05 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T05:55:00.000Z",
           "showtimeId": 145408387,
           "time": "10:55 pm"
@@ -3660,25 +3654,25 @@
           "time": "8:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T21:00:00.000Z",
           "showtimeId": 145408318,
           "time": "2:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T23:50:00.000Z",
           "showtimeId": 145408317,
           "time": "4:50 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T02:40:00.000Z",
           "showtimeId": 145408316,
           "time": "7:40 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T05:30:00.000Z",
           "showtimeId": 145408311,
           "time": "10:30 pm"
@@ -3822,19 +3816,19 @@
           "time": "11:15 am"
         },
         {
-          "format": "Digital",
+          "format": "Fan Faves",
           "showDateTimeUtc": "2026-07-28T17:45:00.000Z",
           "showtimeId": 145408319,
           "time": "10:45 am"
         },
         {
-          "format": "Digital",
+          "format": "Fan Faves",
           "showDateTimeUtc": "2026-07-28T20:15:00.000Z",
           "showtimeId": 145408559,
           "time": "1:15 pm"
         },
         {
-          "format": "Digital",
+          "format": "Fan Faves",
           "showDateTimeUtc": "2026-07-29T02:05:00.000Z",
           "showtimeId": 145408344,
           "time": "7:05 pm"
@@ -3972,19 +3966,19 @@
           "time": "3:05 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T15:30:00.000Z",
           "showtimeId": 145408347,
           "time": "8:30 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T19:00:00.000Z",
           "showtimeId": 145408346,
           "time": "12:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T22:35:00.000Z",
           "showtimeId": 145408345,
           "time": "3:35 pm"
@@ -4446,37 +4440,37 @@
           "time": "10:30 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T15:30:00.000Z",
           "showtimeId": 145408515,
           "time": "8:30 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T19:00:00.000Z",
           "showtimeId": 145408519,
           "time": "12:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T22:30:00.000Z",
           "showtimeId": 145408518,
           "time": "3:30 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T02:00:00.000Z",
           "showtimeId": 145408517,
           "time": "7:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T04:00:00.000Z",
           "showtimeId": 145408287,
           "time": "9:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T05:30:00.000Z",
           "showtimeId": 145408520,
           "time": "10:30 pm"
@@ -4728,25 +4722,25 @@
           "time": "10:30 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T16:00:00.000Z",
           "showtimeId": 145408529,
           "time": "9:00 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T18:45:00.000Z",
           "showtimeId": 145408528,
           "time": "11:45 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T21:30:00.000Z",
           "showtimeId": 145408527,
           "time": "2:30 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T00:15:00.000Z",
           "showtimeId": 145408530,
           "time": "5:15 pm"
@@ -4758,7 +4752,7 @@
           "time": "8:00 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T05:45:00.000Z",
           "showtimeId": 145408526,
           "time": "10:45 pm"
@@ -5016,19 +5010,19 @@
           "time": "10:20 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T15:00:00.000Z",
           "showtimeId": 145408294,
           "time": "8:00 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T17:45:00.000Z",
           "showtimeId": 145408293,
           "time": "10:45 am"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T20:35:00.000Z",
           "showtimeId": 145408295,
           "time": "1:35 pm"
@@ -5148,19 +5142,19 @@
           "time": "10:50 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-28T23:25:00.000Z",
           "showtimeId": 145408563,
           "time": "4:25 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T01:55:00.000Z",
           "showtimeId": 145408558,
           "time": "6:55 pm"
         },
         {
-          "format": "Digital",
+          "format": "Laser at AMC",
           "showDateTimeUtc": "2026-07-29T05:15:00.000Z",
           "showtimeId": 145408379,
           "time": "10:15 pm"
