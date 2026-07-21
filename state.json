@@ -1,4 +1,22 @@
 {
+  "alerts": [
+    {
+      "at": "2026-07-21T20:27:53Z",
+      "key": "143822650-b74ba19df3ff40ca",
+      "label": "The Odyssey \u2014 Sat, Aug 1 at 10:00 AM",
+      "seats": "H13",
+      "showtimeIso": "2026-08-01T17:00:00.000Z",
+      "sid": "143822650"
+    },
+    {
+      "at": "2026-07-21T20:24:13Z",
+      "key": "143822650-05d6615126d45366",
+      "label": "The Odyssey \u2014 Sat, Aug 1 at 10:00 AM",
+      "seats": "H15, H14, H13",
+      "showtimeIso": "2026-08-01T17:00:00.000Z",
+      "sid": "143822650"
+    }
+  ],
   "watches": {
     "143419604": {
       "alertedBroken": false,
@@ -90,47 +108,47 @@
     "143822596": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822598": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822600": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822602": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822603": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822604": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822605": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822606": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822607": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822608": {
       "alertedBroken": false,
@@ -154,32 +172,32 @@
     "143822625": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822627": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822629": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822631": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822633": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822635": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z",
+      "lastCheckedAt": "2026-07-21T20:27:53Z",
       "notifiedSignatures": [
         "b7689840dbce372a"
       ]
@@ -187,12 +205,12 @@
     "143822637": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822638": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z",
+      "lastCheckedAt": "2026-07-21T20:27:53Z",
       "notifiedSignatures": [
         "69b52941a5865e90"
       ]
@@ -200,7 +218,7 @@
     "143822639": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822640": {
       "alertedBroken": false,
@@ -210,80 +228,82 @@
     "143822641": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822642": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822643": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822644": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822645": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822647": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822649": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822650": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z",
+      "lastCheckedAt": "2026-07-21T20:27:53Z",
       "notifiedSignatures": [
-        "5b41c33bb298f891"
+        "5b41c33bb298f891",
+        "05d6615126d45366",
+        "b74ba19df3ff40ca"
       ]
     },
     "143822651": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822653": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822655": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822657": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822659": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822660": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822662": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z",
+      "lastCheckedAt": "2026-07-21T20:27:53Z",
       "notifiedSignatures": [
         "1bbf892519aa6233"
       ]
@@ -291,12 +311,12 @@
     "143822664": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "143822667": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-21T20:20:52Z"
+      "lastCheckedAt": "2026-07-21T20:27:53Z"
     },
     "144055697": {
       "alertedBroken": false,
