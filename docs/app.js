@@ -19,6 +19,11 @@ let selected = new Set();
 // Bulk browse selection: showtimeId -> {showtimeId, showDateTimeUtc, title, time}
 let selectedShowings = new Map();
 let currentListing = null;
+// Last-rendered watches/state + the active watch-list filters, so the
+// filter dropdowns can re-render without re-fetching.
+let lastWatches = [];
+let lastState = { watches: {} };
+let watchFilter = { theatre: "", format: "" };
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -302,6 +307,7 @@ async function browseShowtimes() {
           status("");
           populateFormatFilter(listing);
           renderShowlist(listing);
+          backfillWatchMeta(listing);
           return;
         }
       }
@@ -426,6 +432,7 @@ function toggleShowing(s, title, el) {
       showDateTimeUtc: s.showDateTimeUtc,
       title,
       time: s.time,
+      format: s.format || "",
     });
     el.classList.add("sel");
   }
@@ -443,6 +450,54 @@ function clearSelection() {
   selectedShowings.clear();
   document.querySelectorAll(".time.sel").forEach((el) => el.classList.remove("sel"));
   updateBulkBar();
+}
+
+// Older watches were saved before we stored theatre/format. When a browse
+// listing loads, stamp those fields onto any existing watch it covers (matched
+// by showtime id) so they become filterable too. Best-effort and silent.
+async function backfillWatchMeta(listing) {
+  if (!listing || !listing.movies) return;
+  const theatre = prettyTheatre(listing.theatreSlug || listing.theatre || "");
+  const fmtBySid = new Map();
+  for (const mv of listing.movies)
+    for (const s of mv.showings) fmtBySid.set(String(s.showtimeId), s.format || "");
+
+  let changed = false;
+  for (const w of config.watches || []) {
+    const sid = String(w.showtimeId);
+    if (!fmtBySid.has(sid)) continue;
+    if (theatre && w.theatre !== theatre) { w.theatre = theatre; changed = true; }
+    const f = fmtBySid.get(sid);
+    if (f && w.format !== f) { w.format = f; changed = true; }
+  }
+  if (!changed) return;
+
+  renderWatches(config.watches, lastState);   // reflect immediately
+  if (!token()) return;                        // can't persist without a token
+  try {
+    const cur = await getFileWithSha("config.json");
+    if (!cur) return;
+    // Re-apply onto the latest config so we don't clobber a concurrent edit.
+    for (const w of cur.json.watches || []) {
+      const sid = String(w.showtimeId);
+      if (!fmtBySid.has(sid)) continue;
+      if (theatre) w.theatre = theatre;
+      const f = fmtBySid.get(sid);
+      if (f) w.format = f;
+    }
+    await putFile("config.json", cur.json, "backfill watch theatre/format", cur.sha);
+    config = cur.json;
+  } catch (e) {
+    /* leave the in-memory enrichment; it'll retry on the next browse */
+  }
+}
+
+// "amc-boston-common-19" -> "AMC Boston Common 19", for the theatre filter.
+function prettyTheatre(slug) {
+  if (!slug) return "";
+  return String(slug).split(/[-_]/).filter(Boolean)
+    .map((w) => (w.toLowerCase() === "amc" ? "AMC" : w.charAt(0).toUpperCase() + w.slice(1)))
+    .join(" ");
 }
 
 function watchLabel(showing) {
@@ -465,11 +520,15 @@ async function bulkWatch() {
   try {
     const cur = await getFileWithSha("config.json");
     const obj = cur ? cur.json : { watches: [] };
+    const theatre = prettyTheatre(
+      (currentListing && (currentListing.theatreSlug || currentListing.theatre)) || "");
     for (const s of showings) {
       const watch = {
         showtimeId: s.showtimeId,
         showtimeIso: s.showDateTimeUtc,
         label: watchLabel(s),
+        theatre,
+        format: s.format || "",
         watchedSeats: [],
         watchedRows: rows,
         adjacentRequired: adj,
@@ -557,6 +616,8 @@ async function saveWatch() {
     showtimeId: sm.showtimeId,
     showtimeIso: sm.showDateTimeUtc,
     label: $("label").value.trim() || `showtime ${sm.showtimeId}`,
+    theatre: sm.theatre || "",
+    format: sm.format || "",
     watchedSeats: [...selected],
     watchedRows: $("rows").value.split(",").map((s) => s.trim()).filter(Boolean),
     adjacentRequired: Math.max(1, parseInt($("adj").value, 10) || 1),
@@ -606,27 +667,73 @@ async function loadConfigAndWatches() {
 }
 
 function renderWatches(watches, state) {
+  lastWatches = watches;
+  lastState = state;
   const host = $("watches");
-  if (!watches.length) { host.textContent = "No watches yet."; return; }
   host.innerHTML = "";
-  for (const w of watches) {
+  if (!watches.length) { host.textContent = "No watches yet."; return; }
+
+  const theatres = [...new Set(watches.map((w) => w.theatre).filter(Boolean))].sort();
+  const formats = [...new Set(watches.map((w) => w.format).filter(Boolean))].sort();
+  // Drop a stale selection (e.g. after removing the last watch of a theatre).
+  if (watchFilter.theatre && !theatres.includes(watchFilter.theatre)) watchFilter.theatre = "";
+  if (watchFilter.format && !formats.includes(watchFilter.format)) watchFilter.format = "";
+
+  // Only offer a dropdown when there's actually more than one value to pick.
+  if (theatres.length > 1 || formats.length > 1) {
+    const bar = document.createElement("div");
+    bar.className = "watchfilter";
+    const mkSel = (key, all, opts) => {
+      const sel = document.createElement("select");
+      sel.innerHTML = `<option value="">${all}</option>` +
+        opts.map((o) => `<option value="${esc(o)}"${o === watchFilter[key] ? " selected" : ""}>${esc(o)}</option>`).join("");
+      sel.onchange = () => { watchFilter[key] = sel.value; renderWatches(lastWatches, lastState); };
+      return sel;
+    };
+    if (theatres.length > 1) bar.appendChild(mkSel("theatre", "All theatres", theatres));
+    if (formats.length > 1) bar.appendChild(mkSel("format", "All formats", formats));
+    host.appendChild(bar);
+  }
+
+  const filtered = watches.filter((w) =>
+    (!watchFilter.theatre || w.theatre === watchFilter.theatre) &&
+    (!watchFilter.format || w.format === watchFilter.format));
+
+  if (watchFilter.theatre || watchFilter.format) {
+    const count = document.createElement("div");
+    count.className = "muted watchcount";
+    count.textContent = `${filtered.length} of ${watches.length} watches`;
+    host.appendChild(count);
+  }
+  if (!filtered.length) {
+    const none = document.createElement("div");
+    none.className = "muted";
+    none.textContent = "No watches match those filters.";
+    host.appendChild(none);
+    return;
+  }
+
+  for (const w of filtered) {
     const ws = (state.watches || {})[String(w.showtimeId)] || {};
     const div = document.createElement("div");
     div.className = "watch";
-    const rules = [];
-    if (w.watchedSeats && w.watchedSeats.length) rules.push("seats " + w.watchedSeats.join(" "));
-    else if (w.watchedRows && w.watchedRows.length) rules.push("rows " + w.watchedRows.join(" "));
-    else rules.push("anywhere");
-    rules.push(`${w.adjacentRequired || 1}+ adjacent`);
+    const pills = [];
+    if (w.theatre) pills.push("📍 " + w.theatre);
+    if (w.format) pills.push(w.format);
+    if (w.watchedSeats && w.watchedSeats.length) pills.push("seats " + w.watchedSeats.join(" "));
+    else if (w.watchedRows && w.watchedRows.length) pills.push("rows " + w.watchedRows.join(" "));
+    else pills.push("anywhere");
+    pills.push(`${w.adjacentRequired || 1}+ adjacent`);
     let status;
     if (ws.done) status = '<span class="muted">finished</span>';
     else if ((ws.consecutiveFailures || 0) >= 3) status = '<span class="err">broken — see Actions logs</span>';
     else if (ws.lastCheckedAt) status = `<span class="ok">checked ${timeAgo(ws.lastCheckedAt)}</span>`;
     else status = '<span class="warn">first check pending</span>';
     if ((ws.notifiedSignatures || []).length) status += ` · ${ws.notifiedSignatures.length} match alert(s) sent`;
-    div.innerHTML = `<button class="del">remove</button><b>${esc(w.label)}</b><br>` +
-      rules.map((r) => `<span class="pill">${esc(r)}</span>`).join("") +
-      `<br><span class="muted">${status}</span>`;
+    div.innerHTML =
+      `<div class="whead"><b>${esc(w.label)}</b><button class="del">remove</button></div>` +
+      `<div class="wpills">${pills.map((r) => `<span class="pill">${esc(r)}</span>`).join("")}</div>` +
+      `<div class="muted wstatus">${status}</div>`;
     div.querySelector(".del").onclick = () => removeWatch(w.showtimeId);
     host.appendChild(div);
   }
