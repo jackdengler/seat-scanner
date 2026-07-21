@@ -18,6 +18,7 @@ let currentSeatmap = null;
 let selected = new Set();
 // Bulk browse selection: showtimeId -> {showtimeId, showDateTimeUtc, title, time}
 let selectedShowings = new Map();
+let currentListing = null;
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -85,6 +86,7 @@ async function init() {
   $("bulkWatch").onclick = bulkWatch;
   $("pickSeats").onclick = pickSeatsForSelected;
   $("clearSel").onclick = clearSelection;
+  $("movieFilter").oninput = () => { if (currentListing) renderShowlist(currentListing); };
   $("theatre").value = localStorage.getItem("theatre") || "";
   $("theatre").onchange = () => localStorage.setItem("theatre", $("theatre").value.trim());
   $("date").value = todayLocal();
@@ -254,6 +256,7 @@ async function browseShowtimes() {
   }
   if (!token()) { toast("save your token first"); return; }
   localStorage.setItem("theatre", $("theatre").value.trim());
+  const days = parseInt($("days").value, 10) || 1;
   const btn = $("browseBtn");
   btn.disabled = true;
   $("showlist").innerHTML = "";
@@ -263,17 +266,21 @@ async function browseShowtimes() {
     const ref = await defaultBranch();
     const res = await gh(`/actions/workflows/fetch-showtimes.yml/dispatches`, {
       method: "POST",
-      body: JSON.stringify({ ref, inputs: { theatre, date } }),
+      body: JSON.stringify({ ref, inputs: { theatre, date, days: String(days) } }),
     });
     if (!res.ok) throw new Error("dispatch failed — check token Actions permission");
     const started = Date.now();
-    while (Date.now() - started < 4 * 60 * 1000) {
+    // multi-day fetches take longer (one AMC request per day)
+    const timeoutMs = Math.min(9, 3 + days) * 60 * 1000;
+    while (Date.now() - started < timeoutMs) {
       await new Promise((r) => setTimeout(r, 5000));
-      status(`waiting for showtimes… ${Math.round((Date.now() - started) / 1000)}s`);
+      const secs = Math.round((Date.now() - started) / 1000);
+      status(`waiting for ${days === 1 ? "showtimes" : days + " days of showtimes"}… ${secs}s`);
       const f = await getFile("browse.json", "data");
       if (f) {
         const listing = JSON.parse(f.text);
         if (listing.theatre === theatre && listing.date === date
+            && String(listing.days || 1) === String(days)
             && new Date(listing.fetchedAtUtc).getTime() > started - 60_000) {
           status("");
           renderShowlist(listing);
@@ -289,47 +296,84 @@ async function browseShowtimes() {
   }
 }
 
+function dayKey(utc) {
+  const d = new Date(utc);
+  const p = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+}
+
+function dayLabel(utc) {
+  return new Date(utc).toLocaleDateString(undefined,
+    { weekday: "short", month: "short", day: "numeric" });
+}
+
 function renderShowlist(listing) {
+  currentListing = listing;
   const host = $("showlist");
   host.innerHTML = "";
-  if (!listing.movies || !listing.movies.length) {
+  const movies = listing.movies || [];
+  if (!movies.length) {
     $("browseHint").hidden = true;
-    host.innerHTML = '<p class="muted">No showtimes listed for that date.</p>';
+    $("movieFilter").hidden = true;
+    host.innerHTML = '<p class="muted">No showtimes listed for those dates.</p>';
     return;
   }
   $("browseHint").hidden = false;
+  $("movieFilter").hidden = false;
+
+  const filter = $("movieFilter").value.trim().toLowerCase();
   const now = Date.now();
-  for (const mv of listing.movies) {
+  // day headers only when the listing actually spans more than one day
+  const allDays = new Set();
+  for (const mv of movies) for (const s of mv.showings) allDays.add(dayKey(s.showDateTimeUtc));
+  const multiDay = allDays.size > 1;
+
+  let shown = 0;
+  for (const mv of movies) {
+    if (filter && !mv.title.toLowerCase().includes(filter)) continue;
+    shown++;
     const div = document.createElement("div");
     div.className = "movie";
     div.innerHTML = `<b>${esc(mv.title)}</b>`;
-    // group this movie's showings by format
-    const byFmt = {};
-    for (const s of mv.showings) (byFmt[s.format || ""] ||= []).push(s);
-    for (const [fmt, showings] of Object.entries(byFmt)) {
-      if (fmt) {
-        const f = document.createElement("div");
-        f.className = "fmt";
-        f.textContent = fmt;
-        div.appendChild(f);
+
+    const byDay = {};
+    for (const s of mv.showings) (byDay[dayKey(s.showDateTimeUtc)] ||= []).push(s);
+    for (const dk of Object.keys(byDay).sort()) {
+      const dayShowings = byDay[dk];
+      if (multiDay) {
+        const dh = document.createElement("div");
+        dh.className = "dayhdr";
+        dh.textContent = dayLabel(dayShowings[0].showDateTimeUtc);
+        div.appendChild(dh);
       }
-      const times = document.createElement("div");
-      times.className = "times";
-      for (const s of showings) {
-        const b = document.createElement("button");
-        b.type = "button";
-        b.className = "time";
-        b.textContent = s.time;
-        if (new Date(s.showDateTimeUtc).getTime() < now) b.classList.add("past");
-        // tapping selects/deselects; selection survives re-renders/date changes
-        if (selectedShowings.has(s.showtimeId)) b.classList.add("sel");
-        b.onclick = () => toggleShowing(s, mv.title, b);
-        times.appendChild(b);
+      const byFmt = {};
+      for (const s of dayShowings) (byFmt[s.format || ""] ||= []).push(s);
+      for (const [fmt, showings] of Object.entries(byFmt)) {
+        if (fmt) {
+          const f = document.createElement("div");
+          f.className = "fmt";
+          f.textContent = fmt;
+          div.appendChild(f);
+        }
+        const times = document.createElement("div");
+        times.className = "times";
+        for (const s of showings) {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "time";
+          b.textContent = s.time;
+          if (new Date(s.showDateTimeUtc).getTime() < now) b.classList.add("past");
+          // tapping selects/deselects; selection survives re-renders/date changes
+          if (selectedShowings.has(s.showtimeId)) b.classList.add("sel");
+          b.onclick = () => toggleShowing(s, mv.title, b);
+          times.appendChild(b);
+        }
+        div.appendChild(times);
       }
-      div.appendChild(times);
     }
     host.appendChild(div);
   }
+  if (!shown) host.innerHTML = '<p class="muted">No movies match that filter.</p>';
   updateBulkBar();
 }
 

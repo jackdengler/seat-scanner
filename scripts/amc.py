@@ -355,3 +355,57 @@ def fetch_showtimes(theatre, date, log=lambda msg: None):
     result["fetchedAtUtc"] = (datetime.datetime.now(datetime.timezone.utc)
                               .strftime("%Y-%m-%dT%H:%M:%SZ"))
     return result
+
+
+def merge_showtimes(listings):
+    """Merge several single-day listings into one movie->showings list.
+
+    Movies are keyed by slug and keep first-seen order; each movie's showings
+    are concatenated, de-duplicated by showtimeId, and sorted chronologically.
+    """
+    movies = {}
+    order = []
+    for listing in listings:
+        for mv in listing.get("movies", []):
+            m = movies.get(mv["slug"])
+            if m is None:
+                m = {"slug": mv["slug"], "title": mv["title"], "showings": []}
+                movies[mv["slug"]] = m
+                order.append(mv["slug"])
+            m["showings"].extend(mv["showings"])
+    for m in movies.values():
+        seen = set()
+        uniq = []
+        for s in sorted(m["showings"], key=lambda s: s["showDateTimeUtc"]):
+            if s["showtimeId"] in seen:
+                continue
+            seen.add(s["showtimeId"])
+            uniq.append(s)
+        m["showings"] = uniq
+    return [movies[s] for s in order]
+
+
+def fetch_showtimes_range(theatre, start_date, days, log=lambda msg: None):
+    """Fetch ``days`` consecutive days starting at ``start_date`` and merge.
+
+    One AMC request per day (kept sequential and gentle). Returns the same
+    shape as fetch_showtimes plus a ``days`` field, with each movie's showings
+    spanning the whole range.
+    """
+    days = max(1, int(days))
+    d0 = datetime.date.fromisoformat(start_date)
+    path = theatre.strip().strip("/").split("?")[0]
+    listings = []
+    for i in range(days):
+        day = (d0 + datetime.timedelta(days=i)).isoformat()
+        log(f"fetching {day} ({i + 1}/{days})")
+        listings.append(fetch_showtimes(path, day, log))
+    return {
+        "theatre": path,
+        "theatreSlug": _theatre_slug(path),
+        "date": start_date,
+        "days": days,
+        "movies": merge_showtimes(listings),
+        "fetchedAtUtc": (datetime.datetime.now(datetime.timezone.utc)
+                         .strftime("%Y-%m-%dT%H:%M:%SZ")),
+    }

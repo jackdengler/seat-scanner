@@ -62,10 +62,12 @@
   }
   .row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
   .row button { margin-top: 0; }
-  input[type=date] {
+  input[type=date], select {
     width: auto; padding: 9px 10px; border-radius: 8px; border: 1px solid #3a3a40;
     background: #1a1a1e; color: #eee; font-size: 16px;
   }
+  #movieFilter { margin: 6px 0; }
+  .dayhdr { font-size: 13px; color: #cbd5e1; font-weight: 600; margin: 10px 0 2px; }
   #showlist { margin-top: 6px; }
   .movie { border-top: 1px solid #333; padding: 10px 0 4px; }
   .movie:first-child { border-top: 0; }
@@ -108,13 +110,23 @@
   <input type="text" id="theatre" placeholder="https://www.amctheatres.com/movie-theatres/boston/amc-boston-common-19" inputmode="url">
   <div class="row">
     <div>
-      <label for="date">Date</label>
+      <label for="date">From</label>
       <input type="date" id="date">
+    </div>
+    <div>
+      <label for="days">Days</label>
+      <select id="days">
+        <option value="1">1 day</option>
+        <option value="3">3 days</option>
+        <option value="7">7 days</option>
+        <option value="14">14 days</option>
+      </select>
     </div>
     <button id="browseBtn">Find showtimes</button>
   </div>
   <div id="browseStatus" class="muted"></div>
   <p class="muted" id="browseHint" hidden>Tap showtimes to select them, then set criteria below and watch them all at once.</p>
+  <input type="text" id="movieFilter" placeholder="Filter by movie…" hidden>
   <div id="showlist"></div>
 
   <div id="bulkbar" hidden>

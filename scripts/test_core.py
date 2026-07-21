@@ -180,6 +180,42 @@ class ShowtimesParseTests(unittest.TestCase):
                          "Young Washington")
 
 
+class MergeShowtimesTests(unittest.TestCase):
+    def _listing(self, showings):
+        return {"movies": [{"slug": "moana-72474", "title": "Moana",
+                            "showings": showings}]}
+
+    def test_concatenates_across_days_and_sorts(self):
+        day1 = self._listing([
+            {"showtimeId": 2, "showDateTimeUtc": "2026-07-21T22:30:00Z",
+             "time": "6:30 pm", "format": "Standard"},
+            {"showtimeId": 1, "showDateTimeUtc": "2026-07-21T16:00:00Z",
+             "time": "12:00 pm", "format": "Standard"},
+        ])
+        day2 = self._listing([
+            {"showtimeId": 3, "showDateTimeUtc": "2026-07-22T16:00:00Z",
+             "time": "12:00 pm", "format": "Standard"},
+        ])
+        merged = amc.merge_showtimes([day1, day2])
+        self.assertEqual(len(merged), 1)
+        ids = [s["showtimeId"] for s in merged[0]["showings"]]
+        self.assertEqual(ids, [1, 2, 3])  # chronological across both days
+
+    def test_dedupes_repeated_showtime_ids(self):
+        one = self._listing([
+            {"showtimeId": 1, "showDateTimeUtc": "2026-07-21T16:00:00Z",
+             "time": "12:00 pm", "format": "Standard"},
+        ])
+        merged = amc.merge_showtimes([one, one])
+        self.assertEqual(len(merged[0]["showings"]), 1)
+
+    def test_new_movies_append_in_order(self):
+        a = {"movies": [{"slug": "a-1", "title": "A", "showings": []}]}
+        b = {"movies": [{"slug": "b-2", "title": "B", "showings": []}]}
+        merged = amc.merge_showtimes([a, b])
+        self.assertEqual([m["slug"] for m in merged], ["a-1", "b-2"])
+
+
 class FlightDecodeTests(unittest.TestCase):
     def test_chunks_concatenated(self):
         with open(FIXTURE, encoding="utf-8") as f:

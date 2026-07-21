@@ -39,10 +39,12 @@ the seats you want open up. Fully serverless:
 **Browse shows (no URLs).** Paste your AMC theatre's page link once into
 "Browse shows" (e.g.
 `https://www.amctheatres.com/movie-theatres/boston/amc-boston-common-19`) —
-it's remembered on this device. Pick a date, tap **Find showtimes**, and the
-app lists every movie and showtime for that day. (Under the hood this asks
-Actions to fetch the theatre's showtimes page and writes `browse.json` to
-the `data` branch, which the app renders.)
+it's remembered on this device. Pick a start date and how many days to pull
+(1–14), tap **Find showtimes**, and the app lists every movie and showtime
+across that span, grouped by movie then day; the **Filter by movie** box
+narrows it to one title. (Under the hood this asks Actions to fetch one
+theatre showtimes page per day, merges them by movie, and writes
+`browse.json` to the `data` branch, which the app renders.)
 
 **Bulk-watch (same criteria for many shows).** Tap any number of showtimes to
 select them — selection persists as you change dates — then set the row /
