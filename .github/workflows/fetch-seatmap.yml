@@ -13,8 +13,10 @@ on:
 permissions:
   contents: write
 
+# Keyed per showtime so it never shares (and gets cancelled in) the "poll"
+# group, while still de-duplicating concurrent fetches of the same seat map.
 concurrency:
-  group: poll
+  group: fetch-seatmap-${{ github.event.inputs.showtimeId }}
   cancel-in-progress: false
 
 jobs:
@@ -47,4 +49,14 @@ jobs:
           git config user.name "seat-scanner"
           git config user.email "seat-scanner@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || { git commit -m "fetch-seatmap: ${{ github.event.inputs.showtimeId }}"; git push origin HEAD:data; }
+          git diff --cached --quiet && { echo "nothing to push"; exit 0; }
+          git commit -m "fetch-seatmap: ${{ github.event.inputs.showtimeId }}"
+          # Not serialized against poll anymore, so retry over a concurrent push.
+          for attempt in 1 2 3 4 5; do
+            git push origin HEAD:data && exit 0
+            echo "push rejected (attempt $attempt); rebasing on origin/data"
+            git fetch origin data
+            git rebase -X theirs origin/data
+            sleep "$attempt"
+          done
+          git push origin HEAD:data
