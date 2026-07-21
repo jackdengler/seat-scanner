@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-21T19:41:03Z",
+  "fetchedAtUtc": "2026-07-21T19:41:35Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -68,84 +68,84 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 11,
       "name": "A20",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 12,
       "name": "A19",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 13,
       "name": "A18",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 14,
       "name": "A17",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 15,
       "name": "A16",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 16,
       "name": "A15",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 17,
       "name": "A14",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 18,
       "name": "A13",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 19,
       "name": "A12",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 20,
       "name": "A11",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 21,
       "name": "A10",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 22,
       "name": "A9",
       "row": 1,
@@ -159,7 +159,7 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 24,
       "name": "A7",
       "row": 1,
@@ -208,91 +208,91 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 1,
       "name": "B32",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 2,
       "name": "B31",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 3,
       "name": "B30",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 4,
       "name": "B29",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 5,
       "name": "B28",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 6,
       "name": "B27",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 7,
       "name": "B26",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 8,
       "name": "B25",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 9,
       "name": "B24",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 10,
       "name": "B23",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 11,
       "name": "B22",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 12,
       "name": "B21",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 13,
       "name": "B20",
       "row": 2,
@@ -327,14 +327,14 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 18,
       "name": "B15",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 19,
       "name": "B14",
       "row": 2,
@@ -348,21 +348,21 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 21,
       "name": "B12",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 22,
       "name": "B11",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 23,
       "name": "B10",
       "row": 2,
@@ -383,42 +383,42 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 26,
       "name": "B7",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 27,
       "name": "B6",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 28,
       "name": "B5",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 29,
       "name": "B4",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 30,
       "name": "B3",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 31,
       "name": "B2",
       "row": 2,
@@ -432,14 +432,14 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 1,
       "name": "C32",
       "row": 3,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 2,
       "name": "C31",
       "row": 3,
@@ -621,35 +621,35 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 28,
       "name": "C5",
       "row": 3,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 29,
       "name": "C4",
       "row": 3,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 30,
       "name": "C3",
       "row": 3,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 31,
       "name": "C2",
       "row": 3,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 32,
       "name": "C1",
       "row": 3,
@@ -2595,7 +2595,7 @@
       "type": "Wheelchair"
     },
     {
-      "available": false,
+      "available": true,
       "column": 23,
       "name": "N7",
       "row": 13,
@@ -2644,8 +2644,8 @@
       "type": "CanReserve"
     }
   ],
-  "showDateTimeUtc": "2026-07-28T01:00:00.000Z",
-  "showtimeId": "143822662",
+  "showDateTimeUtc": "2026-08-04T05:00:00.000Z",
+  "showtimeId": "143822596",
   "theatre": "Universal Cinema - an AMC Theatre",
   "utcOffset": "-07:00"
 }
