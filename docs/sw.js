@@ -15,6 +15,15 @@ self.addEventListener("push", (event) => {
 
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
-  const url = (event.notification.data && event.notification.data.url) || ".";
-  event.waitUntil(clients.openWindow(url));
+  const raw = (event.notification.data && event.notification.data.url) || ".";
+  // Resolve relative payload URLs (e.g. "open.html?...") against the SW scope
+  // so the notification opens our own booking hand-off page on this origin.
+  const url = new URL(raw, self.registration.scope).href;
+  event.waitUntil((async () => {
+    const all = await clients.matchAll({ type: "window", includeUncontrolled: true });
+    for (const c of all) {
+      if (c.url === url && "focus" in c) return c.focus();
+    }
+    return clients.openWindow(url);
+  })());
 });

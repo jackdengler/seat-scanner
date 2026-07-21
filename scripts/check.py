@@ -32,6 +32,7 @@ import os
 import random
 import sys
 import time
+import urllib.parse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -156,11 +157,22 @@ def check_watch(watch, ws, subscriptions, state, data_dir, now):
         return
 
     seats_text = "; ".join(", ".join(g) for g in groups)
+    # Open our own same-origin interstitial (resolved against the service
+    # worker scope) rather than amctheatres.com directly: tapping the button
+    # there is a genuine user gesture, which is what lets iOS hand off the
+    # universal link to the installed AMC app so you can book right away.
+    # Opening the external URL straight from the notification tends to land
+    # in a browser tab instead.
+    query = urllib.parse.urlencode({
+        "sid": sid,
+        "label": label,       # already "<movie> — <day> at <time>"
+        "seats": seats_text,
+    })
     push(subscriptions, {
         "title": f"Seats open: {label}",
         "body": f"Available now: {seats_text}",
         "tag": f"match-{sid}-{sig}",
-        "url": f"https://www.amctheatres.com/showtimes/{sid}/seats",
+        "url": f"open.html?{query}",
     }, state)
     ws.setdefault("notifiedSignatures", []).append(sig)
 
