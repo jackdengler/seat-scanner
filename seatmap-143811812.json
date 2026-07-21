@@ -1,0 +1,1195 @@
+{
+  "columns": 20,
+  "fetchedAtUtc": "2026-07-21T07:25:09Z",
+  "movie": null,
+  "rows": 10,
+  "seats": [
+    {
+      "available": true,
+      "column": 2,
+      "name": "A19",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 3,
+      "name": "A18",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 4,
+      "name": "A17",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 5,
+      "name": "A16",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 6,
+      "name": "A15",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 7,
+      "name": "A14",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 8,
+      "name": "A13",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 9,
+      "name": "A12",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 10,
+      "name": "A11",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 11,
+      "name": "A10",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 12,
+      "name": "A9",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 13,
+      "name": "A8",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 14,
+      "name": "A7",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 15,
+      "name": "A6",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 16,
+      "name": "A5",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 17,
+      "name": "A4",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 18,
+      "name": "A3",
+      "row": 1,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 19,
+      "name": "A2",
+      "row": 1,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 20,
+      "name": "A1",
+      "row": 1,
+      "type": "CanReserve"
+    },
+    {
+      "available": true,
+      "column": 2,
+      "name": "B19",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": true,
+      "column": 3,
+      "name": "B18",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 4,
+      "name": "B17",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 5,
+      "name": "B16",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 6,
+      "name": "B15",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 7,
+      "name": "B14",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 8,
+      "name": "B13",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "B12",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "B11",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "B10",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "B9",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 13,
+      "name": "B8",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 14,
+      "name": "B7",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 15,
+      "name": "B6",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 16,
+      "name": "B5",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 17,
+      "name": "B4",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 18,
+      "name": "B3",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 19,
+      "name": "B2",
+      "row": 2,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 20,
+      "name": "B1",
+      "row": 2,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 2,
+      "name": "C19",
+      "row": 4,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "C18",
+      "row": 4,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 4,
+      "name": "C17",
+      "row": 4,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 5,
+      "name": "C16",
+      "row": 4,
+      "type": "Companion"
+    },
+    {
+      "available": true,
+      "column": 6,
+      "name": "C15",
+      "row": 4,
+      "type": "Wheelchair"
+    },
+    {
+      "available": true,
+      "column": 7,
+      "name": "C14",
+      "row": 4,
+      "type": "Wheelchair"
+    },
+    {
+      "available": true,
+      "column": 8,
+      "name": "C13",
+      "row": 4,
+      "type": "Companion"
+    },
+    {
+      "available": true,
+      "column": 9,
+      "name": "C12",
+      "row": 4,
+      "type": "Companion"
+    },
+    {
+      "available": true,
+      "column": 10,
+      "name": "C11",
+      "row": 4,
+      "type": "Wheelchair"
+    },
+    {
+      "available": true,
+      "column": 11,
+      "name": "C10",
+      "row": 4,
+      "type": "Companion"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "C9",
+      "row": 4,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "C8",
+      "row": 4,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 14,
+      "name": "C7",
+      "row": 4,
+      "type": "Companion"
+    },
+    {
+      "available": true,
+      "column": 15,
+      "name": "C6",
+      "row": 4,
+      "type": "Wheelchair"
+    },
+    {
+      "available": true,
+      "column": 16,
+      "name": "C5",
+      "row": 4,
+      "type": "Wheelchair"
+    },
+    {
+      "available": true,
+      "column": 17,
+      "name": "C4",
+      "row": 4,
+      "type": "Companion"
+    },
+    {
+      "available": true,
+      "column": 18,
+      "name": "C3",
+      "row": 4,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": true,
+      "column": 19,
+      "name": "C2",
+      "row": 4,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 20,
+      "name": "C1",
+      "row": 4,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 1,
+      "name": "D20",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 2,
+      "name": "D19",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "D18",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "D17",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "D16",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "D15",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "D14",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "D13",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "D12",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "D11",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "D10",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "D9",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "D8",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "D7",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "D6",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "D5",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "D4",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "D3",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "D2",
+      "row": 5,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "D1",
+      "row": 5,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 1,
+      "name": "E20",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 2,
+      "name": "E19",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "E18",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "E17",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "E16",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "E15",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "E14",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "E13",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "E12",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "E11",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "E10",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "E9",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "E8",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "E7",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "E6",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "E5",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "E4",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "E3",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "E2",
+      "row": 6,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "E1",
+      "row": 6,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 1,
+      "name": "F20",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 2,
+      "name": "F19",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "F18",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "F17",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "F16",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "F15",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "F14",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "F13",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "F12",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "F11",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "F10",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "F9",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "F8",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "F7",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "F6",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "F5",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "F4",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "F3",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "F2",
+      "row": 7,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "F1",
+      "row": 7,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 1,
+      "name": "G20",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 2,
+      "name": "G19",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "G18",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "G17",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "G16",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "G15",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "G14",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "G13",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "G12",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "G11",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "G10",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "G9",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "G8",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "G7",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "G6",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "G5",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "G4",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "G3",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "G2",
+      "row": 8,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "G1",
+      "row": 8,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 1,
+      "name": "H20",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 2,
+      "name": "H19",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "H18",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "H17",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "H16",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "H15",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "H14",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "H13",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "H12",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "H11",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "H10",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "H9",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "H8",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "H7",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "H6",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "H5",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "H4",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "H3",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "H2",
+      "row": 9,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "H1",
+      "row": 9,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 1,
+      "name": "J12",
+      "row": 10,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 2,
+      "name": "J11",
+      "row": 10,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "J10",
+      "row": 10,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "J9",
+      "row": 10,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "J8",
+      "row": 10,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "J7",
+      "row": 10,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "J6",
+      "row": 10,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "J5",
+      "row": 10,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "J4",
+      "row": 10,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "J3",
+      "row": 10,
+      "type": "LoveSeatRight"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "J2",
+      "row": 10,
+      "type": "LoveSeatLeft"
+    },
+    {
+      "available": true,
+      "column": 20,
+      "name": "J1",
+      "row": 10,
+      "type": "LoveSeatRight"
+    }
+  ],
+  "showDateTimeUtc": "2026-07-24T02:00:00.000Z",
+  "showtimeId": "143811812",
+  "theatre": "AMC Century City 15",
+  "utcOffset": "-07:00"
+}
