@@ -109,12 +109,19 @@ async function init() {
 
   if ("serviceWorker" in navigator) {
     try { await navigator.serviceWorker.register("sw.js"); } catch (e) { /* preview contexts */ }
-    // The SW asks us to navigate when a notification is tapped and it couldn't
-    // open the target itself (common for installed iOS PWAs).
     navigator.serviceWorker.addEventListener("message", (e) => {
-      if (e.data && e.data.type === "navigate" && e.data.url) location.href = e.data.url;
+      if (!e.data) return;
+      // A fresh push: show it in the alert list immediately.
+      if (e.data.type === "alert") addLiveAlert(e.data.alert);
+      // The SW asks us to navigate when a notification is tapped and it couldn't
+      // open the target itself (common for installed iOS PWAs).
+      if (e.data.type === "navigate" && e.data.url) location.href = e.data.url;
     });
   }
+  // When the app returns to the foreground (e.g. reopened from a notification),
+  // pull the latest alerts so the newest opening is always shown.
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshAlerts(); });
+  window.addEventListener("focus", refreshAlerts);
   refreshSetupStatus();
   loadConfigAndWatches();
 }
@@ -712,15 +719,53 @@ async function loadConfigAndWatches() {
   }
 }
 
+// Newest-first list of alerts currently held in memory. Seeded from state.json
+// on load and prepended to live when the SW forwards a fresh push.
+let alertsData = [];
+
 // The poller writes newest-first "alerts" into state.json each time seats open.
-// Render them as a book-now list so a missed notification is never a dead end.
+// Merge them into the in-memory list (union by key, newest first) rather than
+// replace, so a live push-delivered alert not yet flushed to the data branch
+// isn't clobbered on a foreground refresh.
 function renderAlerts(state) {
+  const seen = new Set(alertsData.map(alertKey));
+  for (const a of ((state && state.alerts) || [])) {
+    if (a && a.sid && !seen.has(alertKey(a))) { alertsData.push(a); seen.add(alertKey(a)); }
+  }
+  alertsData.sort((x, y) => String(y.at || "").localeCompare(String(x.at || "")));
+  alertsData = alertsData.slice(0, 30);
+  drawAlerts();
+}
+
+const alertKey = (a) => a.key || `${a.sid}-${a.at}`;
+
+// Re-pull state.json and redraw alerts. Cheap and safe to call on every
+// foreground; merges any alerts that fired while the app was backgrounded.
+let refreshingAlerts = false;
+async function refreshAlerts() {
+  if (refreshingAlerts) return;
+  refreshingAlerts = true;
+  try { renderAlerts(await loadState()); } catch (e) { /* offline / transient */ }
+  finally { refreshingAlerts = false; }
+}
+
+// Prepend a push-delivered alert instantly (deduped), so an open PWA reflects a
+// new opening the moment it fires rather than on the next reload.
+function addLiveAlert(alert) {
+  if (!alert || !alert.sid) return;
+  const key = alertKey(alert);
+  if (alertsData.some((a) => alertKey(a) === key)) return;
+  alertsData.unshift(alert);
+  alertsData = alertsData.slice(0, 30);
+  drawAlerts();
+}
+
+function drawAlerts() {
   const card = $("alertsCard");
   const host = $("alerts");
   if (!card || !host) return;
   const dismissed = JSON.parse(localStorage.getItem("dismissedAlerts") || "[]");
-  const alerts = ((state && state.alerts) || []).filter(
-    (a) => !dismissed.includes(a.key || `${a.sid}-${a.at}`));
+  const alerts = alertsData.filter((a) => !dismissed.includes(alertKey(a)));
   if (!alerts.length) { card.hidden = true; return; }
   card.hidden = false;
   host.innerHTML = "";
@@ -740,11 +785,11 @@ function renderAlerts(state) {
     dismiss.className = "dismiss";
     dismiss.textContent = "dismiss";
     dismiss.onclick = () => {
-      const key = a.key || `${a.sid}-${a.at}`;
+      const key = alertKey(a);
       const d = JSON.parse(localStorage.getItem("dismissedAlerts") || "[]");
       if (!d.includes(key)) d.push(key);
       localStorage.setItem("dismissedAlerts", JSON.stringify(d.slice(-100)));
-      renderAlerts(state);
+      drawAlerts();
     };
     const actions = document.createElement("div");
     actions.appendChild(book);

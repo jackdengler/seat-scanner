@@ -4,13 +4,21 @@ self.addEventListener("activate", (e) => e.waitUntil(self.clients.claim()));
 self.addEventListener("push", (event) => {
   let data = {};
   try { data = event.data.json(); } catch (e) { data = { body: event.data && event.data.text() }; }
-  event.waitUntil(self.registration.showNotification(data.title || "Seat Scanner", {
-    body: data.body || "",
-    tag: data.tag,
-    icon: "icon-192.png",
-    badge: "icon-192.png",
-    data: { url: data.url },
-  }));
+  event.waitUntil((async () => {
+    await self.registration.showNotification(data.title || "Seat Scanner", {
+      body: data.body || "",
+      tag: data.tag,
+      icon: "icon-192.png",
+      badge: "icon-192.png",
+      data: { url: data.url },
+    });
+    // Push the alert into any already-open PWA so it appears instantly, without
+    // waiting for a data-branch fetch — the seat can be gone in seconds.
+    if (data.alert) {
+      const cs = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+      for (const c of cs) c.postMessage({ type: "alert", alert: data.alert });
+    }
+  })());
 });
 
 self.addEventListener("notificationclick", (event) => {
