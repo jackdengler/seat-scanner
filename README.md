@@ -6,11 +6,13 @@ the seats you want open up. Fully serverless:
 - **GitHub Pages** serves a small PWA (this repo's `docs/`) where you pick
   showtimes, seats, and adjacency rules.
 - **GitHub Actions** does all the AMC fetching (browsers can't — CORS) at a
-  flat ~30s cadence for every active watch, no matter how far off the
+  flat ~8s cadence for every active watch, no matter how far off the
   showtime is: a jittered in-run burst on top of the 5-min cron, with runs
   self-chaining so a fresh run is always queued and coverage stays
-  continuous. (This is deliberately aggressive; raise `CHECK_INTERVAL_MIN`
-  in `scripts/check.py` to slow it down.)
+  continuous. Each pass fetches all due shows **concurrently**, so watching
+  many shows doesn't stretch the interval. (This is deliberately aggressive
+  and can get rate-limited by AMC; widen `BURST_SLEEP_RANGE` in
+  `scripts/check.py` to slow it down.)
 - The **`data` branch** holds machine-written state (`state.json`,
   `seatmap-<id>.json`) so the code branch stays clean.
 - Notifications are **Web Push** straight to the installed PWA — no

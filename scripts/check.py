@@ -5,19 +5,21 @@ Reads config.json (watches, written by the UI) and subscriptions.json
 state.json plus per-showtime seatmaps from the data branch checked out
 at the path given by --data.
 
-Check cadence: every active watch is checked ~every 30 seconds, the whole
-time it's active, regardless of how far off the showtime is. A watch stops
-only once its showtime passes (it's marked done).
+Check cadence: every active watch is checked ~every 8 seconds, the whole
+time it's active, regardless of how far off the showtime is. Within a pass all
+due shows are fetched concurrently (FETCH_WORKERS), so the interval doesn't
+stretch as you watch more shows. A watch stops only once its showtime passes
+(it's marked done).
 
 The 5-minute cron is just a floor/heartbeat; each run loops many times with
-randomized ~30s spacing, and runs self-chain (see CHAIN below) so a fresh
+randomized ~8s spacing, and runs self-chain (see CHAIN below) so a fresh
 run is always queued and coverage stays continuous even when GitHub's cron
 skips a tick. The jitter keeps the pattern from looking robotic.
 
-NOTE: this checks *every* show at ~30s even weeks out, which is deliberately
+NOTE: this checks *every* show at ~8s even weeks out, which is deliberately
 aggressive — it means a lot of requests to AMC per watch per day and can get
-rate-limited/blocked if AMC objects. Raise CHECK_INTERVAL_MIN below to slow
-it down.
+rate-limited/blocked if AMC objects. Slow it down by widening BURST_SLEEP_RANGE
+or raising CHECK_INTERVAL_MIN below.
 
 Notifies at most once per distinct seat-set match, and sends a
 "watcher broken" alert after 3 consecutive fetch failures (once).
@@ -33,6 +35,7 @@ import random
 import sys
 import time
 import urllib.parse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -52,7 +55,12 @@ CHECK_INTERVAL_MIN = 0
 # fresh run always queued. Kept just under the 5-min tick so the run ends
 # before the next scheduled one.
 BURST_MAX_SECONDS = 270        # stop bursting before the next 5-min cron tick
-BURST_SLEEP_RANGE = (25, 40)   # jittered seconds between passes (~30s)
+BURST_SLEEP_RANGE = (6, 10)    # jittered seconds between passes (~8s)
+
+# Each pass fetches every due show's seat map concurrently, so a pass stays
+# ~constant regardless of how many shows are watched (the network dance, not
+# CPU, is the cost). Capped so we don't open too many sockets to AMC at once.
+FETCH_WORKERS = 8
 
 
 def now_utc():
@@ -107,37 +115,52 @@ def push(subscriptions, payload, state):
         state["deadSubscriptions"] = sorted(existing | set(dead))
 
 
-def check_watch(watch, ws, subscriptions, state, data_dir, now):
+def is_watch_due(watch, ws, now):
+    """True if this watch should be fetched now. Marks it done if the show has
+    passed. (Kept separate from the fetch so a whole pass can fetch in parallel.)"""
     sid = str(watch["showtimeId"])
-    label = watch.get("label") or f"showtime {sid}"
-
     show_at = parse_iso(watch["showtimeIso"])
     minutes_to_show = (show_at - now).total_seconds() / 60
     if minutes_to_show <= 0:
         print(f"[{sid}] showtime passed; marking done")
         ws["done"] = True
-        return
-
+        return False
     if not is_due(ws, minutes_to_show, now):
         print(f"[{sid}] not due yet "
               f"(tier interval {interval_minutes(minutes_to_show)}min)")
-        return
+        return False
+    return True
 
+
+def fetch_watch(sid):
+    """Network-only, thread-safe: fetch one seat map, returning it or the
+    exception raised (so the caller can process results single-threaded)."""
     try:
-        seatmap = amc.fetch_seatmap(sid, log=lambda m: print(f"[{sid}] {m}"))
-    except Exception as e:
+        return amc.fetch_seatmap(sid, log=lambda m: print(f"[{sid}] {m}"))
+    except Exception as e:  # noqa: BLE001 — surfaced to the sequential processor
+        return e
+
+
+def process_watch(watch, ws, subscriptions, state, data_dir, now, result):
+    """Handle one fetch result (seat map or exception). Runs single-threaded, so
+    all state mutation and pushes are race-free."""
+    sid = str(watch["showtimeId"])
+    label = watch.get("label") or f"showtime {sid}"
+
+    if isinstance(result, Exception):
         ws["consecutiveFailures"] = ws.get("consecutiveFailures", 0) + 1
-        print(f"[{sid}] fetch failed ({ws['consecutiveFailures']}x): {e}")
+        print(f"[{sid}] fetch failed ({ws['consecutiveFailures']}x): {result}")
         if (ws["consecutiveFailures"] >= FAILURE_ALERT_THRESHOLD
                 and not ws.get("alertedBroken")):
             push(subscriptions, {
                 "title": "Seat watcher broken",
                 "body": (f"{label}: {ws['consecutiveFailures']} fetches in a row "
-                         f"failed ({e}). Check the Actions logs."),
+                         f"failed ({result}). Check the Actions logs."),
                 "tag": f"broken-{sid}",
             }, state)
             ws["alertedBroken"] = True
         return
+    seatmap = result
 
     ws["lastCheckedAt"] = now.strftime("%Y-%m-%dT%H:%M:%SZ")
     ws["consecutiveFailures"] = 0
@@ -212,8 +235,9 @@ def main():
 
     def one_pass():
         now = now_utc()
-        active = 0
-        soonest = None  # minutes to the nearest active showtime
+
+        # 1) Decide which watches are due (marks passed ones done).
+        due = []
         for watch in config.get("watches", []):
             sid = str(watch.get("showtimeId", ""))
             if not sid or not watch.get("showtimeIso"):
@@ -222,11 +246,36 @@ def main():
             ws = state["watches"].setdefault(sid, {})
             if ws.get("done") or watch.get("done"):
                 continue
-            check_watch(watch, ws, subscriptions, state, args.data, now)
-            if not ws.get("done"):
-                active += 1
-                mins = (parse_iso(watch["showtimeIso"]) - now).total_seconds() / 60
-                soonest = mins if soonest is None else min(soonest, mins)
+            if is_watch_due(watch, ws, now):
+                due.append((watch, ws, sid))
+
+        # 2) Fetch all due seat maps concurrently — the slow part is the network
+        # dance, so this keeps a pass ~constant no matter how many are watched.
+        results = {}
+        if due:
+            with ThreadPoolExecutor(max_workers=min(FETCH_WORKERS, len(due))) as ex:
+                futs = {ex.submit(fetch_watch, sid): sid for (_, _, sid) in due}
+                for fut in as_completed(futs):
+                    results[futs[fut]] = fut.result()
+
+        # 3) Process results single-threaded (matching, pushes, state writes).
+        for watch, ws, sid in due:
+            process_watch(watch, ws, subscriptions, state, args.data, now,
+                          results.get(sid))
+
+        # 4) Count what's still active and how soon the nearest showtime is.
+        active = 0
+        soonest = None
+        for watch in config.get("watches", []):
+            sid = str(watch.get("showtimeId", ""))
+            if not sid or not watch.get("showtimeIso"):
+                continue
+            ws = state["watches"].get(sid, {})
+            if ws.get("done") or watch.get("done"):
+                continue
+            active += 1
+            mins = (parse_iso(watch["showtimeIso"]) - now).total_seconds() / 60
+            soonest = mins if soonest is None else min(soonest, mins)
         return active, soonest
 
     active, soonest = one_pass()
