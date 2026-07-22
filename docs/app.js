@@ -780,12 +780,12 @@ function drawAlerts() {
     const book = document.createElement("a");
     book.className = "book";
     book.href = "https://www.amctheatres.com/showtimes/" + sid + "/seats";
-    // Force system Safari (not the PWA's in-app browser): AMC has no app URL
-    // scheme or universal-link association, so the only route to the native app
-    // is their Smart App Banner, which shows only in full Safari.
-    book.target = "_blank";
-    book.rel = "noopener";
-    book.textContent = "🎟 Book — opens AMC app if installed";
+    // Plain top-level navigation (no target): from a standalone PWA, iOS hands
+    // an out-of-scope link to system Safari, where AMC's Smart App Banner can
+    // offer the native app. target="_blank" instead opens an in-app browser
+    // that never shows the banner. (AMC has no app URL scheme / universal link,
+    // so the banner is the only route into the app.)
+    book.textContent = "🎟 Book these seats";
     const dismiss = document.createElement("button");
     dismiss.className = "dismiss";
     dismiss.textContent = "dismiss";
