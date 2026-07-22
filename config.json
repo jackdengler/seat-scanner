@@ -485,29 +485,6 @@
       ]
     },
     {
-      "showtimeId": 143822655,
-      "showtimeIso": "2026-07-31T01:00:00.000Z",
-      "label": "The Odyssey — Thu, Jul 30 at 6:00 PM",
-      "theatre": "Universal Cinema An AMC Theatre",
-      "format": "IMAX 70MM",
-      "watchedSeats": [],
-      "watchedRows": [
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N"
-      ],
-      "adjacentRequired": 1,
-      "excludeTypes": [
-        "Wheelchair",
-        "Companion"
-      ]
-    },
-    {
       "showtimeId": 143822653,
       "showtimeIso": "2026-07-31T05:00:00.000Z",
       "label": "The Odyssey — Thu, Jul 30 at 10:00 PM",
