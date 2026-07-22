@@ -13,6 +13,13 @@
         "p256dh": "BDG-xo9jqOYR5iQwfqtUOKoTBiluDmFXtEfgOYTFalf-_KDHS05_jRHA0R1AV34888MkodMFij-ZAYU5vV6c80c",
         "auth": "C2NzjU96rKtao_xrwQR6bQ"
       }
+    },
+    {
+      "endpoint": "https://web.push.apple.com/QOINIukMfdJ4myjXjONirspp3lQ1ax-4XdLv0ER5sPpHw7bt_bgJQsLYEDWaksxcELyRmDT6iKMq2mOcqBTq65akBcfwz877pmtbhrjcxAXAzmDxErjo0yLGTI7377NRPqrq6a-vlWKJOWDYCBPtWGaj-_j1vOsZovk5Fe0mnDI",
+      "keys": {
+        "p256dh": "BAxVzzUo30hfFMAiVTWdP6EQD1ReWvhwg0dtEpxx4Vt0K0Z4CLHGLlCbkwHDm4IzYE8QmhLgt4btIoab6SS07p8",
+        "auth": "H3_lusuZSb6aY5Q1lS4mJg"
+      }
     }
   ]
 }
