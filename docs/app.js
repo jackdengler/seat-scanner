@@ -47,7 +47,18 @@ async function gh(path, opts = {}) {
   const res = await fetch(`${API}/repos/${OWNER}/${REPO}${path}`,
     { ...opts, headers: { ...headers(), ...(opts.headers || {}) } });
   if (!res.ok && res.status !== 404) {
-    throw new Error(`GitHub API ${res.status} on ${path}`);
+    let msg = "";
+    try { const b = await res.clone().json(); if (b && b.message) msg = " — " + b.message; } catch (e) { /* no body */ }
+    // 401/403 on these calls almost always means the token is missing, expired,
+    // or lacks a permission — spell out the fix rather than a bare status code.
+    if (res.status === 401) {
+      msg += token()
+        ? " (your token is invalid or expired — generate a new fine-grained token and paste it into Setup)"
+        : " (no token saved — paste your fine-grained token into Setup; reinstalling the app clears it)";
+    } else if (res.status === 403) {
+      msg += " (this repo's token needs BOTH Contents and Actions set to Read and write; open the token on github.com → Settings → Developer settings → Fine-grained tokens, fix the Actions permission, and re-paste it)";
+    }
+    throw new Error(`GitHub API ${res.status}${msg}`);
   }
   return res;
 }
