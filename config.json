@@ -529,6 +529,190 @@
         "Wheelchair",
         "Companion"
       ]
+    },
+    {
+      "showtimeId": 142050318,
+      "showtimeIso": "2026-12-18T03:00:00.000Z",
+      "label": "Dune: Part Three — Thu, Dec 17 at 7:00 PM",
+      "theatre": "Universal Cinema An AMC Theatre",
+      "format": "IMAX 70MM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    },
+    {
+      "showtimeId": 142125595,
+      "showtimeIso": "2026-12-18T07:00:00.000Z",
+      "label": "Dune: Part Three — Thu, Dec 17 at 11:00 PM",
+      "theatre": "Universal Cinema An AMC Theatre",
+      "format": "IMAX 70MM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    },
+    {
+      "showtimeId": 142050319,
+      "showtimeIso": "2026-12-19T03:00:00.000Z",
+      "label": "Dune: Part Three — Fri, Dec 18 at 7:00 PM",
+      "theatre": "Universal Cinema An AMC Theatre",
+      "format": "IMAX 70MM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    },
+    {
+      "showtimeId": 142125596,
+      "showtimeIso": "2026-12-19T07:00:00.000Z",
+      "label": "Dune: Part Three — Fri, Dec 18 at 11:00 PM",
+      "theatre": "Universal Cinema An AMC Theatre",
+      "format": "IMAX 70MM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    },
+    {
+      "showtimeId": 142050320,
+      "showtimeIso": "2026-12-20T03:00:00.000Z",
+      "label": "Dune: Part Three — Sat, Dec 19 at 7:00 PM",
+      "theatre": "Universal Cinema An AMC Theatre",
+      "format": "IMAX 70MM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    },
+    {
+      "showtimeId": 142125597,
+      "showtimeIso": "2026-12-20T07:00:00.000Z",
+      "label": "Dune: Part Three — Sat, Dec 19 at 11:00 PM",
+      "theatre": "Universal Cinema An AMC Theatre",
+      "format": "IMAX 70MM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    },
+    {
+      "showtimeId": 142050321,
+      "showtimeIso": "2026-12-21T03:00:00.000Z",
+      "label": "Dune: Part Three — Sun, Dec 20 at 7:00 PM",
+      "theatre": "Universal Cinema An AMC Theatre",
+      "format": "IMAX 70MM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    },
+    {
+      "showtimeId": 142125598,
+      "showtimeIso": "2026-12-21T07:00:00.000Z",
+      "label": "Dune: Part Three — Sun, Dec 20 at 11:00 PM",
+      "theatre": "Universal Cinema An AMC Theatre",
+      "format": "IMAX 70MM",
+      "watchedSeats": [],
+      "watchedRows": [
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N"
+      ],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
     }
   ],
   "kickedAt": "2026-06-13T01:45:00Z"
