@@ -1,6 +1,6 @@
 {
   "columns": 20,
-  "fetchedAtUtc": "2026-07-22T20:27:16Z",
+  "fetchedAtUtc": "2026-07-22T20:32:24Z",
   "movie": null,
   "rows": 10,
   "seats": [
@@ -1125,7 +1125,7 @@
       "type": "LoveSeatLeft"
     },
     {
-      "available": true,
+      "available": false,
       "column": 4,
       "name": "J9",
       "row": 10,
