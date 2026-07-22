@@ -485,29 +485,6 @@
       ]
     },
     {
-      "showtimeId": 143822605,
-      "showtimeIso": "2026-08-02T17:00:00.000Z",
-      "label": "The Odyssey — Sun, Aug 2 at 10:00 AM",
-      "theatre": "Universal Cinema An AMC Theatre",
-      "format": "IMAX 70MM",
-      "watchedSeats": [],
-      "watchedRows": [
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N"
-      ],
-      "adjacentRequired": 1,
-      "excludeTypes": [
-        "Wheelchair",
-        "Companion"
-      ]
-    },
-    {
       "showtimeId": 143822603,
       "showtimeIso": "2026-08-02T21:00:00.000Z",
       "label": "The Odyssey — Sun, Aug 2 at 2:00 PM",
