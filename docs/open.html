@@ -36,9 +36,9 @@
     <div class="seats" id="seats">—</div>
   </div>
 
-  <a class="book" id="book" href="#">🎟&nbsp; Book in the AMC app</a>
-  <div class="hint">Opens the AMC app if it's installed, otherwise amctheatres.com. Seats go fast — grab them now.</div>
-  <a class="plain" id="web" href="#">Open on amctheatres.com instead</a>
+  <a class="book" id="book" href="#" target="_blank" rel="noopener">🎟&nbsp; Book — opens AMC app if installed</a>
+  <div class="hint">Opens amctheatres.com in Safari, where iOS offers <b>Open in the AMC app</b> if it's installed. Seats go fast — grab them now.</div>
+  <a class="plain" id="web" href="#" target="_blank" rel="noopener">Open on amctheatres.com</a>
 
 <script>
   const q = new URLSearchParams(location.search);
@@ -46,8 +46,10 @@
   const label = q.get("label");
   const seats = q.get("seats");
 
-  // The seats page IS the booking page; AMC claims this path as a universal
-  // link, so a genuine tap here hands off to the native app when installed.
+  // The seats page IS the booking page. AMC publishes no app URL scheme and no
+  // universal-link association, so the native app is only reachable via their
+  // Smart App Banner — which appears only in full Safari (target=_blank), not
+  // the PWA's in-app browser.
   const bookUrl = sid
     ? "https://www.amctheatres.com/showtimes/" + sid + "/seats"
     : "https://www.amctheatres.com/";
