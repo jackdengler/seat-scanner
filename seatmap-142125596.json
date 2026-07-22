@@ -1,11 +1,11 @@
 {
   "columns": null,
-  "fetchedAtUtc": "2026-07-22T21:59:19Z",
+  "fetchedAtUtc": "2026-07-22T22:05:30Z",
   "movie": null,
   "rows": null,
   "seats": [],
-  "showDateTimeUtc": null,
+  "showDateTimeUtc": "2026-12-19T07:00:00.000Z",
   "showtimeId": "142125596",
-  "theatre": null,
-  "utcOffset": null
+  "theatre": "Universal Cinema - an AMC Theatre",
+  "utcOffset": "-07:00"
 }
