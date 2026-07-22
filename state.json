@@ -1,6 +1,14 @@
 {
   "alerts": [
     {
+      "at": "2026-07-22T04:27:00Z",
+      "key": "143822625-02c61712cd4990c9",
+      "label": "The Odyssey \u2014 Tue, Jul 21 at 10:00 PM",
+      "seats": "G15",
+      "showtimeIso": "2026-07-22T05:00:00.000Z",
+      "sid": "143822625"
+    },
+    {
       "at": "2026-07-22T04:02:36Z",
       "key": "143822633-f60c033fef4ebbed",
       "label": "The Odyssey \u2014 Thu, Jul 23 at 10:00 PM",
@@ -149,40 +157,40 @@
     "142050318": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "142050319": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "142050320": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "142050321": {
       "alertedBroken": true,
-      "consecutiveFailures": 14
+      "consecutiveFailures": 18
     },
     "142125595": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "142125596": {
       "alertedBroken": true,
-      "consecutiveFailures": 14
+      "consecutiveFailures": 18
     },
     "142125597": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "142125598": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143419604": {
       "alertedBroken": false,
@@ -256,7 +264,7 @@
     "143811809": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143811812": {
       "alertedBroken": false,
@@ -274,12 +282,12 @@
     "143822596": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822598": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822600": {
       "alertedBroken": false,
@@ -348,7 +356,10 @@
     "143822625": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
+      "notifiedSignatures": [
+        "02c61712cd4990c9"
+      ]
     },
     "143822627": {
       "alertedBroken": false,
@@ -359,12 +370,12 @@
     "143822629": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822631": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "713685492eecd13c",
         "21d25c0b836485e1"
@@ -373,7 +384,7 @@
     "143822633": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "f60c033fef4ebbed"
       ]
@@ -381,7 +392,7 @@
     "143822635": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "b7689840dbce372a"
       ]
@@ -389,7 +400,7 @@
     "143822637": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "1f183f0b4616ee45"
       ]
@@ -397,7 +408,7 @@
     "143822638": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "69b52941a5865e90",
         "8b9876d00ef32edd"
@@ -406,7 +417,7 @@
     "143822639": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "6f6f86b9657086b1"
       ]
@@ -419,17 +430,17 @@
     "143822641": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822642": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822643": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "b455d483e8bb3735"
       ]
@@ -437,17 +448,17 @@
     "143822644": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822645": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822647": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822649": {
       "alertedBroken": false,
@@ -489,17 +500,17 @@
     "143822657": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822659": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822660": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "158aec9bf1e164a0",
         "f48c4a7f2e5ecf46"
@@ -508,7 +519,7 @@
     "143822662": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z",
+      "lastCheckedAt": "2026-07-22T04:27:00Z",
       "notifiedSignatures": [
         "1bbf892519aa6233"
       ]
@@ -516,12 +527,12 @@
     "143822664": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "143822667": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-22T04:19:15Z"
+      "lastCheckedAt": "2026-07-22T04:27:00Z"
     },
     "144055697": {
       "alertedBroken": false,

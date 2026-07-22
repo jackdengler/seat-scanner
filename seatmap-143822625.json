@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-22T04:19:16Z",
+  "fetchedAtUtc": "2026-07-22T04:27:02Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -397,7 +397,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 28,
       "name": "B5",
       "row": 2,
@@ -1342,7 +1342,7 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 14,
       "name": "G15",
       "row": 7,
