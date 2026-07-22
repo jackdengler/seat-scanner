@@ -1,147 +1,543 @@
 {
-  "date": "2026-07-21",
-  "days": 1,
-  "fetchedAtUtc": "2026-07-22T03:48:55Z",
+  "date": "2026-12-17",
+  "days": 7,
+  "fetchedAtUtc": "2026-07-22T03:49:35Z",
   "movies": [
     {
       "showings": [
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T05:15:00.000Z",
-          "showtimeId": 145134957,
-          "time": "10:15 pm"
-        }
-      ],
-      "slug": "moana-72474",
-      "title": "Moana"
-    },
-    {
-      "showings": [
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T03:30:00.000Z",
-          "showtimeId": 145134974,
-          "time": "8:30 pm"
-        },
-        {
-          "format": "IMAX with Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T05:00:00.000Z",
-          "showtimeId": 143799194,
-          "time": "10:00 pm"
-        },
-        {
           "format": "PRIME at AMC",
-          "showDateTimeUtc": "2026-07-22T05:30:00.000Z",
-          "showtimeId": 144879485,
-          "time": "10:30 pm"
-        },
-        {
-          "format": "Dolby Cinema at AMC",
-          "showDateTimeUtc": "2026-07-22T06:00:00.000Z",
-          "showtimeId": 144055693,
-          "time": "11:00 pm"
+          "showDateTimeUtc": "2026-12-17T21:00:00.000Z",
+          "showtimeId": 145284688,
+          "time": "1:00 pm"
         },
         {
           "format": "XL at AMC",
-          "showDateTimeUtc": "2026-07-22T06:15:00.000Z",
-          "showtimeId": 144941139,
-          "time": "11:15 pm"
+          "showDateTimeUtc": "2026-12-18T00:00:00.000Z",
+          "showtimeId": 145288138,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-18T00:45:00.000Z",
+          "showtimeId": 145284689,
+          "time": "4:45 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-18T03:45:00.000Z",
+          "showtimeId": 145288137,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "PRIME 3D",
+          "showDateTimeUtc": "2026-12-18T04:30:00.000Z",
+          "showtimeId": 145284690,
+          "time": "8:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-18T07:30:00.000Z",
+          "showtimeId": 145288139,
+          "time": "11:30 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-18T08:15:00.000Z",
+          "showtimeId": 145288131,
+          "time": "12:15 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-18T15:15:00.000Z",
+          "showtimeId": 145288136,
+          "time": "7:15 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-18T16:30:00.000Z",
+          "showtimeId": 145288144,
+          "time": "8:30 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-18T19:00:00.000Z",
+          "showtimeId": 145284691,
+          "time": "11:00 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-18T20:15:00.000Z",
+          "showtimeId": 145288143,
+          "time": "12:15 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-18T22:45:00.000Z",
+          "showtimeId": 145284692,
+          "time": "2:45 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-19T00:00:00.000Z",
+          "showtimeId": 145288141,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "PRIME 3D",
+          "showDateTimeUtc": "2026-12-19T02:30:00.000Z",
+          "showtimeId": 145284693,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-19T03:45:00.000Z",
+          "showtimeId": 145288140,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-19T06:15:00.000Z",
+          "showtimeId": 145284694,
+          "time": "10:15 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-19T07:30:00.000Z",
+          "showtimeId": 145288142,
+          "time": "11:30 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-19T10:00:00.000Z",
+          "showtimeId": 145288132,
+          "time": "2:00 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-19T15:15:00.000Z",
+          "showtimeId": 145288134,
+          "time": "7:15 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-19T16:30:00.000Z",
+          "showtimeId": 145288149,
+          "time": "8:30 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-19T19:00:00.000Z",
+          "showtimeId": 145284695,
+          "time": "11:00 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-19T20:15:00.000Z",
+          "showtimeId": 145288148,
+          "time": "12:15 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-19T22:45:00.000Z",
+          "showtimeId": 145284698,
+          "time": "2:45 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-20T00:00:00.000Z",
+          "showtimeId": 145288146,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "PRIME 3D",
+          "showDateTimeUtc": "2026-12-20T02:30:00.000Z",
+          "showtimeId": 145284700,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-20T03:45:00.000Z",
+          "showtimeId": 145288145,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-20T06:15:00.000Z",
+          "showtimeId": 145284701,
+          "time": "10:15 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-20T07:30:00.000Z",
+          "showtimeId": 145288147,
+          "time": "11:30 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-20T10:00:00.000Z",
+          "showtimeId": 145288133,
+          "time": "2:00 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-20T15:15:00.000Z",
+          "showtimeId": 145288135,
+          "time": "7:15 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-20T16:30:00.000Z",
+          "showtimeId": 145288154,
+          "time": "8:30 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-20T19:00:00.000Z",
+          "showtimeId": 145284704,
+          "time": "11:00 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-20T20:15:00.000Z",
+          "showtimeId": 145288153,
+          "time": "12:15 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-20T22:45:00.000Z",
+          "showtimeId": 145284706,
+          "time": "2:45 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-21T00:00:00.000Z",
+          "showtimeId": 145288151,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "PRIME 3D",
+          "showDateTimeUtc": "2026-12-21T02:30:00.000Z",
+          "showtimeId": 145284708,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-21T03:45:00.000Z",
+          "showtimeId": 145288150,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-21T06:15:00.000Z",
+          "showtimeId": 145284709,
+          "time": "10:15 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-21T07:30:00.000Z",
+          "showtimeId": 145288152,
+          "time": "11:30 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-21T15:15:00.000Z",
+          "showtimeId": 145290261,
+          "time": "7:15 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-21T16:30:00.000Z",
+          "showtimeId": 145290269,
+          "time": "8:30 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-21T19:00:00.000Z",
+          "showtimeId": 145284711,
+          "time": "11:00 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-21T20:15:00.000Z",
+          "showtimeId": 145290268,
+          "time": "12:15 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-21T22:45:00.000Z",
+          "showtimeId": 145284714,
+          "time": "2:45 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-22T00:00:00.000Z",
+          "showtimeId": 145290267,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "PRIME 3D",
+          "showDateTimeUtc": "2026-12-22T02:30:00.000Z",
+          "showtimeId": 145284716,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-22T03:45:00.000Z",
+          "showtimeId": 145290265,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-22T06:15:00.000Z",
+          "showtimeId": 145284718,
+          "time": "10:15 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-22T07:30:00.000Z",
+          "showtimeId": 145290266,
+          "time": "11:30 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-22T15:15:00.000Z",
+          "showtimeId": 145290262,
+          "time": "7:15 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-22T16:30:00.000Z",
+          "showtimeId": 145290274,
+          "time": "8:30 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-22T19:00:00.000Z",
+          "showtimeId": 145284720,
+          "time": "11:00 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-22T20:15:00.000Z",
+          "showtimeId": 145290273,
+          "time": "12:15 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-22T22:45:00.000Z",
+          "showtimeId": 145284722,
+          "time": "2:45 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-23T00:00:00.000Z",
+          "showtimeId": 145290272,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "PRIME 3D",
+          "showDateTimeUtc": "2026-12-23T02:30:00.000Z",
+          "showtimeId": 145284723,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-23T03:45:00.000Z",
+          "showtimeId": 145290270,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-23T06:15:00.000Z",
+          "showtimeId": 145284725,
+          "time": "10:15 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-23T07:30:00.000Z",
+          "showtimeId": 145290271,
+          "time": "11:30 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-23T15:15:00.000Z",
+          "showtimeId": 145290263,
+          "time": "7:15 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-23T16:30:00.000Z",
+          "showtimeId": 145290279,
+          "time": "8:30 am"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-23T19:00:00.000Z",
+          "showtimeId": 145284728,
+          "time": "11:00 am"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-23T20:15:00.000Z",
+          "showtimeId": 145290278,
+          "time": "12:15 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-23T22:45:00.000Z",
+          "showtimeId": 145284730,
+          "time": "2:45 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-24T00:00:00.000Z",
+          "showtimeId": 145290277,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "PRIME 3D",
+          "showDateTimeUtc": "2026-12-24T02:30:00.000Z",
+          "showtimeId": 145284732,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-24T03:45:00.000Z",
+          "showtimeId": 145290275,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-12-24T06:15:00.000Z",
+          "showtimeId": 145284735,
+          "time": "10:15 pm"
+        },
+        {
+          "format": "XL at AMC",
+          "showDateTimeUtc": "2026-12-24T07:30:00.000Z",
+          "showtimeId": 145290276,
+          "time": "11:30 pm"
         }
       ],
-      "slug": "the-odyssey-76238",
-      "title": "The Odyssey"
+      "slug": "avengers-doomsday-70533",
+      "title": "Avengers: Doomsday"
+    },
+    {
+      "showings": [
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-12-18T03:00:00.000Z",
+          "showtimeId": 142050318,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-12-18T07:00:00.000Z",
+          "showtimeId": 142125595,
+          "time": "11:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-12-19T03:00:00.000Z",
+          "showtimeId": 142050319,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-12-19T07:00:00.000Z",
+          "showtimeId": 142125596,
+          "time": "11:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-12-20T03:00:00.000Z",
+          "showtimeId": 142050320,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-12-20T07:00:00.000Z",
+          "showtimeId": 142125597,
+          "time": "11:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-12-21T03:00:00.000Z",
+          "showtimeId": 142050321,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "IMAX 70MM",
+          "showDateTimeUtc": "2026-12-21T07:00:00.000Z",
+          "showtimeId": 142125598,
+          "time": "11:00 pm"
+        }
+      ],
+      "slug": "dune-part-three-77032",
+      "title": "Dune: Part Three"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T04:15:00.000Z",
-          "showtimeId": 145134540,
-          "time": "9:15 pm"
-        }
-      ],
-      "slug": "minions-monsters-77563",
-      "title": "Minions & Monsters"
-    },
-    {
-      "showings": [
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T06:10:00.000Z",
-          "showtimeId": 144490927,
-          "time": "11:10 pm"
-        }
-      ],
-      "slug": "evil-dead-burn-80306",
-      "title": "Evil Dead Burn"
-    },
-    {
-      "showings": [
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T05:30:00.000Z",
-          "showtimeId": 145134684,
-          "time": "10:30 pm"
-        }
-      ],
-      "slug": "toy-story-5-72482",
-      "title": "Toy Story 5"
-    },
-    {
-      "showings": [
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T04:00:00.000Z",
-          "showtimeId": 145364610,
-          "time": "9:00 pm"
+          "showDateTimeUtc": "2026-12-18T21:00:00.000Z",
+          "showtimeId": 140485464,
+          "time": "1:00 pm"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T05:50:00.000Z",
-          "showtimeId": 145134884,
-          "time": "10:50 pm"
-        }
-      ],
-      "slug": "the-invite-82975",
-      "title": "The Invite"
-    },
-    {
-      "showings": [
+          "showDateTimeUtc": "2026-12-19T03:00:00.000Z",
+          "showtimeId": 140485473,
+          "time": "7:00 pm"
+        },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T05:20:00.000Z",
-          "showtimeId": 145134776,
-          "time": "10:20 pm"
-        }
-      ],
-      "slug": "obsession-82063",
-      "title": "Obsession"
-    },
-    {
-      "showings": [
+          "showDateTimeUtc": "2026-12-19T21:00:00.000Z",
+          "showtimeId": 140485465,
+          "time": "1:00 pm"
+        },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T04:45:00.000Z",
-          "showtimeId": 145134499,
-          "time": "9:45 pm"
-        }
-      ],
-      "slug": "disclosure-day-77140",
-      "title": "Disclosure Day"
-    },
-    {
-      "showings": [
+          "showDateTimeUtc": "2026-12-20T03:00:00.000Z",
+          "showtimeId": 140485472,
+          "time": "7:00 pm"
+        },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-07-22T05:05:00.000Z",
-          "showtimeId": 145134655,
-          "time": "10:05 pm"
+          "showDateTimeUtc": "2026-12-20T21:00:00.000Z",
+          "showtimeId": 140485466,
+          "time": "1:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-12-21T03:00:00.000Z",
+          "showtimeId": 140485471,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-12-22T03:00:00.000Z",
+          "showtimeId": 140485467,
+          "time": "7:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-12-23T00:00:00.000Z",
+          "showtimeId": 140485468,
+          "time": "4:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-12-24T03:00:00.000Z",
+          "showtimeId": 140485469,
+          "time": "7:00 pm"
         }
       ],
-      "slug": "gail-daughtry-and-the-celebrity-sex-pass-83185",
-      "title": "Gail Daughtry and the Celebrity Sex Pass"
+      "slug": "it-s-a-wonderful-life-80th-anniversary-82788",
+      "title": "It's a Wonderful Life 80th Anniversary"
     }
   ],
-  "theatre": "los-angeles/amc-century-city-15",
-  "theatreSlug": "amc-century-city-15"
+  "theatre": "los-angeles/universal-cinema-an-amc-theatre",
+  "theatreSlug": "universal-cinema-an-amc-theatre"
 }
