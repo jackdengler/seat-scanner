@@ -5,21 +5,22 @@ Reads config.json (watches, written by the UI) and subscriptions.json
 state.json plus per-showtime seatmaps from the data branch checked out
 at the path given by --data.
 
-Check cadence: every active watch is checked ~every 8 seconds, the whole
+Check cadence: every active watch is checked ~every 15 seconds, the whole
 time it's active, regardless of how far off the showtime is. Within a pass all
 due shows are fetched concurrently (FETCH_WORKERS), so the interval doesn't
 stretch as you watch more shows. A watch stops only once its showtime passes
 (it's marked done).
 
 The 5-minute cron is just a floor/heartbeat; each run loops many times with
-randomized ~8s spacing, and runs self-chain (see CHAIN below) so a fresh
+randomized ~15s spacing, and runs self-chain (see CHAIN below) so a fresh
 run is always queued and coverage stays continuous even when GitHub's cron
 skips a tick. The jitter keeps the pattern from looking robotic.
 
-NOTE: this checks *every* show at ~8s even weeks out, which is deliberately
-aggressive — it means a lot of requests to AMC per watch per day and can get
-rate-limited/blocked if AMC objects. Slow it down by widening BURST_SLEEP_RANGE
-or raising CHECK_INTERVAL_MIN below.
+NOTE: this is deliberately aggressive — a lot of requests to AMC per watch per
+day. Push too hard (small BURST_SLEEP_RANGE / high FETCH_WORKERS with many
+watches) and AMC's Cloudflare starts returning 429/challenge pages; those are
+treated as transient throttles (is_throttle) and never alerted, but coverage
+suffers, so back off if you see lots of them in the logs.
 
 Notifies at most once per distinct seat-set match, and sends a
 "watcher broken" alert after 3 consecutive fetch failures (once).
@@ -45,6 +46,17 @@ import matcher
 FAILURE_ALERT_THRESHOLD = 3
 CRON_SLACK_MIN = 1  # cron jitter allowance when deciding if a check is due
 
+# AMC's protection stack (Cloudflare 429/challenge, Queue-It waiting room,
+# temporary access-denied) throttles us under heavy polling. Those are transient
+# "back off" signals, not a broken watcher, so they must not trigger alerts.
+_THROTTLE_MARKERS = ("429", "cloudflare-challenge", "queue-it",
+                     "access-denied", "503", "502")
+
+
+def is_throttle(exc):
+    msg = str(exc).lower()
+    return any(m in msg for m in _THROTTLE_MARKERS)
+
 # Flat cadence: every active watch is checked this often, no matter how far
 # out the showtime is. 0 = every pass (the burst runs ~every 30s). Bump this
 # up (e.g. 5 or 15) to check less aggressively.
@@ -55,12 +67,13 @@ CHECK_INTERVAL_MIN = 0
 # fresh run always queued. Kept just under the 5-min tick so the run ends
 # before the next scheduled one.
 BURST_MAX_SECONDS = 270        # stop bursting before the next 5-min cron tick
-BURST_SLEEP_RANGE = (6, 10)    # jittered seconds between passes (~8s)
+BURST_SLEEP_RANGE = (12, 18)   # jittered seconds between passes (~15s)
 
 # Each pass fetches every due show's seat map concurrently, so a pass stays
 # ~constant regardless of how many shows are watched (the network dance, not
-# CPU, is the cost). Capped so we don't open too many sockets to AMC at once.
-FETCH_WORKERS = 8
+# CPU, is the cost). Kept modest: too many simultaneous connections from one
+# runner IP is what trips AMC's Cloudflare rate limit (HTTP 429).
+FETCH_WORKERS = 4
 
 
 def now_utc():
@@ -148,6 +161,13 @@ def process_watch(watch, ws, subscriptions, state, data_dir, now, result):
     label = watch.get("label") or f"showtime {sid}"
 
     if isinstance(result, Exception):
+        # A Cloudflare/Queue-It/429 throttle means "slow down", not that this
+        # watcher is broken — don't count it toward the broken threshold and
+        # never notify for it, or aggressive polling spams "watcher broken".
+        if is_throttle(result):
+            ws["throttledCount"] = ws.get("throttledCount", 0) + 1
+            print(f"[{sid}] throttled ({result}); retrying next pass")
+            return
         ws["consecutiveFailures"] = ws.get("consecutiveFailures", 0) + 1
         print(f"[{sid}] fetch failed ({ws['consecutiveFailures']}x): {result}")
         if (ws["consecutiveFailures"] >= FAILURE_ALERT_THRESHOLD

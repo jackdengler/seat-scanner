@@ -5,6 +5,7 @@ import os
 import unittest
 
 import amc
+import check
 import matcher
 
 FIXTURE = os.path.join(os.path.dirname(__file__), "testdata", "fixture.html")
@@ -178,6 +179,20 @@ class ShowtimesParseTests(unittest.TestCase):
     def test_pretty_slug_fallback(self):
         self.assertEqual(amc._pretty_slug("young-washington-80772"),
                          "Young Washington")
+
+
+class ThrottleClassificationTests(unittest.TestCase):
+    def test_throttle_markers_are_not_breakage(self):
+        for msg in ["http-429:cloudflare-challenge",
+                    "no-seating-layout:cloudflare-challenge",
+                    "queue-it-waiting-room", "http-503:unrecognized",
+                    "access-denied"]:
+            self.assertTrue(check.is_throttle(Exception(msg)), msg)
+
+    def test_genuine_failures_are_breakage(self):
+        for msg in ["no-flight-data:unrecognized", "redirect-loop",
+                    "no-seating-layout:unrecognized", "KeyError: 'name'"]:
+            self.assertFalse(check.is_throttle(Exception(msg)), msg)
 
 
 class MovieTitleTests(unittest.TestCase):
