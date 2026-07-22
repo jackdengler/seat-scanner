@@ -73,7 +73,17 @@ BURST_SLEEP_RANGE = (12, 18)   # jittered seconds between passes (~15s)
 # ~constant regardless of how many shows are watched (the network dance, not
 # CPU, is the cost). Kept modest: too many simultaneous connections from one
 # runner IP is what trips AMC's Cloudflare rate limit (HTTP 429).
-FETCH_WORKERS = 4
+FETCH_WORKERS = 3
+
+# On a throttle, retry the fetch this many extra times with backoff before
+# giving up for the pass. Cloudflare 429s are frequently transient.
+THROTTLE_RETRIES = 2
+
+# When a pass gets throttled on more than this fraction of its shows, AMC is
+# clearly pushing back — cool off with an extra sleep before the next pass so
+# the rate-limit window can reset instead of hammering into the block.
+THROTTLE_COOLOFF_RATIO = 0.34
+THROTTLE_COOLOFF_SECONDS = 45
 
 
 def now_utc():
@@ -147,11 +157,23 @@ def is_watch_due(watch, ws, now):
 
 def fetch_watch(sid):
     """Network-only, thread-safe: fetch one seat map, returning it or the
-    exception raised (so the caller can process results single-threaded)."""
-    try:
-        return amc.fetch_seatmap(sid, log=lambda m: print(f"[{sid}] {m}"))
-    except Exception as e:  # noqa: BLE001 — surfaced to the sequential processor
-        return e
+    exception raised (so the caller can process results single-threaded).
+
+    Retries a couple of times on a throttle (429/challenge) with jittered
+    backoff — those are often transient, so a brief wait recovers many of them
+    rather than losing the show for the whole pass."""
+    err = None
+    delay = 2.0
+    for attempt in range(THROTTLE_RETRIES + 1):
+        try:
+            return amc.fetch_seatmap(sid, log=lambda m: print(f"[{sid}] {m}"))
+        except Exception as e:  # noqa: BLE001 — surfaced to the sequential processor
+            err = e
+            if not is_throttle(e) or attempt == THROTTLE_RETRIES:
+                return err
+            time.sleep(delay + random.uniform(0, 1.5))  # jitter desyncs workers
+            delay *= 2
+    return err
 
 
 def process_watch(watch, ws, subscriptions, state, data_dir, now, result):
@@ -278,10 +300,18 @@ def main():
                 for fut in as_completed(futs):
                     results[futs[fut]] = fut.result()
 
-        # 3) Process results single-threaded (matching, pushes, state writes).
+        # 3) Process results single-threaded (matching, pushes, state writes),
+        # tracking how heavily AMC throttled us this pass.
+        throttled = 0
         for watch, ws, sid in due:
-            process_watch(watch, ws, subscriptions, state, args.data, now,
-                          results.get(sid))
+            r = results.get(sid)
+            if isinstance(r, Exception) and is_throttle(r):
+                throttled += 1
+            process_watch(watch, ws, subscriptions, state, args.data, now, r)
+        throttle_ratio = throttled / len(due) if due else 0.0
+        if throttled:
+            print(f"pass: {throttled}/{len(due)} shows throttled "
+                  f"({throttle_ratio:.0%})")
 
         # 4) Count what's still active and how soon the nearest showtime is.
         active = 0
@@ -296,21 +326,25 @@ def main():
             active += 1
             mins = (parse_iso(watch["showtimeIso"]) - now).total_seconds() / 60
             soonest = mins if soonest is None else min(soonest, mins)
-        return active, soonest
+        return active, soonest, throttle_ratio
 
-    active, soonest = one_pass()
+    active, soonest, throttle_ratio = one_pass()
 
-    # Burst: keep re-checking within one run as long as any watch is active,
-    # so every show is checked ~every 30s regardless of how far out it is.
+    # Burst: keep re-checking within one run as long as any watch is active.
     deadline = time.monotonic() + BURST_MAX_SECONDS
     while active and time.monotonic() < deadline:
         nap = random.uniform(*BURST_SLEEP_RANGE)
+        # When AMC is pushing back hard, cool off longer so its rate window can
+        # reset instead of hammering into the block.
+        if throttle_ratio >= THROTTLE_COOLOFF_RATIO:
+            nap += THROTTLE_COOLOFF_SECONDS
+            print(f"heavy throttling ({throttle_ratio:.0%}); cooling off")
         if time.monotonic() + nap >= deadline:
             break
         soon = f"{soonest:.0f}min" if soonest is not None else "?"
         print(f"burst: nearest showtime in {soon}; re-checking in {nap:.0f}s")
         time.sleep(nap)
-        active, soonest = one_pass()
+        active, soonest, throttle_ratio = one_pass()
 
     save_json(state_path, state)
     # CHAIN tells the workflow to re-dispatch itself: GitHub's cron is too
