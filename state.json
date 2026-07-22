@@ -163,42 +163,44 @@
   ],
   "watches": {
     "142050318": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "142050319": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "142050320": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "142050321": {
       "alertedBroken": true,
-      "consecutiveFailures": 93
+      "consecutiveFailures": 93,
+      "throttledCount": 8
     },
     "142125595": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "142125596": {
       "alertedBroken": true,
-      "consecutiveFailures": 93
+      "consecutiveFailures": 93,
+      "throttledCount": 8
     },
     "142125597": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "142125598": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143419604": {
       "alertedBroken": false,
@@ -270,9 +272,9 @@
       ]
     },
     "143811809": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143811812": {
       "alertedBroken": false,
@@ -288,14 +290,14 @@
       "lastCheckedAt": "2026-07-21T15:28:02Z"
     },
     "143822596": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822598": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822600": {
       "alertedBroken": false,
@@ -376,62 +378,63 @@
       "lastCheckedAt": "2026-07-22T00:58:42Z"
     },
     "143822629": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "ca89ac9f9b3af538"
       ]
     },
     "143822631": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "713685492eecd13c",
         "21d25c0b836485e1"
       ]
     },
     "143822633": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "f60c033fef4ebbed"
       ]
     },
     "143822635": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "b7689840dbce372a"
       ]
     },
     "143822637": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "1f183f0b4616ee45"
       ]
     },
     "143822638": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "69b52941a5865e90",
         "8b9876d00ef32edd"
       ]
     },
     "143822639": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "6f6f86b9657086b1"
-      ]
+      ],
+      "throttledCount": 1
     },
     "143822640": {
       "alertedBroken": false,
@@ -439,37 +442,37 @@
       "lastCheckedAt": "2026-07-21T15:28:02Z"
     },
     "143822641": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822642": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822643": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "b455d483e8bb3735"
       ]
     },
     "143822644": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822645": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822647": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822649": {
       "alertedBroken": false,
@@ -509,41 +512,41 @@
       "lastCheckedAt": "2026-07-22T03:19:30Z"
     },
     "143822657": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822659": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822660": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "158aec9bf1e164a0",
         "f48c4a7f2e5ecf46"
       ]
     },
     "143822662": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z",
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z",
       "notifiedSignatures": [
         "1bbf892519aa6233"
       ]
     },
     "143822664": {
-      "alertedBroken": true,
-      "consecutiveFailures": 21,
-      "lastCheckedAt": "2026-07-22T05:34:40Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "143822667": {
-      "alertedBroken": true,
-      "consecutiveFailures": 19,
-      "lastCheckedAt": "2026-07-22T05:35:16Z"
+      "alertedBroken": false,
+      "consecutiveFailures": 0,
+      "lastCheckedAt": "2026-07-22T05:43:14Z"
     },
     "144055697": {
       "alertedBroken": false,
