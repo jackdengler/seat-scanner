@@ -780,7 +780,12 @@ function drawAlerts() {
     const book = document.createElement("a");
     book.className = "book";
     book.href = "https://www.amctheatres.com/showtimes/" + sid + "/seats";
-    book.textContent = "🎟 Book in the AMC app";
+    // Force system Safari (not the PWA's in-app browser): AMC has no app URL
+    // scheme or universal-link association, so the only route to the native app
+    // is their Smart App Banner, which shows only in full Safari.
+    book.target = "_blank";
+    book.rel = "noopener";
+    book.textContent = "🎟 Book — opens AMC app if installed";
     const dismiss = document.createElement("button");
     dismiss.className = "dismiss";
     dismiss.textContent = "dismiss";

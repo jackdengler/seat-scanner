@@ -61,11 +61,14 @@ show and tap **Pick exact seats** (or use "Add a watch by link").
 
 Either way, once the seat map renders you tap the seats you care about (or
 watch whole rows / the whole room), set how many adjacent seats you need, and
-save. You'll get at most one push per distinct set of matching seats;
-**tapping the notification** opens a one-tap booking hand-off (`docs/open.html`)
-that lists the open seats and hands you straight to AMC's `/showtimes/<id>/seats`
-page — into the **AMC app** if it's installed (the tap is a real gesture, so
-iOS honors AMC's universal link), otherwise amctheatres.com. You'll also get a
+save. You'll get at most one push per distinct set of matching seats; every
+match also shows up in the app's **🔔 Seats opened** list (delivered live to
+an open PWA), and **tapping the notification** opens a booking hand-off
+(`docs/open.html`) that lists the open seats and links to AMC's
+`/showtimes/<id>/seats` page. The link opens in Safari (`target=_blank`) rather
+than the PWA's in-app browser, because AMC publishes no app URL scheme and no
+universal-link association — Safari's **Smart App Banner** ("Open in the AMC
+app") is the only route into the native app. You'll also get a
 "watcher broken" alert if fetching fails 3 times in a row. Watches end
 automatically when the showtime passes, and polling disables itself when
 nothing is left to watch (saving your Actions minutes); it re-enables
