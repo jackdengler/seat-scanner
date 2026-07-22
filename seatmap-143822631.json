@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-22T17:55:37Z",
+  "fetchedAtUtc": "2026-07-22T18:01:54Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -2504,7 +2504,7 @@
       "type": "Companion"
     },
     {
-      "available": false,
+      "available": true,
       "column": 10,
       "name": "N20",
       "row": 13,
@@ -2588,14 +2588,14 @@
       "type": "Companion"
     },
     {
-      "available": true,
+      "available": false,
       "column": 22,
       "name": "N8",
       "row": 13,
       "type": "Wheelchair"
     },
     {
-      "available": true,
+      "available": false,
       "column": 23,
       "name": "N7",
       "row": 13,
