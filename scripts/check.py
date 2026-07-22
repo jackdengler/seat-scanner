@@ -168,28 +168,32 @@ def check_watch(watch, ws, subscriptions, state, data_dir, now):
         "label": label,       # already "<movie> — <day> at <time>"
         "seats": seats_text,
     })
+    key = f"{sid}-{sig}"
+    alert = {
+        "key": key,
+        "sid": sid,
+        "label": label,
+        "seats": seats_text,
+        "showtimeIso": watch.get("showtimeIso"),
+        "at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
     push(subscriptions, {
         "title": f"Seats open: {label}",
         "body": f"Available now: {seats_text}",
         "tag": f"match-{sid}-{sig}",
         "url": f"open.html?{query}",
+        # Carried so an already-open PWA can render this alert instantly, with no
+        # round-trip to the data branch (by which time the seat may be gone).
+        "alert": alert,
     }, state)
     ws.setdefault("notifiedSignatures", []).append(sig)
 
-    # Record the alert in a durable, newest-first feed the PWA renders, so a
-    # missed/mis-handled notification tap still shows which show(s) opened and
+    # Also record it in a durable, newest-first feed the PWA renders on load, so
+    # a missed/mis-handled notification tap still shows which show(s) opened and
     # a one-tap link to book. Keyed by (sid, sig) so re-runs don't duplicate.
     alerts = state.setdefault("alerts", [])
-    key = f"{sid}-{sig}"
     if not any(a.get("key") == key for a in alerts):
-        alerts.insert(0, {
-            "key": key,
-            "sid": sid,
-            "label": label,
-            "seats": seats_text,
-            "showtimeIso": watch.get("showtimeIso"),
-            "at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-        })
+        alerts.insert(0, alert)
         del alerts[30:]
 
 
