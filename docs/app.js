@@ -118,10 +118,11 @@ async function init() {
       if (e.data.type === "navigate" && e.data.url) location.href = e.data.url;
     });
   }
+  $("refreshBtn").onclick = () => refreshAlerts(true);
   // When the app returns to the foreground (e.g. reopened from a notification),
-  // pull the latest alerts so the newest opening is always shown.
-  document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshAlerts(); });
-  window.addEventListener("focus", refreshAlerts);
+  // pull the latest alerts so the newest opening is shown — but throttled, so
+  // quickly switching in and out doesn't refetch every time.
+  document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshAlerts(false); });
   refreshSetupStatus();
   loadConfigAndWatches();
 }
@@ -739,14 +740,27 @@ function renderAlerts(state) {
 
 const alertKey = (a) => a.key || `${a.sid}-${a.at}`;
 
-// Re-pull state.json and redraw alerts. Cheap and safe to call on every
-// foreground; merges any alerts that fired while the app was backgrounded.
+// Re-pull state.json and redraw alerts. `force` (the Refresh button) always
+// runs and shows feedback; automatic foreground calls are throttled so quick
+// app switches don't refetch. renderAlerts merges, so nothing live is lost.
 let refreshingAlerts = false;
-async function refreshAlerts() {
+let lastAlertRefresh = 0;
+async function refreshAlerts(force) {
   if (refreshingAlerts) return;
+  if (!force && Date.now() - lastAlertRefresh < 15000) return;
   refreshingAlerts = true;
-  try { renderAlerts(await loadState()); } catch (e) { /* offline / transient */ }
-  finally { refreshingAlerts = false; }
+  const btn = $("refreshBtn");
+  if (force && btn) { btn.disabled = true; btn.textContent = "↻ Refreshing…"; }
+  try {
+    renderAlerts(await loadState());
+    lastAlertRefresh = Date.now();
+    if (force) toast("refreshed");
+  } catch (e) {
+    if (force) toast("refresh failed: " + e.message, 5000);
+  } finally {
+    refreshingAlerts = false;
+    if (btn) { btn.disabled = false; btn.textContent = "↻ Refresh"; }
+  }
 }
 
 // Prepend a push-delivered alert instantly (deduped), so an open PWA reflects a

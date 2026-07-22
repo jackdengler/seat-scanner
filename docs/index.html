@@ -63,6 +63,10 @@
   .watchfilter select { flex: 1; min-width: 140px; }
   .watchhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
   .watchhead .removeall { color: #f87171; font-weight: 600; }
+  .cardhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+  .cardhead h2 { margin: 0; }
+  button.ghost { background: #2b2b31; border: 1px solid #3a3a40; color: #ddd; font-weight: 600; font-size: 13px; padding: 6px 12px; margin: 0; }
+  button.ghost:disabled { opacity: .6; }
   #alertsCard h2 { color: #4ade80; }
   .alert { border-top: 1px solid #333; padding: 12px 0; }
   .alert:first-child { border-top: 0; }
@@ -210,7 +214,10 @@
 </div>
 
 <div class="card">
-  <h2>Watches</h2>
+  <div class="cardhead">
+    <h2>Watches</h2>
+    <button id="refreshBtn" class="ghost">↻ Refresh</button>
+  </div>
   <div id="watches" class="muted">Loading…</div>
 </div>
 
