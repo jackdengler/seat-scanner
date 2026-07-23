@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-23T02:23:44Z",
+  "fetchedAtUtc": "2026-07-23T02:28:47Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -89,7 +89,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 14,
       "name": "A17",
       "row": 1,
