@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-23T17:34:54Z",
+  "fetchedAtUtc": "2026-07-23T17:39:53Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -152,70 +152,70 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 23,
       "name": "A8",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 24,
       "name": "A7",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 25,
       "name": "A6",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 26,
       "name": "A5",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 27,
       "name": "A4",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 28,
       "name": "A3",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 29,
       "name": "A2",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 30,
       "name": "A1",
       "row": 1,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 1,
       "name": "B32",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 2,
       "name": "B31",
       "row": 2,
@@ -285,7 +285,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 12,
       "name": "B21",
       "row": 2,
@@ -327,7 +327,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 18,
       "name": "B15",
       "row": 2,
@@ -397,21 +397,21 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 28,
       "name": "B5",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 29,
       "name": "B4",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 30,
       "name": "B3",
       "row": 2,
