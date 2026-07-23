@@ -1,11 +1,11 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-23T00:39:23Z",
+  "fetchedAtUtc": "2026-07-23T00:45:12Z",
   "movie": null,
   "rows": 14,
   "seats": [
     {
-      "available": false,
+      "available": true,
       "column": 2,
       "name": "A29",
       "row": 1,
