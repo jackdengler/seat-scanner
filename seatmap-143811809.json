@@ -1,6 +1,6 @@
 {
   "columns": 20,
-  "fetchedAtUtc": "2026-07-23T00:08:14Z",
+  "fetchedAtUtc": "2026-07-23T00:13:35Z",
   "movie": null,
   "rows": 10,
   "seats": [
@@ -628,7 +628,7 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": false,
+      "available": true,
       "column": 13,
       "name": "E8",
       "row": 6,
