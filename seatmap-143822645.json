@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-23T15:36:58Z",
+  "fetchedAtUtc": "2026-07-23T15:43:14Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -2644,8 +2644,8 @@
       "type": "CanReserve"
     }
   ],
-  "showDateTimeUtc": "2026-07-27T06:00:00.000Z",
+  "showDateTimeUtc": null,
   "showtimeId": "143822645",
-  "theatre": "Universal Cinema - an AMC Theatre",
-  "utcOffset": "-07:00"
+  "theatre": null,
+  "utcOffset": null
 }
