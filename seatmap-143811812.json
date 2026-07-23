@@ -1,6 +1,6 @@
 {
   "columns": 20,
-  "fetchedAtUtc": "2026-07-23T20:37:51Z",
+  "fetchedAtUtc": "2026-07-23T20:45:25Z",
   "movie": null,
   "rows": 10,
   "seats": [
@@ -138,14 +138,14 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 2,
       "name": "B19",
       "row": 2,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 3,
       "name": "B18",
       "row": 2,
@@ -1006,7 +1006,7 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 7,
       "name": "H14",
       "row": 9,
