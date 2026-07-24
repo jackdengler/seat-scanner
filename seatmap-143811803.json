@@ -1,6 +1,6 @@
 {
   "columns": 20,
-  "fetchedAtUtc": "2026-07-21T15:29:25Z",
+  "fetchedAtUtc": "2026-07-24T01:07:35Z",
   "movie": null,
   "rows": 10,
   "seats": [
@@ -166,21 +166,21 @@
       "type": "LoveSeatLeft"
     },
     {
-      "available": true,
+      "available": false,
       "column": 6,
       "name": "B15",
       "row": 2,
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 7,
       "name": "B14",
       "row": 2,
       "type": "LoveSeatLeft"
     },
     {
-      "available": true,
+      "available": false,
       "column": 8,
       "name": "B13",
       "row": 2,
@@ -215,14 +215,14 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 13,
       "name": "B8",
       "row": 2,
       "type": "LoveSeatLeft"
     },
     {
-      "available": true,
+      "available": false,
       "column": 14,
       "name": "B7",
       "row": 2,
@@ -285,14 +285,14 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 4,
       "name": "C17",
       "row": 4,
       "type": "LoveSeatLeft"
     },
     {
-      "available": true,
+      "available": false,
       "column": 5,
       "name": "C16",
       "row": 4,
@@ -348,7 +348,7 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 13,
       "name": "C8",
       "row": 4,
@@ -383,28 +383,28 @@
       "type": "Companion"
     },
     {
-      "available": true,
+      "available": false,
       "column": 18,
       "name": "C3",
       "row": 4,
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 19,
       "name": "C2",
       "row": 4,
       "type": "LoveSeatLeft"
     },
     {
-      "available": true,
+      "available": false,
       "column": 20,
       "name": "C1",
       "row": 4,
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 1,
       "name": "D20",
       "row": 5,
@@ -516,7 +516,7 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 17,
       "name": "D4",
       "row": 5,
@@ -544,7 +544,7 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 1,
       "name": "E20",
       "row": 6,
@@ -964,7 +964,7 @@
       "type": "LoveSeatRight"
     },
     {
-      "available": true,
+      "available": false,
       "column": 1,
       "name": "H20",
       "row": 9,
