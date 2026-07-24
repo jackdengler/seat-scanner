@@ -659,20 +659,6 @@
       ]
     },
     {
-      "showtimeId": 145364387,
-      "showtimeIso": "2026-07-25T01:30:00.000Z",
-      "label": "The Odyssey — Fri, Jul 24 at 6:30 PM",
-      "theatre": "AMC Century City 15",
-      "format": "PRIME at AMC",
-      "watchedSeats": [],
-      "watchedRows": [],
-      "adjacentRequired": 2,
-      "excludeTypes": [
-        "Wheelchair",
-        "Companion"
-      ]
-    },
-    {
       "showtimeId": 143811803,
       "showtimeIso": "2026-07-25T02:00:00.000Z",
       "label": "The Odyssey — Fri, Jul 24 at 7:00 PM",
