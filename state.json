@@ -1,6 +1,22 @@
 {
   "alerts": [
     {
+      "at": "2026-07-24T18:11:40Z",
+      "key": "143822637-69b52941a5865e90",
+      "label": "The Odyssey \u2014 Fri, Jul 24 at 11:00 PM",
+      "seats": "G19",
+      "showtimeIso": "2026-07-25T06:00:00.000Z",
+      "sid": "143822637"
+    },
+    {
+      "at": "2026-07-24T18:09:48Z",
+      "key": "142050320-5b4ae760b274cf18",
+      "label": "Dune: Part Three \u2014 Sat, Dec 19 at 7:00 PM",
+      "seats": "J9",
+      "showtimeIso": "2026-12-20T03:00:00.000Z",
+      "sid": "142050320"
+    },
+    {
       "at": "2026-07-24T17:48:31Z",
       "key": "143822639-8e41a45217b0b162",
       "label": "The Odyssey \u2014 Fri, Jul 24 at 7:00 PM",
@@ -223,71 +239,58 @@
       "seats": "L26",
       "showtimeIso": "2026-07-26T02:00:00.000Z",
       "sid": "143822643"
-    },
-    {
-      "at": "2026-07-23T19:40:12Z",
-      "key": "143822638-f4c21fe5a402b775",
-      "label": "The Odyssey \u2014 Sat, Jul 25 at 11:00 AM",
-      "seats": "J24",
-      "showtimeIso": "2026-07-25T18:00:00.000Z",
-      "sid": "143822638"
-    },
-    {
-      "at": "2026-07-23T19:39:37Z",
-      "key": "143822638-888dba931f048e7a",
-      "label": "The Odyssey \u2014 Sat, Jul 25 at 11:00 AM",
-      "seats": "J24, J23",
-      "showtimeIso": "2026-07-25T18:00:00.000Z",
-      "sid": "143822638"
     }
   ],
   "watches": {
     "142050318": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "throttledCount": 133
     },
     "142050319": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "throttledCount": 134
     },
     "142050320": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
+      "notifiedSignatures": [
+        "5b4ae760b274cf18"
+      ],
       "throttledCount": 96
     },
     "142050321": {
       "alertedBroken": false,
       "consecutiveFailures": 1,
       "lastCheckedAt": "2026-07-22T22:00:56Z",
-      "throttledCount": 4634
+      "throttledCount": 4643
     },
     "142125595": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "throttledCount": 126
     },
     "142125596": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
       "lastCheckedAt": "2026-07-22T22:00:56Z",
-      "throttledCount": 4636
+      "throttledCount": 4645
     },
     "142125597": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "throttledCount": 88
     },
     "142125598": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "throttledCount": 95
     },
     "143419604": {
@@ -397,7 +400,7 @@
     "143822596": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "9f26ad04dc22afdc"
       ],
@@ -406,7 +409,7 @@
     "143822598": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "bcc3f2d32a11f47e",
         "775ad256e6f61c37"
@@ -559,19 +562,20 @@
     "143822637": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:04:25Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "1f183f0b4616ee45",
         "5d98de8c0971eab6",
         "2b88adf33ce5c42b",
-        "d7546ff09b21d432"
+        "d7546ff09b21d432",
+        "69b52941a5865e90"
       ],
       "throttledCount": 200
     },
     "143822638": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:01Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "69b52941a5865e90",
         "8b9876d00ef32edd",
@@ -584,7 +588,7 @@
     "143822639": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:01Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "6f6f86b9657086b1",
         "c82b2728a16d7b62",
@@ -606,7 +610,7 @@
     "143822641": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "2bd70ab1ba6e99e1"
       ],
@@ -615,7 +619,7 @@
     "143822642": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "86e03c4f3f240758",
         "638aa47d2325fff9"
@@ -625,7 +629,7 @@
     "143822643": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:01Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "b455d483e8bb3735",
         "031d5b1b3e72b9ab"
@@ -635,7 +639,7 @@
     "143822644": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "47aefd7c8663e353"
       ],
@@ -644,13 +648,13 @@
     "143822645": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "throttledCount": 133
     },
     "143822647": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "dc69915b03b7fae2"
       ],
@@ -696,13 +700,13 @@
     "143822657": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "throttledCount": 99
     },
     "143822659": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "d99dfd3aa8826c16"
       ],
@@ -711,7 +715,7 @@
     "143822660": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "158aec9bf1e164a0",
         "f48c4a7f2e5ecf46",
@@ -726,7 +730,7 @@
     "143822662": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "1bbf892519aa6233",
         "d04f4db5636b553f",
@@ -738,13 +742,13 @@
     "143822664": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "throttledCount": 92
     },
     "143822667": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-24T18:05:44Z",
+      "lastCheckedAt": "2026-07-24T18:11:40Z",
       "notifiedSignatures": [
         "c82b2728a16d7b62"
       ],
