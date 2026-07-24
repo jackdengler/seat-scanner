@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-24T15:51:16Z",
+  "fetchedAtUtc": "2026-07-24T16:02:57Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -2567,14 +2567,14 @@
       "type": "Companion"
     },
     {
-      "available": false,
+      "available": true,
       "column": 19,
       "name": "N11",
       "row": 13,
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 20,
       "name": "N10",
       "row": 13,
