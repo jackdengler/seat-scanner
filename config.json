@@ -657,20 +657,6 @@
         "Wheelchair",
         "Companion"
       ]
-    },
-    {
-      "showtimeId": 143811803,
-      "showtimeIso": "2026-07-25T02:00:00.000Z",
-      "label": "The Odyssey — Fri, Jul 24 at 7:00 PM",
-      "theatre": "AMC Century City 15",
-      "format": "Dolby Cinema at AMC",
-      "watchedSeats": [],
-      "watchedRows": [],
-      "adjacentRequired": 2,
-      "excludeTypes": [
-        "Wheelchair",
-        "Companion"
-      ]
     }
   ],
   "kickedAt": "2026-06-13T01:45:00Z"
