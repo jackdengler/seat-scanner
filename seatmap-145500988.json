@@ -1,6 +1,6 @@
 {
   "columns": 21,
-  "fetchedAtUtc": "2026-07-25T01:09:20Z",
+  "fetchedAtUtc": "2026-07-25T01:11:56Z",
   "movie": null,
   "rows": 12,
   "seats": [
@@ -656,7 +656,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 4,
       "name": "G16",
       "row": 9,
