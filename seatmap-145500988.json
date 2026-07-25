@@ -1,6 +1,6 @@
 {
   "columns": 21,
-  "fetchedAtUtc": "2026-07-25T01:03:40Z",
+  "fetchedAtUtc": "2026-07-25T01:09:20Z",
   "movie": null,
   "rows": 12,
   "seats": [
@@ -439,14 +439,14 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 5,
       "name": "E15",
       "row": 7,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 6,
       "name": "E14",
       "row": 7,
@@ -516,14 +516,14 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 16,
       "name": "E4",
       "row": 7,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 17,
       "name": "E3",
       "row": 7,
@@ -866,21 +866,21 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 18,
       "name": "H2",
       "row": 10,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 19,
       "name": "H1",
       "row": 10,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 2,
       "name": "J19",
       "row": 11,
