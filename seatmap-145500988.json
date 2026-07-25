@@ -1,6 +1,6 @@
 {
   "columns": 21,
-  "fetchedAtUtc": "2026-07-25T01:11:56Z",
+  "fetchedAtUtc": "2026-07-25T01:33:58Z",
   "movie": null,
   "rows": 12,
   "seats": [
@@ -572,7 +572,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 8,
       "name": "F12",
       "row": 8,
@@ -712,7 +712,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 12,
       "name": "G8",
       "row": 9,
@@ -754,14 +754,14 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 18,
       "name": "G2",
       "row": 9,
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 19,
       "name": "G1",
       "row": 9,
