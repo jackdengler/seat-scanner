@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-25T04:26:28Z",
+  "fetchedAtUtc": "2026-07-25T04:31:34Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -2567,7 +2567,7 @@
       "type": "Companion"
     },
     {
-      "available": false,
+      "available": true,
       "column": 19,
       "name": "N11",
       "row": 13,
