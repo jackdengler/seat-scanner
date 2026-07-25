@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-25T23:37:57Z",
+  "fetchedAtUtc": "2026-07-25T23:43:17Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -1279,7 +1279,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 5,
       "name": "G24",
       "row": 7,
