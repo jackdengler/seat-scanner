@@ -1,6 +1,6 @@
 {
   "columns": 21,
-  "fetchedAtUtc": "2026-07-25T00:02:35Z",
+  "fetchedAtUtc": "2026-07-25T00:07:47Z",
   "movie": null,
   "rows": 12,
   "seats": [
@@ -712,7 +712,7 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 12,
       "name": "G8",
       "row": 9,
