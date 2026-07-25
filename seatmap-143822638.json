@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-25T16:09:33Z",
+  "fetchedAtUtc": "2026-07-25T16:14:40Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -2595,7 +2595,7 @@
       "type": "Wheelchair"
     },
     {
-      "available": false,
+      "available": true,
       "column": 23,
       "name": "N7",
       "row": 13,
