@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-26T01:40:33Z",
+  "fetchedAtUtc": "2026-07-26T01:51:12Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -2266,7 +2266,7 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 3,
       "name": "M28",
       "row": 12,
