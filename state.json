@@ -1,6 +1,14 @@
 {
   "alerts": [
     {
+      "at": "2026-07-26T17:52:47Z",
+      "key": "143822642-73afce656f22c017",
+      "label": "The Odyssey \u2014 Sun, Jul 26 at 11:00 AM",
+      "seats": "M3",
+      "showtimeIso": "2026-07-26T18:00:00.000Z",
+      "sid": "143822642"
+    },
+    {
       "at": "2026-07-26T17:46:18Z",
       "key": "143822647-2d7a83cb3cf79ff0",
       "label": "The Odyssey \u2014 Sun, Jul 26 at 7:00 PM",
@@ -231,33 +239,25 @@
       "seats": "L27",
       "showtimeIso": "2026-07-25T18:00:00.000Z",
       "sid": "143822638"
-    },
-    {
-      "at": "2026-07-25T14:44:56Z",
-      "key": "143822638-4bbf7a0fb193c74c",
-      "label": "The Odyssey \u2014 Sat, Jul 25 at 11:00 AM",
-      "seats": "M27",
-      "showtimeIso": "2026-07-25T18:00:00.000Z",
-      "sid": "143822638"
     }
   ],
   "watches": {
     "142050318": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "throttledCount": 255
     },
     "142050319": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "throttledCount": 263
     },
     "142050320": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "5b4ae760b274cf18"
       ],
@@ -267,30 +267,30 @@
       "alertedBroken": true,
       "consecutiveFailures": 6,
       "lastCheckedAt": "2026-07-22T22:00:56Z",
-      "throttledCount": 8407
+      "throttledCount": 8415
     },
     "142125595": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "throttledCount": 271
     },
     "142125596": {
       "alertedBroken": true,
       "consecutiveFailures": 4,
       "lastCheckedAt": "2026-07-22T22:00:56Z",
-      "throttledCount": 8410
+      "throttledCount": 8418
     },
     "142125597": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "throttledCount": 201
     },
     "142125598": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "throttledCount": 213
     },
     "143419604": {
@@ -400,7 +400,7 @@
     "143822596": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "9f26ad04dc22afdc"
       ],
@@ -409,7 +409,7 @@
     "143822598": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "bcc3f2d32a11f47e",
         "775ad256e6f61c37"
@@ -645,7 +645,7 @@
     "143822642": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "86e03c4f3f240758",
         "638aa47d2325fff9",
@@ -657,7 +657,8 @@
         "125f989489d8b455",
         "750e7175f1e33f83",
         "88b541aa984ac1b0",
-        "6c31ce817a62ae84"
+        "6c31ce817a62ae84",
+        "73afce656f22c017"
       ],
       "throttledCount": 439
     },
@@ -683,7 +684,7 @@
     "143822644": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "47aefd7c8663e353",
         "c3fe8efd7289386c",
@@ -695,7 +696,7 @@
     "143822645": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "a95e3d65cb917f23",
         "2d101e5cc81b0f23",
@@ -709,7 +710,7 @@
     "143822647": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "dc69915b03b7fae2",
         "9bb5c83ebf4edc9c",
@@ -760,13 +761,13 @@
     "143822657": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "throttledCount": 217
     },
     "143822659": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "d99dfd3aa8826c16"
       ],
@@ -775,7 +776,7 @@
     "143822660": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "158aec9bf1e164a0",
         "f48c4a7f2e5ecf46",
@@ -795,7 +796,7 @@
     "143822662": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "1bbf892519aa6233",
         "d04f4db5636b553f",
@@ -809,7 +810,7 @@
     "143822664": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "c6edf368075a0b55",
         "bf18bf41ec62bd8e",
@@ -820,7 +821,7 @@
     "143822667": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-07-26T17:50:55Z",
+      "lastCheckedAt": "2026-07-26T17:55:48Z",
       "notifiedSignatures": [
         "c82b2728a16d7b62",
         "928a2a683ba9d1d3"
