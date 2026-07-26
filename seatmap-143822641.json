@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-26T05:35:21Z",
+  "fetchedAtUtc": "2026-07-26T05:41:23Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -649,7 +649,7 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 32,
       "name": "C1",
       "row": 3,
@@ -2504,14 +2504,14 @@
       "type": "Companion"
     },
     {
-      "available": false,
+      "available": true,
       "column": 10,
       "name": "N20",
       "row": 13,
       "type": "Wheelchair"
     },
     {
-      "available": false,
+      "available": true,
       "column": 11,
       "name": "N19",
       "row": 13,
@@ -2546,7 +2546,7 @@
       "type": "Companion"
     },
     {
-      "available": false,
+      "available": true,
       "column": 16,
       "name": "N14",
       "row": 13,
