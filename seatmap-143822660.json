@@ -1,6 +1,6 @@
 {
   "columns": 32,
-  "fetchedAtUtc": "2026-07-27T00:00:17Z",
+  "fetchedAtUtc": "2026-07-27T00:05:39Z",
   "movie": null,
   "rows": 14,
   "seats": [
@@ -509,7 +509,7 @@
       "type": "CanReserve"
     },
     {
-      "available": true,
+      "available": false,
       "column": 12,
       "name": "C21",
       "row": 3,
