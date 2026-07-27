@@ -2,29 +2,6 @@
   "vapidPublicKey": "BKTvcmjIcSclER25SkHDSxhHGGxYyBfnEf9ZcPjuI1AG57OfBsNAlcABF4R5hV9491m1hflYQbxSzMkLZHLl2a0",
   "watches": [
     {
-      "showtimeId": 143822635,
-      "showtimeIso": "2026-07-24T01:00:00.000Z",
-      "label": "The Odyssey — Thu, Jul 23 at 6:00 PM",
-      "theatre": "Universal Cinema An AMC Theatre",
-      "format": "IMAX 70MM",
-      "watchedSeats": [],
-      "watchedRows": [
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N"
-      ],
-      "adjacentRequired": 1,
-      "excludeTypes": [
-        "Wheelchair",
-        "Companion"
-      ]
-    },
-    {
       "showtimeId": 143822633,
       "showtimeIso": "2026-07-24T05:00:00.000Z",
       "label": "The Odyssey — Thu, Jul 23 at 10:00 PM",
