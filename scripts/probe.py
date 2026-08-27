@@ -100,6 +100,9 @@ def fetch(showtime_id):
         if target is None:
             print(f"[hop {hop}] no flight data and no followable redirect")
             diagnose(body)
+            print("---- FULL BODY (debug) ----")
+            print(body)
+            print("---- END BODY ----")
             sys.exit(1)
 
         url = urllib.parse.urljoin(final_url, target)
