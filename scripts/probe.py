@@ -51,10 +51,11 @@ WINDOW_LOC_RE = re.compile(r"""window\.location(?:\.href)?\s*=\s*["']([^"']+)["'
 MAX_HOPS = 8
 
 
-def fetch(showtime_id):
+def fetch(showtime_id, url=None):
     jar = http.cookiejar.CookieJar()
     opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
-    url = f"https://www.amctheatres.com/showtimes/{showtime_id}/seats"
+    if url is None:
+        url = f"https://www.amctheatres.com/showtimes/{showtime_id}/seats"
 
     for hop in range(1, MAX_HOPS + 1):
         print(f"[hop {hop}] GET {url}")
@@ -266,6 +267,22 @@ def main():
         print(__doc__)
         sys.exit(2)
     arg = sys.argv[1]
+    if arg.startswith("browse:"):
+        # debug: browse:<theatre-path>:<YYYY-MM-DD>, e.g.
+        # browse:los-angeles/amc-century-city-15:2026-08-28
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import amc
+        _, theatre, date = arg.split(":", 2)
+        try:
+            result = amc.fetch_showtimes(theatre, date, log=print)
+            print(f"OK: {len(result['movies'])} movies, "
+                  f"{sum(len(m['showings']) for m in result['movies'])} showings")
+        except amc.FetchBlocked as e:
+            print(f"FetchBlocked: {e.diagnosis}")
+            print("---- FULL BODY (debug) ----")
+            print(e.body)
+            print("---- END BODY ----")
+        return
     if os.path.isfile(arg):
         print(f"Parsing local file {arg}")
         with open(arg, encoding="utf-8") as f:
