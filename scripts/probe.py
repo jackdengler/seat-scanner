@@ -277,6 +277,10 @@ def main():
             result = amc.fetch_showtimes(theatre, date, log=print)
             print(f"OK: {len(result['movies'])} movies, "
                   f"{sum(len(m['showings']) for m in result['movies'])} showings")
+            for mv in result["movies"][:3]:
+                for s in mv["showings"][:2]:
+                    print(f"  sample showtimeId={s['showtimeId']} "
+                          f"{mv['title']} {s['time']} {s['format']}")
         except amc.FetchBlocked as e:
             print(f"FetchBlocked: {e.diagnosis}")
             print("---- FULL BODY (debug) ----")
