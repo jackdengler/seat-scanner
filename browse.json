@@ -1,39 +1,81 @@
 {
-  "date": "2026-09-07",
+  "date": "2026-09-03",
   "days": 1,
-  "fetchedAtUtc": "2026-08-27T03:59:21Z",
+  "fetchedAtUtc": "2026-08-27T04:01:49Z",
   "movies": [
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-07T17:00:00.000Z",
-          "showtimeId": 146126362,
-          "time": "10:00 am"
+          "showDateTimeUtc": "2026-09-04T03:00:00.000Z",
+          "showtimeId": 145493147,
+          "time": "8:00 pm"
+        }
+      ],
+      "slug": "insidious-out-of-the-further-77101",
+      "title": "Insidious: Out of the Further"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-09-03T18:30:00.000Z",
+          "showtimeId": 145491941,
+          "time": "11:30 am"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-07T19:45:00.000Z",
-          "showtimeId": 146126363,
-          "time": "12:45 pm"
+          "showDateTimeUtc": "2026-09-03T21:15:00.000Z",
+          "showtimeId": 145491942,
+          "time": "2:15 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-09-04T00:00:00.000Z",
+          "showtimeId": 145491943,
+          "time": "5:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-09-04T02:45:00.000Z",
+          "showtimeId": 145491944,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-09-04T05:30:00.000Z",
+          "showtimeId": 145491945,
+          "time": "10:30 pm"
+        }
+      ],
+      "slug": "coyote-vs-acme-65798",
+      "title": "Coyote vs. Acme"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-09-03T21:00:00.000Z",
+          "showtimeId": 146126374,
+          "time": "2:00 pm"
         },
         {
           "format": "Dolby Cinema at AMC",
-          "showDateTimeUtc": "2026-09-07T23:00:00.000Z",
-          "showtimeId": 146126324,
-          "time": "4:00 pm"
+          "showDateTimeUtc": "2026-09-03T23:15:00.000Z",
+          "showtimeId": 146126329,
+          "time": "4:15 pm"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-08T01:15:00.000Z",
-          "showtimeId": 146126355,
-          "time": "6:15 pm"
+          "showDateTimeUtc": "2026-09-04T02:30:00.000Z",
+          "showtimeId": 146126375,
+          "time": "7:30 pm"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-08T04:00:00.000Z",
-          "showtimeId": 146126356,
-          "time": "9:00 pm"
+          "showDateTimeUtc": "2026-09-04T05:15:00.000Z",
+          "showtimeId": 146126369,
+          "time": "10:15 pm"
         }
       ],
       "slug": "by-any-means-82711",
@@ -42,40 +84,46 @@
     {
       "showings": [
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-07T17:00:00.000Z",
-          "showtimeId": 146274103,
-          "time": "10:00 am"
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-09-03T21:00:00.000Z",
+          "showtimeId": 146389988,
+          "time": "2:00 pm"
         },
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-07T19:30:00.000Z",
-          "showtimeId": 146274102,
-          "time": "12:30 pm"
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-09-04T00:00:00.000Z",
+          "showtimeId": 146389989,
+          "time": "5:00 pm"
         },
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-07T22:00:00.000Z",
-          "showtimeId": 146274101,
-          "time": "3:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-08T00:30:00.000Z",
-          "showtimeId": 146274100,
-          "time": "5:30 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-08T03:00:00.000Z",
-          "showtimeId": 146274098,
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-09-04T03:00:00.000Z",
+          "showtimeId": 146389990,
           "time": "8:00 pm"
+        }
+      ],
+      "slug": "akira-84498",
+      "title": "Akira"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-09-03T23:00:00.000Z",
+          "showtimeId": 146274083,
+          "time": "4:00 pm"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-08T05:30:00.000Z",
-          "showtimeId": 146274099,
-          "time": "10:30 pm"
+          "showDateTimeUtc": "2026-09-04T01:30:00.000Z",
+          "showtimeId": 146274084,
+          "time": "6:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-09-04T04:00:00.000Z",
+          "showtimeId": 146274085,
+          "time": "9:00 pm"
         }
       ],
       "slug": "onslaught-84108",
@@ -85,25 +133,25 @@
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-08T02:00:00.000Z",
-          "showtimeId": 144902955,
-          "time": "7:00 pm"
+          "showDateTimeUtc": "2026-09-04T01:00:00.000Z",
+          "showtimeId": 146378081,
+          "time": "6:00 pm"
         }
       ],
-      "slug": "the-hunger-games-the-ballad-of-songbirds-snakes-2026-84393",
-      "title": "The Hunger Games: The Ballad of Songbirds & Snakes (2026)"
+      "slug": "the-uprising-early-access-live-q-a-with-paul-greengrass-and-andrew-garfield-84821",
+      "title": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-08T02:00:00.000Z",
-          "showtimeId": 146380312,
+          "showDateTimeUtc": "2026-09-04T02:00:00.000Z",
+          "showtimeId": 144902951,
           "time": "7:00 pm"
         }
       ],
-      "slug": "amc-screen-unseen-september-7-84803",
-      "title": "AMC Screen Unseen: September 7"
+      "slug": "the-hunger-games-2026-84388",
+      "title": "The Hunger Games (2026)"
     }
   ],
   "theatre": "los-angeles/amc-the-grove-14",
