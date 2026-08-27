@@ -1,147 +1,39 @@
 {
-  "date": "2026-08-03",
+  "date": "2026-08-26",
   "days": 1,
-  "fetchedAtUtc": "2026-08-03T19:34:08Z",
+  "fetchedAtUtc": "2026-08-27T03:58:23Z",
   "movies": [
     {
       "showings": [
         {
           "format": "Dolby Cinema at AMC",
-          "showDateTimeUtc": "2026-08-03T19:30:00.000Z",
-          "showtimeId": 144163114,
-          "time": "12:30 pm"
+          "showDateTimeUtc": "2026-08-27T05:15:00.000Z",
+          "showtimeId": 145493135,
+          "time": "10:15 pm"
         },
         {
           "format": "XL at AMC",
-          "showDateTimeUtc": "2026-08-03T20:15:00.000Z",
-          "showtimeId": 144162947,
-          "time": "1:15 pm"
-        },
+          "showDateTimeUtc": "2026-08-27T06:00:00.000Z",
+          "showtimeId": 146267046,
+          "time": "11:00 pm"
+        }
+      ],
+      "slug": "insidious-out-of-the-further-77101",
+      "title": "Insidious: Out of the Further"
+    },
+    {
+      "showings": [
         {
           "format": "RealD 3D",
-          "showDateTimeUtc": "2026-08-03T21:00:00.000Z",
-          "showtimeId": 144163133,
-          "time": "2:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T21:30:00.000Z",
-          "showtimeId": 145549800,
-          "time": "2:30 pm"
-        },
-        {
-          "format": "Open Caption (On-screen Subtitles)",
-          "showDateTimeUtc": "2026-08-03T21:45:00.000Z",
-          "showtimeId": 144163050,
-          "time": "2:45 pm"
-        },
-        {
-          "format": "PRIME at AMC",
-          "showDateTimeUtc": "2026-08-03T22:30:00.000Z",
-          "showtimeId": 144162905,
-          "time": "3:30 pm"
-        },
-        {
-          "format": "Dolby Cinema at AMC",
-          "showDateTimeUtc": "2026-08-03T23:00:00.000Z",
-          "showtimeId": 144163113,
-          "time": "4:00 pm"
-        },
-        {
-          "format": "XL at AMC",
-          "showDateTimeUtc": "2026-08-03T23:45:00.000Z",
-          "showtimeId": 144162948,
-          "time": "4:45 pm"
-        },
-        {
-          "format": "RealD 3D",
-          "showDateTimeUtc": "2026-08-04T00:30:00.000Z",
-          "showtimeId": 144163131,
-          "time": "5:30 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T01:00:00.000Z",
-          "showtimeId": 145549798,
-          "time": "6:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T01:15:00.000Z",
-          "showtimeId": 144163048,
-          "time": "6:15 pm"
-        },
-        {
-          "format": "PRIME 3D",
-          "showDateTimeUtc": "2026-08-04T02:00:00.000Z",
-          "showtimeId": 144162903,
-          "time": "7:00 pm"
-        },
-        {
-          "format": "Dolby Cinema at AMC",
-          "showDateTimeUtc": "2026-08-04T02:30:00.000Z",
-          "showtimeId": 144163111,
-          "time": "7:30 pm"
-        },
-        {
-          "format": "XL at AMC",
-          "showDateTimeUtc": "2026-08-04T03:15:00.000Z",
-          "showtimeId": 144162949,
-          "time": "8:15 pm"
-        },
-        {
-          "format": "RealD 3D",
-          "showDateTimeUtc": "2026-08-04T04:00:00.000Z",
-          "showtimeId": 144163132,
-          "time": "9:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T04:10:00.000Z",
-          "showtimeId": 145700081,
-          "time": "9:10 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T04:15:00.000Z",
-          "showtimeId": 145696600,
+          "showDateTimeUtc": "2026-08-27T04:15:00.000Z",
+          "showtimeId": 146266963,
           "time": "9:15 pm"
         },
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T04:30:00.000Z",
-          "showtimeId": 145549799,
-          "time": "9:30 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T04:45:00.000Z",
-          "showtimeId": 144163049,
-          "time": "9:45 pm"
-        },
-        {
           "format": "PRIME at AMC",
-          "showDateTimeUtc": "2026-08-04T05:30:00.000Z",
-          "showtimeId": 144162904,
-          "time": "10:30 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T05:45:00.000Z",
-          "showtimeId": 145549791,
+          "showDateTimeUtc": "2026-08-27T05:45:00.000Z",
+          "showtimeId": 146266940,
           "time": "10:45 pm"
-        },
-        {
-          "format": "Dolby Cinema at AMC",
-          "showDateTimeUtc": "2026-08-04T06:00:00.000Z",
-          "showtimeId": 144163112,
-          "time": "11:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T06:00:00.000Z",
-          "showtimeId": 145702348,
-          "time": "11:00 pm"
         }
       ],
       "slug": "spider-man-brand-new-day-78598",
@@ -151,57 +43,15 @@
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T20:45:00.000Z",
-          "showtimeId": 145549724,
-          "time": "1:45 pm"
-        },
-        {
-          "format": "IMAX with Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T21:00:00.000Z",
-          "showtimeId": 143799166,
-          "time": "2:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T22:00:00.000Z",
-          "showtimeId": 145549754,
-          "time": "3:00 pm"
-        },
-        {
-          "format": "IMAX with Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T01:00:00.000Z",
-          "showtimeId": 143799167,
-          "time": "6:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T02:00:00.000Z",
-          "showtimeId": 145549748,
-          "time": "7:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T03:15:00.000Z",
-          "showtimeId": 145549759,
-          "time": "8:15 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T04:30:00.000Z",
-          "showtimeId": 145549711,
+          "showDateTimeUtc": "2026-08-27T04:30:00.000Z",
+          "showtimeId": 146266982,
           "time": "9:30 pm"
         },
         {
           "format": "IMAX with Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T05:00:00.000Z",
-          "showtimeId": 143799168,
+          "showDateTimeUtc": "2026-08-27T05:00:00.000Z",
+          "showtimeId": 146266925,
           "time": "10:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T05:30:00.000Z",
-          "showtimeId": 145549750,
-          "time": "10:30 pm"
         }
       ],
       "slug": "the-odyssey-76238",
@@ -210,172 +60,100 @@
     {
       "showings": [
         {
-          "format": "Fan Faves",
-          "showDateTimeUtc": "2026-08-03T21:00:00.000Z",
-          "showtimeId": 142839717,
-          "time": "2:00 pm"
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-08-27T04:45:00.000Z",
+          "showtimeId": 146267021,
+          "time": "9:45 pm"
         }
       ],
-      "slug": "the-spongebob-movie-search-for-squarepants-83812",
-      "title": "The Spongebob Movie: Search for Squarepants"
+      "slug": "the-end-of-oak-street-71226",
+      "title": "The End of Oak Street"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T02:00:00.000Z",
-          "showtimeId": 145260692,
-          "time": "7:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T02:30:00.000Z",
-          "showtimeId": 145701466,
-          "time": "7:30 pm"
+          "showDateTimeUtc": "2026-08-27T04:45:00.000Z",
+          "showtimeId": 145689955,
+          "time": "9:45 pm"
         }
       ],
-      "slug": "amc-scream-unseen-august-3-84363",
-      "title": "AMC Scream Unseen: August 3"
+      "slug": "mutiny-79550",
+      "title": "Mutiny"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T19:15:00.000Z",
-          "showtimeId": 145549684,
-          "time": "12:15 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T22:00:00.000Z",
-          "showtimeId": 145549683,
-          "time": "3:00 pm"
+          "showDateTimeUtc": "2026-08-27T04:30:00.000Z",
+          "showtimeId": 145881068,
+          "time": "9:30 pm"
         }
       ],
-      "slug": "minions-monsters-77563",
-      "title": "Minions & Monsters"
+      "slug": "spa-weekend-82597",
+      "title": "Spa Weekend"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T19:45:00.000Z",
-          "showtimeId": 145549698,
-          "time": "12:45 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T22:30:00.000Z",
-          "showtimeId": 145549697,
-          "time": "3:30 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T01:15:00.000Z",
-          "showtimeId": 145549696,
-          "time": "6:15 pm"
+          "showDateTimeUtc": "2026-08-27T05:30:00.000Z",
+          "showtimeId": 146266999,
+          "time": "10:30 pm"
         }
       ],
-      "slug": "toy-story-5-72482",
-      "title": "Toy Story 5"
+      "slug": "tony-83859",
+      "title": "Tony"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T20:00:00.000Z",
-          "showtimeId": 145549795,
-          "time": "1:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T23:00:00.000Z",
-          "showtimeId": 145549794,
-          "time": "4:00 pm"
+          "showDateTimeUtc": "2026-08-27T05:30:00.000Z",
+          "showtimeId": 146267033,
+          "time": "10:30 pm"
         }
       ],
-      "slug": "moana-72474",
-      "title": "Moana"
+      "slug": "teenage-sex-and-death-at-camp-miasma-82941",
+      "title": "Teenage Sex and Death at Camp Miasma"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T22:35:00.000Z",
-          "showtimeId": 145549709,
-          "time": "3:35 pm"
+          "showDateTimeUtc": "2026-08-27T05:45:00.000Z",
+          "showtimeId": 146266952,
+          "time": "10:45 pm"
         }
       ],
-      "slug": "hadestown-the-musical-83319",
-      "title": "Hadestown: The Musical"
+      "slug": "the-fast-and-the-furious-25th-anniversary-84081",
+      "title": "The Fast and the Furious 25th Anniversary"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T00:30:00.000Z",
-          "showtimeId": 145247844,
-          "time": "5:30 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T01:30:00.000Z",
-          "showtimeId": 145706447,
-          "time": "6:30 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T03:00:00.000Z",
-          "showtimeId": 145247843,
-          "time": "8:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T06:00:00.000Z",
-          "showtimeId": 145247845,
-          "time": "11:00 pm"
+          "showDateTimeUtc": "2026-08-27T05:30:00.000Z",
+          "showtimeId": 145977007,
+          "time": "10:30 pm"
         }
       ],
-      "slug": "i-want-your-sex-83178",
-      "title": "I Want Your Sex"
+      "slug": "it-ends-84289",
+      "title": "It Ends"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T21:00:00.000Z",
-          "showtimeId": 145549812,
-          "time": "2:00 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-03T23:50:00.000Z",
-          "showtimeId": 145549811,
-          "time": "4:50 pm"
-        },
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-08-04T02:45:00.000Z",
-          "showtimeId": 145549809,
-          "time": "7:45 pm"
+          "showDateTimeUtc": "2026-08-27T04:30:00.000Z",
+          "showtimeId": 146267005,
+          "time": "9:30 pm"
         }
       ],
-      "slug": "the-invite-82975",
-      "title": "The Invite"
-    },
-    {
-      "showings": [
-        {
-          "format": "Japanese Spoken with English Subtitles",
-          "showDateTimeUtc": "2026-08-03T23:45:00.000Z",
-          "showtimeId": 145549760,
-          "time": "4:45 pm"
-        }
-      ],
-      "slug": "sheep-in-the-box-84197",
-      "title": "Sheep in the Box"
+      "slug": "the-wrong-girls-83781",
+      "title": "The Wrong Girls"
     }
   ],
-  "theatre": "los-angeles/amc-century-city-15",
-  "theatreSlug": "amc-century-city-15"
+  "theatre": "los-angeles/amc-the-grove-14",
+  "theatreSlug": "amc-the-grove-14"
 }
