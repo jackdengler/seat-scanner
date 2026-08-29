@@ -1,5 +1,20 @@
 {
   "vapidPublicKey": "BKTvcmjIcSclER25SkHDSxhHGGxYyBfnEf9ZcPjuI1AG57OfBsNAlcABF4R5hV9491m1hflYQbxSzMkLZHLl2a0",
-  "watches": [],
+  "watches": [
+    {
+      "showtimeId": 146378081,
+      "showtimeIso": "2026-09-04T01:00:00.000Z",
+      "label": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield — Thu, Sep 3 at 6:00 PM",
+      "theatre": "AMC The Grove 14",
+      "format": "Laser at AMC",
+      "watchedSeats": [],
+      "watchedRows": [],
+      "adjacentRequired": 1,
+      "excludeTypes": [
+        "Wheelchair",
+        "Companion"
+      ]
+    }
+  ],
   "kickedAt": "2026-06-13T01:45:00Z"
 }
