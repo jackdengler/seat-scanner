@@ -958,7 +958,7 @@
       "alertedBroken": false,
       "consecutiveFailures": 0,
       "lastCheckedAt": "2026-08-29T02:56:31Z",
-      "throttledCount": 83
+      "throttledCount": 88
     }
   }
 }
