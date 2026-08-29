@@ -1,0 +1,1601 @@
+{
+  "columns": 24,
+  "fetchedAtUtc": "2026-08-29T00:13:27Z",
+  "movie": null,
+  "rows": 15,
+  "seats": [
+    {
+      "available": false,
+      "column": 4,
+      "name": "B21",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "B20",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "B19",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "B18",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "B17",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "B16",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "B15",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "B14",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "B13",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "B12",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "B11",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "B10",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "B9",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "B8",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "B7",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "B6",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "B5",
+      "row": 2,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "C21",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "C20",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "C19",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "C18",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "C17",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "C16",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "C15",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "C14",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "C13",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "C12",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "C11",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "C10",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "C9",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "C8",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "C7",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "C6",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "C5",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 21,
+      "name": "C4",
+      "row": 3,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "D22",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "D21",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "D20",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "D19",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "D18",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "D17",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "D16",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "D15",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "D14",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "D13",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "D12",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "D11",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "D10",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "D9",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "D8",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "D7",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "D6",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "D5",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 21,
+      "name": "D4",
+      "row": 4,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "E22",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "E21",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "E20",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "E19",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "E18",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "E17",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "E16",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "E15",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "E14",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "E13",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "E12",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "E11",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "E10",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "E9",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "E8",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "E7",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "E6",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "E5",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 21,
+      "name": "E4",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 22,
+      "name": "E3",
+      "row": 5,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "H22",
+      "row": 7,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "H21",
+      "row": 7,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "H20",
+      "row": 7,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "H19",
+      "row": 7,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "H18",
+      "row": 7,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "H17",
+      "row": 7,
+      "type": "Companion"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "H16",
+      "row": 7,
+      "type": "Wheelchair"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "H15",
+      "row": 7,
+      "type": "Wheelchair"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "H14",
+      "row": 7,
+      "type": "Companion"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "H11",
+      "row": 7,
+      "type": "Companion"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "H10",
+      "row": 7,
+      "type": "Wheelchair"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "H9",
+      "row": 7,
+      "type": "Wheelchair"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "H8",
+      "row": 7,
+      "type": "Companion"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "H7",
+      "row": 7,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "H6",
+      "row": 7,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "J28",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "J27",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "J20",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "J19",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "J18",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "J17",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "J16",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "J15",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "J14",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "J13",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "J12",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "J11",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "J10",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "J9",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "J8",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "J2",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "J1",
+      "row": 8,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "K28",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "K27",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "K20",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "K19",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "K18",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "K17",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "K16",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "K15",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "K14",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "K13",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "K12",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "K11",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "K10",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "K9",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "K8",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "K2",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "K1",
+      "row": 9,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "L28",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "L27",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "L20",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "L19",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "L18",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "L17",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "L16",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "L15",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "L14",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "L13",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "L12",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "L11",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "L10",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "L9",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "L8",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "L2",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "L1",
+      "row": 10,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "M28",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "M27",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "M20",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "M19",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "M18",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "M17",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "M16",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "M15",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "M14",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "M13",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "M12",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "M11",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "M10",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "M9",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "M8",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "M2",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "M1",
+      "row": 11,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "N28",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "N27",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "N20",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "N19",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "N18",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "N17",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "N16",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "N15",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "N14",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "N13",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "N12",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "N11",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "N10",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "N9",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "N8",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "N2",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "N1",
+      "row": 12,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "P28",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "P27",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "P20",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "P19",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "P18",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "P17",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "P16",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "P15",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "P14",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "P13",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "P12",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "P11",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "P10",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "P9",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "P8",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "P2",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "P1",
+      "row": 13,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "Q22",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "Q21",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "Q20",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "Q19",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "Q18",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "Q17",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "Q16",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "Q15",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 11,
+      "name": "Q14",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 12,
+      "name": "Q13",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 13,
+      "name": "Q12",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 14,
+      "name": "Q11",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "Q10",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "Q9",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "Q8",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "Q7",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "Q6",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "Q5",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 21,
+      "name": "Q4",
+      "row": 14,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 1,
+      "name": "R24",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 2,
+      "name": "R23",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 3,
+      "name": "R22",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 4,
+      "name": "R21",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 5,
+      "name": "R20",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 6,
+      "name": "R19",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 7,
+      "name": "R18",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 8,
+      "name": "R17",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 9,
+      "name": "R16",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 10,
+      "name": "R15",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 15,
+      "name": "R10",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 16,
+      "name": "R9",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 17,
+      "name": "R8",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 18,
+      "name": "R7",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 19,
+      "name": "R6",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 20,
+      "name": "R5",
+      "row": 15,
+      "type": "CanReserve"
+    },
+    {
+      "available": false,
+      "column": 21,
+      "name": "R4",
+      "row": 15,
+      "type": "CanReserve"
+    }
+  ],
+  "showDateTimeUtc": "2026-09-04T01:00:00.000Z",
+  "showtimeId": "146378081",
+  "theatre": "AMC The Grove 14",
+  "utcOffset": "-07:00"
+}
