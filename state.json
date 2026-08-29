@@ -957,8 +957,8 @@
     "146378081": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-08-29T01:38:20Z",
-      "throttledCount": 50
+      "lastCheckedAt": "2026-08-29T01:48:11Z",
+      "throttledCount": 54
     }
   }
 }
