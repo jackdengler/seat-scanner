@@ -236,10 +236,21 @@ async function ensurePolling() {
   const wf = "poll.yml";
   await gh(`/actions/workflows/${wf}/enable`, { method: "PUT" });
   const ref = await defaultBranch();
-  await gh(`/actions/workflows/${wf}/dispatches`, {
-    method: "POST",
-    body: JSON.stringify({ ref }),
-  });
+  // Enabling a freshly-disabled workflow doesn't take effect instantly on
+  // GitHub's side; dispatching right after can 500 until it propagates.
+  // Retry a few times with backoff before surfacing the failure.
+  for (let attempt = 1; attempt <= 4; attempt++) {
+    try {
+      await gh(`/actions/workflows/${wf}/dispatches`, {
+        method: "POST",
+        body: JSON.stringify({ ref }),
+      });
+      return;
+    } catch (e) {
+      if (attempt === 4) throw e;
+      await new Promise((r) => setTimeout(r, attempt * 1000));
+    }
+  }
 }
 
 async function loadSeatmap(sidArg) {
