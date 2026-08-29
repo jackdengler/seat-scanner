@@ -1,6 +1,14 @@
 {
   "alerts": [
     {
+      "at": "2026-08-29T03:29:41Z",
+      "key": "146378081-8a1dabbbbf1f0bee",
+      "label": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield \u2014 Thu, Sep 3 at 6:00 PM",
+      "seats": "B6",
+      "showtimeIso": "2026-09-04T01:00:00.000Z",
+      "sid": "146378081"
+    },
+    {
       "at": "2026-07-27T05:46:41Z",
       "key": "143822645-ef33c4a2363ee4aa",
       "label": "The Odyssey \u2014 Sun, Jul 26 at 11:00 PM",
@@ -231,15 +239,13 @@
       "seats": "J21",
       "showtimeIso": "2026-07-27T06:00:00.000Z",
       "sid": "143822645"
-    },
-    {
-      "at": "2026-07-26T06:42:55Z",
-      "key": "143822647-7bb245fd3e4d496b",
-      "label": "The Odyssey \u2014 Sun, Jul 26 at 7:00 PM",
-      "seats": "H14",
-      "showtimeIso": "2026-07-27T02:00:00.000Z",
-      "sid": "143822647"
     }
+  ],
+  "deadSubscriptions": [
+    "https://web.push.apple.com/QJwam5iLYoLWTP4feNXR3_a2k1ewxkdlCTpMiIs2COYLCq6KpFnu_ZcwLQqGO1_iXAd0UvyCw8lCc0HUVllFfXie7bMs4Ot1SkWx4Y6YzZd_b-JWMfhc4GttZfakxcNYa9LvPr5p_AzsKcNPHYRsYiOlhbRXuSZ5s7rLSnW9UO8",
+    "https://web.push.apple.com/QL0q8fTPapKexZASPl3QavNE25ky3UBLjD5Xw01hE4Hi1xdu606QQ1501fcvd_THc0IBEJ8i3p9kDdEzDEbFpvi06fr4chNgq8uqv4_EgoKMaW278Oyd6VLHaxzReSphdWnC3IkmYdBhIgT6pKhbL4VsyKnLS8B9hbtsa5z90LQ",
+    "https://web.push.apple.com/QOINIukMfdJ4myjXjONirspp3lQ1ax-4XdLv0ER5sPpHw7bt_bgJQsLYEDWaksxcELyRmDT6iKMq2mOcqBTq65akBcfwz877pmtbhrjcxAXAzmDxErjo0yLGTI7377NRPqrq6a-vlWKJOWDYCBPtWGaj-_j1vOsZovk5Fe0mnDI",
+    "https://web.push.apple.com/QPpkIfNw1ePfdy0xkvP8jnfz_MGRvlX6oQhp_gKJyJd4yvYyHIzAcqnCXVHaUg7yoKbW6aoFPwoMG6Wv5PaVFqd_Sd_IeZosPqTF1WIklNcnPk5skUja35qWjj8ChqL5fKRUaUvOs-sbSmphHUxyB8uKuCsAiFYnDNJKqizs9YM"
   ],
   "watches": {
     "142050318": {
@@ -957,7 +963,10 @@
     "146378081": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-08-29T03:26:49Z",
+      "lastCheckedAt": "2026-08-29T03:31:51Z",
+      "notifiedSignatures": [
+        "8a1dabbbbf1f0bee"
+      ],
       "throttledCount": 94
     }
   }
