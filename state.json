@@ -963,11 +963,11 @@
     "146378081": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-08-30T16:45:55Z",
+      "lastCheckedAt": "2026-08-30T16:47:57Z",
       "notifiedSignatures": [
         "8a1dabbbbf1f0bee"
       ],
-      "throttledCount": 922
+      "throttledCount": 925
     }
   }
 }
