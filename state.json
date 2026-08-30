@@ -963,7 +963,7 @@
     "146378081": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-08-30T10:25:02Z",
+      "lastCheckedAt": "2026-08-30T10:37:27Z",
       "notifiedSignatures": [
         "8a1dabbbbf1f0bee"
       ],
