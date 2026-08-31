@@ -963,12 +963,12 @@
     "146378081": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-08-31T09:17:02Z",
+      "lastCheckedAt": "2026-08-31T09:23:52Z",
       "notifiedSignatures": [
         "8a1dabbbbf1f0bee",
         "55dce3677868153f"
       ],
-      "throttledCount": 1294
+      "throttledCount": 1296
     }
   }
 }
