@@ -1,6 +1,14 @@
 {
   "alerts": [
     {
+      "at": "2026-09-01T04:13:44Z",
+      "key": "146378081-f60c033fef4ebbed",
+      "label": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield \u2014 Thu, Sep 3 at 6:00 PM",
+      "seats": "H18",
+      "showtimeIso": "2026-09-04T01:00:00.000Z",
+      "sid": "146378081"
+    },
+    {
       "at": "2026-08-31T22:26:28Z",
       "key": "146378081-c7fae588ae1a9c57",
       "label": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield \u2014 Thu, Sep 3 at 6:00 PM",
@@ -229,14 +237,6 @@
       "key": "143822642-6c31ce817a62ae84",
       "label": "The Odyssey \u2014 Sun, Jul 26 at 11:00 AM",
       "seats": "L5",
-      "showtimeIso": "2026-07-26T18:00:00.000Z",
-      "sid": "143822642"
-    },
-    {
-      "at": "2026-07-26T16:25:43Z",
-      "key": "143822642-88b541aa984ac1b0",
-      "label": "The Odyssey \u2014 Sun, Jul 26 at 11:00 AM",
-      "seats": "K15",
       "showtimeIso": "2026-07-26T18:00:00.000Z",
       "sid": "143822642"
     }
@@ -963,14 +963,15 @@
     "146378081": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-09-01T04:08:08Z",
+      "lastCheckedAt": "2026-09-01T04:18:04Z",
       "notifiedSignatures": [
         "8a1dabbbbf1f0bee",
         "55dce3677868153f",
         "53573d5def513184",
         "d99f6eb4dac8f19b",
         "1f8202621e98e6da",
-        "c7fae588ae1a9c57"
+        "c7fae588ae1a9c57",
+        "f60c033fef4ebbed"
       ],
       "throttledCount": 1729
     }
