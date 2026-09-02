@@ -963,7 +963,7 @@
     "146378081": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-09-02T22:38:15Z",
+      "lastCheckedAt": "2026-09-02T22:42:12Z",
       "notifiedSignatures": [
         "8a1dabbbbf1f0bee",
         "55dce3677868153f",
@@ -977,7 +977,7 @@
         "f8d90d9a92a73824",
         "b49f3a1203aaaec1"
       ],
-      "throttledCount": 3375
+      "throttledCount": 3376
     }
   }
 }
