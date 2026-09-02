@@ -1,6 +1,6 @@
 {
   "columns": 24,
-  "fetchedAtUtc": "2026-09-02T03:15:49Z",
+  "fetchedAtUtc": "2026-09-02T03:18:40Z",
   "movie": null,
   "rows": 15,
   "seats": [
@@ -1013,7 +1013,7 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 7,
       "name": "M18",
       "row": 11,
@@ -1034,7 +1034,7 @@
       "type": "CanReserve"
     },
     {
-      "available": false,
+      "available": true,
       "column": 10,
       "name": "M15",
       "row": 11,
