@@ -1,6 +1,22 @@
 {
   "alerts": [
     {
+      "at": "2026-09-03T00:54:03Z",
+      "key": "146378081-60d9e018a8e2be06",
+      "label": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield \u2014 Thu, Sep 3 at 6:00 PM",
+      "seats": "C14",
+      "showtimeIso": "2026-09-04T01:00:00.000Z",
+      "sid": "146378081"
+    },
+    {
+      "at": "2026-09-03T00:52:59Z",
+      "key": "146378081-b4796d898fababd8",
+      "label": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield \u2014 Thu, Sep 3 at 6:00 PM",
+      "seats": "C14; C12",
+      "showtimeIso": "2026-09-04T01:00:00.000Z",
+      "sid": "146378081"
+    },
+    {
       "at": "2026-09-02T18:30:59Z",
       "key": "146378081-b49f3a1203aaaec1",
       "label": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield \u2014 Thu, Sep 3 at 6:00 PM",
@@ -223,22 +239,6 @@
       "seats": "G17",
       "showtimeIso": "2026-07-27T02:00:00.000Z",
       "sid": "143822647"
-    },
-    {
-      "at": "2026-07-26T21:10:10Z",
-      "key": "143822598-ac6c1cbb197e7ea1",
-      "label": "The Odyssey \u2014 Mon, Aug 3 at 6:00 PM",
-      "seats": "H2",
-      "showtimeIso": "2026-08-04T01:00:00.000Z",
-      "sid": "143822598"
-    },
-    {
-      "at": "2026-07-26T20:02:48Z",
-      "key": "143822644-7500930c82ed59c1",
-      "label": "The Odyssey \u2014 Sun, Jul 26 at 3:00 PM",
-      "seats": "N26",
-      "showtimeIso": "2026-07-26T22:00:00.000Z",
-      "sid": "143822644"
     }
   ],
   "deadSubscriptions": [
@@ -963,7 +963,7 @@
     "146378081": {
       "alertedBroken": false,
       "consecutiveFailures": 0,
-      "lastCheckedAt": "2026-09-03T00:45:25Z",
+      "lastCheckedAt": "2026-09-03T00:54:03Z",
       "notifiedSignatures": [
         "8a1dabbbbf1f0bee",
         "55dce3677868153f",
@@ -975,9 +975,11 @@
         "282ce42440e6f711",
         "12c4479e592b6ff2",
         "f8d90d9a92a73824",
-        "b49f3a1203aaaec1"
+        "b49f3a1203aaaec1",
+        "b4796d898fababd8",
+        "60d9e018a8e2be06"
       ],
-      "throttledCount": 3470
+      "throttledCount": 3472
     }
   }
 }
