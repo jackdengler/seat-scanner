@@ -12,9 +12,10 @@ the seats you want open up. Fully serverless:
   continuous. Each pass fetches all due shows **concurrently**, so watching
   many shows doesn't stretch the interval. (Deliberately aggressive; push
   harder — smaller `BURST_SLEEP_RANGE` / higher `FETCH_WORKERS` with many
-  watches — and AMC's Cloudflare returns 429/challenge pages. Those are
-  treated as transient throttles and never alerted, but coverage suffers, so
-  back off if the logs fill with them.)
+  watches — and AMC's Cloudflare returns 403/429 challenge pages. Each fetch
+  retries those a couple of times from a clean session before giving up, and
+  they are never alerted on, but coverage suffers, so back off if the logs
+  fill with them.)
 - The **`data` branch** holds machine-written state (`state.json`,
   `seatmap-<id>.json`) so the code branch stays clean.
 - Notifications are **Web Push** straight to the installed PWA — no
@@ -87,6 +88,17 @@ Safety Net" waiting room. Anonymous plain-HTTP works: request
 `queue.amctheatres.com` with a cookie jar, get waved through, and parse
 `"seatingLayout"` out of the flight payload (`scripts/amc.py`).
 
+Getting past Cloudflare is mostly about not looking like a script. An
+`amc.Session` lands on the site root first, keeps the cookies Cloudflare and
+Queue-It set, and sends every later page a `Referer` and the `Sec-Fetch-Site`
+a browser would — a cold, cookie-less hit straight at a deep URL is what gets
+challenged, especially from a datacenter IP like a GitHub runner. The headers
+are a real Chrome's, gzip included (urllib's default `Accept-Encoding:
+identity` is a giveaway). A block that happens anyway is retried from a fresh
+session with jittered backoff, since it is nearly always transient; a
+multi-day browse shares one session across its days and keeps the days that
+came back, listing any it lost in `failedDates`.
+
 The **browse** feature fetches the same way from
 `/movie-theatres/<market>/<slug>/showtimes?date=<YYYY-MM-DD>`, but that page
 renders showtimes as React server-component markup rather than clean JSON, so
@@ -99,13 +111,18 @@ three patterns.
 
 If AMC changes this, re-capture by opening a seats page with DevTools →
 Network, and searching response bodies for a seat name like `A12`. Update
-`amc.py`'s fetch hops and/or parsing to match; `scripts/probe.py` is a
-standalone probe you can run from the `probe-seatmap` workflow to test
-from a runner (push a new showtime ID to `probe-trigger.txt` or use the
-Run workflow button).
+`amc.py`'s fetch hops and/or parsing to match; `scripts/probe.py` fetches
+and parses through `amc.py` itself — so it reproduces exactly what the
+watcher does, blocks included — and runs from the `probe-seatmap` workflow
+to test from a runner (push a new showtime ID to `probe-trigger.txt` or use
+the Run workflow button).
+
+Unit tests (parser, matcher, fetch retry): `python3 -m unittest discover
+scripts`.
 
 Be gentle: the watcher makes exactly one page request per due check per
-showing, with realistic browser headers.
+showing, with realistic browser headers, reusing its warmed sessions across
+passes so the homepage hop isn't paid again on every check.
 
 ## Security notes
 

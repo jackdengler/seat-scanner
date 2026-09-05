@@ -35,7 +35,15 @@ jobs:
           sys.path.insert(0, "scripts")
           import amc
           sid = "${{ github.event.inputs.showtimeId }}".strip()
-          seatmap = amc.fetch_seatmap(sid, log=print)
+          try:
+              seatmap = amc.fetch_seatmap(sid, log=print)
+          except amc.FetchBlocked as e:
+              # Same as the browse: a block that outlived its retries is nearly
+              # always transient, and reads better than a traceback.
+              print(f"::error::AMC blocked the fetch ({e.diagnosis}). This is "
+                    "usually a transient Cloudflare challenge from the runner's "
+                    "IP; try adding the watch again.")
+              raise SystemExit(1)
           with open(f"data/seatmap-{sid}.json", "w") as f:
               json.dump(seatmap, f, indent=2, sort_keys=True)
               f.write("\n")

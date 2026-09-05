@@ -5,15 +5,30 @@ The seat data is server-rendered into the page as Next.js flight chunks
 redirect dance through Queue-It's "Global Safety Net" waiting room; with
 no active queue it waves the request straight through. All plain HTTP,
 stdlib only.
+
+Cloudflare sits in front of all of it and challenges (HTTP 403 "Just a
+moment", or 429) requests that look automated. Two things keep that rare,
+and one keeps it survivable:
+
+  * a Session arrives via the site root and reuses the cookies Cloudflare
+    and Queue-It set, instead of hitting a deep URL cold once per page;
+  * the request headers are a real browser's, gzip and Referer included;
+  * a block is retried from a clean session with jittered backoff, because
+    it is almost always transient — especially from a datacenter IP like a
+    GitHub Actions runner, where the whole range is shared and warm.
 """
 
 import datetime
+import gzip
 import http.cookiejar
 import json
+import random
 import re
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import zlib
 
 HEADERS = {
     "User-Agent": (
@@ -25,6 +40,9 @@ HEADERS = {
         "image/avif,image/webp,image/apng,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
+    # urllib's default is "identity", which no browser sends and every bot
+    # filter notices; _read_body undoes whichever of these we get back.
+    "Accept-Encoding": "gzip, deflate",
     "sec-ch-ua": '"Google Chrome";v="149", "Chromium";v="149", "Not)A;Brand";v="24"',
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": '"Windows"',
@@ -43,6 +61,17 @@ META_REFRESH_RE = re.compile(
 WINDOW_LOC_RE = re.compile(r"""window\.location(?:\.href)?\s*=\s*["']([^"']+)["']""")
 
 MAX_HOPS = 8
+HOME_URL = "https://www.amctheatres.com/"
+
+# A blocked fetch is retried this many times from a clean session, waiting
+# ~5s, then ~10s (plus jitter). Enough to ride out a transient challenge,
+# short enough that the poller's ~15s pass budget still holds.
+RETRIES = 2
+RETRY_BACKOFF = 5.0
+
+# Jittered gap between the day-pages of a multi-day browse: a human clicking
+# through dates doesn't fire them back to back, and neither should we.
+DAY_SLEEP_RANGE = (1.5, 4.0)
 
 
 class FetchBlocked(Exception):
@@ -64,27 +93,146 @@ def diagnose(body):
     return "unrecognized"
 
 
-def fetch_page(url, log=lambda msg: None):
+# Pushback from AMC's edge is transient far more often than not: the same URL
+# usually goes through seconds later from a clean session. These markers match
+# both the diagnoses above and the HTTP statuses the edge throttles with, and
+# are the one list both the fetch retry and the poller's "don't cry broken"
+# rule (check.is_throttle) read from.
+TRANSIENT_MARKERS = ("http-403", "http-429", "http-502", "http-503",
+                     "cloudflare-challenge", "queue-it", "access-denied")
+
+
+def is_transient(exc):
+    """True if ``exc`` is AMC saying "slow down" rather than "you're broken"."""
+    msg = str(exc).lower()
+    return any(m in msg for m in TRANSIENT_MARKERS)
+
+
+def _read_body(resp):
+    """Read a response (or HTTPError) body, undoing the encoding we asked for."""
+    raw = resp.read()
+    encoding = (resp.headers.get("Content-Encoding") or "").lower()
+    if "gzip" in encoding:
+        raw = gzip.decompress(raw)
+    elif "deflate" in encoding:
+        try:
+            raw = zlib.decompress(raw)
+        except zlib.error:  # raw deflate, no zlib header
+            raw = zlib.decompress(raw, -zlib.MAX_WBITS)
+    return raw.decode("utf-8", errors="replace")
+
+
+def _origin(url):
+    parts = urllib.parse.urlsplit(url)
+    return f"{parts.scheme}://{parts.netloc}"
+
+
+def _fetch_site(from_url, to_url):
+    """The Sec-Fetch-Site value a browser would send for this navigation."""
+    src = urllib.parse.urlsplit(from_url).netloc
+    dst = urllib.parse.urlsplit(to_url).netloc
+    if src == dst:
+        return "same-origin"
+    # registrable domain, close enough for amctheatres.com vs queue.amctheatres.com
+    return "same-site" if (src.split(".")[-2:] == dst.split(".")[-2:]) else "cross-site"
+
+
+class Session:
+    """One browsing session: a cookie jar and the opener that fills it.
+
+    Cloudflare challenges a cold, cookie-less request for a deep URL far more
+    readily than one from a session that arrived via the site root, so a
+    session lands on the homepage once (``warm``) and then reuses the cookies
+    Cloudflare and Queue-It set for every page after it. Reuse one across a
+    run: N pages through one warm session look far less robotic than N cold
+    ones, and cost one fewer request each.
+    """
+
+    def __init__(self):
+        self.reset()
+
+    def reset(self):
+        """Throw the session away and start clean — what to do after a block."""
+        self.jar = http.cookiejar.CookieJar()
+        self.opener = urllib.request.build_opener(
+            urllib.request.HTTPCookieProcessor(self.jar))
+        self._warmed = False
+
+    def cookie_names(self):
+        """Cookie names only — these logs are public, values never are."""
+        return sorted({c.name for c in self.jar})
+
+    def open(self, url, referer=None, timeout=60):
+        """GET ``url`` through the jar; returns (body, final_url, status)."""
+        headers = dict(HEADERS)
+        if referer:
+            site = _fetch_site(referer, url)
+            headers["Sec-Fetch-Site"] = site
+            # Chrome's default strict-origin-when-cross-origin policy: the full
+            # URL to the same origin, a bare origin to anywhere else.
+            headers["Referer"] = referer if site == "same-origin" else _origin(referer)
+        req = urllib.request.Request(url, headers=headers)
+        with self.opener.open(req, timeout=timeout) as resp:
+            return _read_body(resp), resp.geturl(), resp.status
+
+    def warm(self, log=lambda msg: None):
+        """Land on the site root once, for the cookies a deep page expects.
+
+        Best-effort: if the homepage itself is blocked there is nothing to be
+        gained by giving up here, so we note it and go on to the real page.
+        """
+        if self._warmed:
+            return
+        self._warmed = True  # one attempt per session, whether or not it worked
+        try:
+            _, url, status = self.open(HOME_URL)
+            log(f"[warm] HTTP {status} {url}, "
+                f"cookies: {', '.join(self.cookie_names()) or 'none'}")
+        except OSError as e:  # URLError/HTTPError/timeouts are all OSError
+            log(f"[warm] homepage fetch failed ({e}); continuing without it")
+
+
+def fetch_page(url, log=lambda msg: None, session=None,
+               retries=RETRIES, backoff=RETRY_BACKOFF):
     """Fetch an AMC page's HTML, following the Queue-It redirect chain.
 
     Returns the first response body that carries Next.js flight data
-    (``__next_f``); raises FetchBlocked if the protection stack stops us.
+    (``__next_f``). A transient block (Cloudflare 403/429, the Queue-It
+    waiting room, a network blip) is retried from a clean session with
+    jittered backoff; FetchBlocked is raised once the retries are spent, and
+    straight away for anything a retry can't fix (a parse-level failure, a
+    redirect loop). Pass a ``session`` to share cookies across pages — it is
+    reset before each retry, since a blocked session stays blocked.
     """
-    jar = http.cookiejar.CookieJar()
-    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+    sess = session or Session()
+    for attempt in range(retries + 1):
+        try:
+            return _fetch_page_once(url, sess, log)
+        except (FetchBlocked, OSError) as e:  # URLError/timeouts are OSError
+            retryable = is_transient(e) if isinstance(e, FetchBlocked) else True
+            if attempt == retries or not retryable:
+                raise
+            delay = backoff * 2 ** attempt + random.uniform(0, 2)
+            log(f"blocked ({e}); retrying in {delay:.0f}s from a clean session "
+                f"[{attempt + 1}/{retries}]")
+            sess.reset()
+            time.sleep(delay)
+
+
+def _fetch_page_once(url, sess, log):
+    """One attempt at fetch_page: warm the session, then follow the hops."""
+    sess.warm(log)
+    referer = HOME_URL
 
     for hop in range(1, MAX_HOPS + 1):
-        req = urllib.request.Request(url, headers=HEADERS)
         try:
-            with opener.open(req, timeout=60) as resp:
-                body = resp.read().decode("utf-8", errors="replace")
-                final_url = resp.geturl()
-                status = resp.status
+            body, final_url, status = sess.open(url, referer=referer)
         except urllib.error.HTTPError as e:
-            body = e.read().decode("utf-8", errors="replace")
+            body = _read_body(e)
             raise FetchBlocked(f"http-{e.code}:{diagnose(body)}", body)
 
-        log(f"[hop {hop}] HTTP {status}, {len(body)} bytes, landed on {final_url}")
+        log(f"[hop {hop}] HTTP {status}, {len(body)} bytes, landed on {final_url}, "
+            f"cookies: {', '.join(sess.cookie_names()) or 'none'}")
 
         if "__next_f" in body:
             return body
@@ -98,15 +246,16 @@ def fetch_page(url, log=lambda msg: None):
                 break
         if target is None:
             raise FetchBlocked(diagnose(body), body)
+        referer = final_url
         url = urllib.parse.urljoin(final_url, target)
 
     raise FetchBlocked("redirect-loop")
 
 
-def fetch_html(showtime_id, log=lambda msg: None):
+def fetch_html(showtime_id, log=lambda msg: None, session=None):
     """Fetch the seats page HTML, following the Queue-It redirect chain."""
     return fetch_page(
-        f"https://www.amctheatres.com/showtimes/{showtime_id}/seats", log)
+        f"https://www.amctheatres.com/showtimes/{showtime_id}/seats", log, session)
 
 
 def decode_flight(html):
@@ -242,8 +391,8 @@ def parse_seatmap(html, showtime_id=None):
     }
 
 
-def fetch_seatmap(showtime_id, log=lambda msg: None):
-    return parse_seatmap(fetch_html(showtime_id, log), showtime_id)
+def fetch_seatmap(showtime_id, log=lambda msg: None, session=None):
+    return parse_seatmap(fetch_html(showtime_id, log, session), showtime_id)
 
 
 # ---- showtimes listing (browse a theatre by date) ----
@@ -345,7 +494,7 @@ def parse_showtimes(html, theatre_slug):
     return {"theatreSlug": slug, "movies": [movies[s] for s in order]}
 
 
-def fetch_showtimes(theatre, date, log=lambda msg: None):
+def fetch_showtimes(theatre, date, log=lambda msg: None, session=None):
     """Fetch and parse a theatre's showtimes for a date (YYYY-MM-DD).
 
     ``theatre`` is the path after /movie-theatres/, e.g.
@@ -354,7 +503,7 @@ def fetch_showtimes(theatre, date, log=lambda msg: None):
     path = theatre.strip().strip("/").split("?")[0]
     url = (f"https://www.amctheatres.com/movie-theatres/{path}/showtimes"
            f"?date={date}")
-    result = parse_showtimes(fetch_page(url, log), path)
+    result = parse_showtimes(fetch_page(url, log, session), path)
     result["date"] = date
     result["theatre"] = path
     result["fetchedAtUtc"] = (datetime.datetime.now(datetime.timezone.utc)
@@ -393,23 +542,41 @@ def merge_showtimes(listings):
 def fetch_showtimes_range(theatre, start_date, days, log=lambda msg: None):
     """Fetch ``days`` consecutive days starting at ``start_date`` and merge.
 
-    One AMC request per day (kept sequential and gentle). Returns the same
-    shape as fetch_showtimes plus a ``days`` field, with each movie's showings
-    spanning the whole range.
+    One AMC request per day, sequential and gently spaced, all through a
+    single warm session. A day that stays blocked after its retries is
+    recorded in ``failedDates`` rather than throwing away the days that did
+    come back; FetchBlocked is raised only if every day was blocked.
+
+    Returns the same shape as fetch_showtimes plus ``days`` and
+    ``failedDates``, with each movie's showings spanning the whole range.
     """
     days = max(1, int(days))
     d0 = datetime.date.fromisoformat(start_date)
     path = theatre.strip().strip("/").split("?")[0]
+    session = Session()
     listings = []
+    failed = []
+    blocked = None
     for i in range(days):
         day = (d0 + datetime.timedelta(days=i)).isoformat()
+        if i:
+            time.sleep(random.uniform(*DAY_SLEEP_RANGE))  # don't burst the range
         log(f"fetching {day} ({i + 1}/{days})")
-        listings.append(fetch_showtimes(path, day, log))
+        try:
+            listings.append(fetch_showtimes(path, day, log, session))
+        except FetchBlocked as e:
+            log(f"{day}: blocked ({e.diagnosis}); skipping this day")
+            failed.append(day)
+            blocked = e
+            session.reset()
+    if not listings:
+        raise blocked
     return {
         "theatre": path,
         "theatreSlug": _theatre_slug(path),
         "date": start_date,
         "days": days,
+        "failedDates": failed,
         "movies": merge_showtimes(listings),
         "fetchedAtUtc": (datetime.datetime.now(datetime.timezone.utc)
                          .strftime("%Y-%m-%dT%H:%M:%SZ")),

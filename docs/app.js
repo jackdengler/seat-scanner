@@ -366,7 +366,12 @@ async function browseShowtimes() {
         if (listing.theatre === theatre && listing.date === date
             && String(listing.days || 1) === String(days)
             && new Date(listing.fetchedAtUtc).getTime() > started - 60_000) {
-          status("");
+          // A day AMC blocked is simply missing from the listing; say so
+          // rather than letting it read as "that day has no showtimes".
+          status(listing.failedDates?.length
+            ? `AMC blocked ${listing.failedDates.join(", ")} — those days are `
+              + `missing. Tap Find showtimes again to retry them.`
+            : "");
           populateFormatFilter(listing);
           renderShowlist(listing);
           backfillWatchMeta(listing);

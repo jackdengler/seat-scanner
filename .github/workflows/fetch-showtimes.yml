@@ -50,7 +50,19 @@ jobs:
           theatre = os.environ["THEATRE"].strip()
           date = os.environ["DATE"].strip()
           days = int((os.environ.get("DAYS") or "1").strip() or "1")
-          listing = amc.fetch_showtimes_range(theatre, date, days, log=print)
+          try:
+              listing = amc.fetch_showtimes_range(theatre, date, days, log=print)
+          except amc.FetchBlocked as e:
+              # Every day was blocked even after retries. Almost always a
+              # transient Cloudflare challenge on this runner's IP, so say so
+              # plainly instead of dumping a traceback — re-running usually works.
+              print(f"::error::AMC blocked every fetch ({e.diagnosis}). This is "
+                    "usually a transient Cloudflare challenge from the runner's "
+                    "IP; re-run the browse.")
+              raise SystemExit(1)
+          if listing["failedDates"]:
+              print("::warning::blocked on " + ", ".join(listing["failedDates"])
+                    + " — the listing is incomplete; re-run to fill those days in.")
           with open("data/browse.json", "w") as f:
               json.dump(listing, f, indent=2, sort_keys=True)
               f.write("\n")

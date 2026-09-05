@@ -32,6 +32,7 @@ import argparse
 import datetime
 import json
 import os
+import queue
 import random
 import sys
 import time
@@ -46,16 +47,12 @@ import matcher
 FAILURE_ALERT_THRESHOLD = 3
 CRON_SLACK_MIN = 1  # cron jitter allowance when deciding if a check is due
 
-# AMC's protection stack (Cloudflare 429/challenge, Queue-It waiting room,
+# AMC's protection stack (Cloudflare 403/429/challenge, Queue-It waiting room,
 # temporary access-denied) throttles us under heavy polling. Those are transient
 # "back off" signals, not a broken watcher, so they must not trigger alerts.
-_THROTTLE_MARKERS = ("429", "cloudflare-challenge", "queue-it",
-                     "access-denied", "503", "502")
-
-
+# amc.fetch_seatmap has already retried them by the time we see one here.
 def is_throttle(exc):
-    msg = str(exc).lower()
-    return any(m in msg for m in _THROTTLE_MARKERS)
+    return amc.is_transient(exc)
 
 # Flat cadence: every active watch is checked this often, no matter how far
 # out the showtime is. 0 = every pass (the burst runs ~every 30s). Bump this
@@ -74,10 +71,6 @@ BURST_SLEEP_RANGE = (12, 18)   # jittered seconds between passes (~15s)
 # CPU, is the cost). Kept modest: too many simultaneous connections from one
 # runner IP is what trips AMC's Cloudflare rate limit (HTTP 429).
 FETCH_WORKERS = 3
-
-# On a throttle, retry the fetch this many extra times with backoff before
-# giving up for the pass. Cloudflare 429s are frequently transient.
-THROTTLE_RETRIES = 2
 
 # When a pass gets throttled on more than this fraction of its shows, AMC is
 # clearly pushing back — cool off with an extra sleep before the next pass so
@@ -155,25 +148,32 @@ def is_watch_due(watch, ws, now):
     return True
 
 
+# Browsing sessions, reused across passes instead of rebuilt per fetch: a warm
+# session skips the homepage hop (so a due check is still one request to AMC,
+# not two) and a returning visitor looks far less robotic than a brand-new one
+# every 15 seconds. A Session isn't thread-safe, so a worker borrows one for
+# the length of its fetch and hands it back. The pool grows to FETCH_WORKERS.
+_SESSIONS = queue.SimpleQueue()
+
+
 def fetch_watch(sid):
     """Network-only, thread-safe: fetch one seat map, returning it or the
     exception raised (so the caller can process results single-threaded).
 
-    Retries a couple of times on a throttle (429/challenge) with jittered
-    backoff — those are often transient, so a brief wait recovers many of them
-    rather than losing the show for the whole pass."""
-    err = None
-    delay = 2.0
-    for attempt in range(THROTTLE_RETRIES + 1):
-        try:
-            return amc.fetch_seatmap(sid, log=lambda m: print(f"[{sid}] {m}"))
-        except Exception as e:  # noqa: BLE001 — surfaced to the sequential processor
-            err = e
-            if not is_throttle(e) or attempt == THROTTLE_RETRIES:
-                return err
-            time.sleep(delay + random.uniform(0, 1.5))  # jitter desyncs workers
-            delay *= 2
-    return err
+    amc.fetch_page does the retrying: a throttle costs a couple of backed-off
+    attempts from a clean session before it reaches us, so anything returned
+    here has already failed to recover."""
+    try:
+        session = _SESSIONS.get_nowait()
+    except queue.Empty:
+        session = amc.Session()
+    try:
+        return amc.fetch_seatmap(sid, log=lambda m: print(f"[{sid}] {m}"),
+                                 session=session)
+    except Exception as e:  # noqa: BLE001 — surfaced to the sequential processor
+        return e
+    finally:
+        _SESSIONS.put(session)
 
 
 def process_watch(watch, ws, subscriptions, state, data_dir, now, result):
