@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       showtimeId:
-        description: AMC showtime ID
+        description: AMC showtime ID, or <market>/<slug>[@YYYY-MM-DD] for showtimes
         required: true
         default: "144132590"
   push:

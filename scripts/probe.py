@@ -2,8 +2,9 @@
 """Standalone probe: fetch one AMC seat map and print the parsed seats.
 
 Usage:
-    python3 probe.py <showtimeId>        # fetch live page, parse, print
-    python3 probe.py <path-to-html>      # parse a saved HTML file (offline test)
+    python3 probe.py <showtimeId>            # seat map: fetch, parse, print
+    python3 probe.py <market>/<slug>[@date]  # theatre showtimes for a date
+    python3 probe.py <path-to-html>          # parse a saved file (offline test)
 
 Fetching and parsing come straight from amc.py, so what the probe sees is
 exactly what the watcher sees — including the homepage warm-up, the
@@ -11,6 +12,7 @@ Queue-It redirect chain, and the retries on a Cloudflare block. Run it from
 the probe-seatmap workflow to reproduce a runner-side block.
 """
 
+import datetime
 import os
 import re
 import sys
@@ -117,6 +119,24 @@ def report(seatmap):
     print("PROBE OK")
 
 
+def report_showtimes(theatre, date):
+    """Probe the theatre showtimes page — the browse feature's fetch."""
+    print(f"Probing showtimes for {theatre} on {date}")
+    try:
+        listing = amc.fetch_showtimes(theatre, date, log=print)
+    except amc.FetchBlocked as e:
+        print(f"FETCH FAILED: {e.diagnosis}")
+        diagnose(e.body)
+        sys.exit(1)
+    print()
+    print(f"=== {len(listing['movies'])} movies ===")
+    for mv in listing["movies"]:
+        times = ", ".join(f"{s['time']} ({s['format']})" for s in mv["showings"])
+        print(f"  {mv['title']}: {times or 'no showings'}")
+    print()
+    print("PROBE OK")
+
+
 def main():
     if len(sys.argv) != 2:
         print(__doc__)
@@ -126,6 +146,10 @@ def main():
         print(f"Parsing local file {arg}")
         with open(arg, encoding="utf-8") as f:
             html = f.read()
+    elif "/" in arg:
+        theatre, _, date = arg.partition("@")
+        report_showtimes(theatre, date or datetime.date.today().isoformat())
+        return
     else:
         html = fetch(arg)
     report(parse(html))
