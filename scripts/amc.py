@@ -64,10 +64,15 @@ MAX_HOPS = 8
 HOME_URL = "https://www.amctheatres.com/"
 
 # A blocked fetch is retried this many times from a clean session, waiting
-# ~5s, then ~10s (plus jitter). Enough to ride out a transient challenge,
-# short enough that the poller's ~15s pass budget still holds.
-RETRIES = 2
+# ~5s, ~10s, then ~20s (plus jitter, and capped so a long tail stays bounded).
+# Measured from a GitHub runner in Sep 2026, roughly two cold attempts in
+# three come back 403 and the next one sails through, so a budget of 2 landed
+# on the last allowed try — hence 4. The poller passes its own smaller budget
+# (check.POLL_RETRIES): it re-checks every ~15s anyway, and its sessions stay
+# warm between passes.
+RETRIES = 4
 RETRY_BACKOFF = 5.0
+RETRY_MAX_DELAY = 20.0
 
 # Jittered gap between the day-pages of a multi-day browse: a human clicking
 # through dates doesn't fire them back to back, and neither should we.
@@ -212,7 +217,7 @@ def fetch_page(url, log=lambda msg: None, session=None,
             retryable = is_transient(e) if isinstance(e, FetchBlocked) else True
             if attempt == retries or not retryable:
                 raise
-            delay = backoff * 2 ** attempt + random.uniform(0, 2)
+            delay = min(backoff * 2 ** attempt, RETRY_MAX_DELAY) + random.uniform(0, 2)
             log(f"blocked ({e}); retrying in {delay:.0f}s from a clean session "
                 f"[{attempt + 1}/{retries}]")
             sess.reset()
@@ -252,10 +257,11 @@ def _fetch_page_once(url, sess, log):
     raise FetchBlocked("redirect-loop")
 
 
-def fetch_html(showtime_id, log=lambda msg: None, session=None):
+def fetch_html(showtime_id, log=lambda msg: None, session=None, retries=RETRIES):
     """Fetch the seats page HTML, following the Queue-It redirect chain."""
     return fetch_page(
-        f"https://www.amctheatres.com/showtimes/{showtime_id}/seats", log, session)
+        f"https://www.amctheatres.com/showtimes/{showtime_id}/seats", log, session,
+        retries=retries)
 
 
 def decode_flight(html):
@@ -391,8 +397,9 @@ def parse_seatmap(html, showtime_id=None):
     }
 
 
-def fetch_seatmap(showtime_id, log=lambda msg: None, session=None):
-    return parse_seatmap(fetch_html(showtime_id, log, session), showtime_id)
+def fetch_seatmap(showtime_id, log=lambda msg: None, session=None, retries=RETRIES):
+    return parse_seatmap(
+        fetch_html(showtime_id, log, session, retries), showtime_id)
 
 
 # ---- showtimes listing (browse a theatre by date) ----

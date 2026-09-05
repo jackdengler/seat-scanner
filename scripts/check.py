@@ -148,6 +148,12 @@ def is_watch_due(watch, ws, now):
     return True
 
 
+# Retries per fetch, smaller than amc.RETRIES: a missed show is re-checked
+# ~15s later regardless, and the pooled sessions below stay warm between
+# passes, so the cold-start block a browse has to fight is mostly a non-issue
+# here. Keeping it small stops a throttled pass from overrunning its budget.
+POLL_RETRIES = 2
+
 # Browsing sessions, reused across passes instead of rebuilt per fetch: a warm
 # session skips the homepage hop (so a due check is still one request to AMC,
 # not two) and a returning visitor looks far less robotic than a brand-new one
@@ -169,7 +175,7 @@ def fetch_watch(sid):
         session = amc.Session()
     try:
         return amc.fetch_seatmap(sid, log=lambda m: print(f"[{sid}] {m}"),
-                                 session=session)
+                                 session=session, retries=POLL_RETRIES)
     except Exception as e:  # noqa: BLE001 — surfaced to the sequential processor
         return e
     finally:

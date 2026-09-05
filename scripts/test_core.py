@@ -352,6 +352,13 @@ class FetchRetryTests(unittest.TestCase):
         self.assertEqual(cm.exception.diagnosis, "http-403:cloudflare-challenge")
         self.assertEqual(len(sess.calls), 3)   # first attempt + 2 retries
 
+    def test_backoff_is_capped(self):
+        # Growth must not run away on a long tail of blocks — a browse waits
+        # on this, and the UI gives it minutes, not hours.
+        sess = FakeSession([_blocked() for _ in range(6)] + [FLIGHT_PAGE])
+        amc.fetch_page("https://amc/x", session=sess, retries=6, backoff=5.0)
+        self.assertLessEqual(max(self.slept), amc.RETRY_MAX_DELAY + 2)
+
     def test_backoff_grows(self):
         sess = FakeSession([_blocked(), _blocked(), FLIGHT_PAGE])
         amc.fetch_page("https://amc/x", session=sess, retries=2, backoff=5.0)
@@ -452,8 +459,9 @@ class SessionPoolTests(unittest.TestCase):
     def setUp(self):
         self.seen = []
 
-        def fake_fetch(sid, log=None, session=None):
+        def fake_fetch(sid, log=None, session=None, retries=None):
             self.seen.append(session)
+            self.retries = retries
             if sid == "boom":
                 raise RuntimeError("fetch exploded")
             return {"showtimeId": sid}
@@ -477,6 +485,13 @@ class SessionPoolTests(unittest.TestCase):
         check.fetch_watch("2")
         self.assertIsNotNone(self.seen[0])
         self.assertIs(self.seen[0], self.seen[1])
+
+    def test_poller_uses_its_own_smaller_retry_budget(self):
+        # A blocked show is re-checked in ~15s, so a pass must not spend
+        # amc.RETRIES worth of backoff waiting on one of them.
+        check.fetch_watch("1")
+        self.assertEqual(self.retries, check.POLL_RETRIES)
+        self.assertLess(check.POLL_RETRIES, amc.RETRIES)
 
     def test_session_is_returned_even_when_the_fetch_fails(self):
         self.assertIsInstance(check.fetch_watch("boom"), RuntimeError)
