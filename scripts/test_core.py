@@ -278,10 +278,12 @@ class FakeSession:
     on session reuse and warm-up.
     """
 
-    def __init__(self, outcomes):
+    def __init__(self, outcomes, warm_refusal=None):
         self.outcomes = list(outcomes)
+        self.warm_refusal = warm_refusal
         self.calls = []
         self.resets = 0
+        self.warms = 0
         self._warmed = False
 
     def reset(self):
@@ -293,6 +295,8 @@ class FakeSession:
 
     def warm(self, log=lambda m: None):
         self._warmed = True
+        self.warms += 1
+        return self.warm_refusal
 
     def open(self, url, referer=None, timeout=60):
         self.calls.append((url, referer))
@@ -375,6 +379,50 @@ class FetchRetryTests(unittest.TestCase):
     def test_network_error_is_retried(self):
         sess = FakeSession([urllib.error.URLError("connection reset"), FLIGHT_PAGE])
         self.assertIn("__next_f", amc.fetch_page("https://amc/x", session=sess))
+
+
+class AdmissionTests(unittest.TestCase):
+    """A session the homepage refuses is refused at the page too, so a
+    refusal must not cost a second blocked request to discover."""
+
+    def setUp(self):
+        self.slept = []
+        patch = unittest.mock.patch.object(amc.time, "sleep", self.slept.append)
+        patch.start()
+        self.addCleanup(patch.stop)
+
+    def test_refusal_short_circuits_the_page_fetch(self):
+        sess = FakeSession([FLIGHT_PAGE], warm_refusal="http-403:cloudflare-challenge")
+        amc.fetch_page("https://amc/x", session=sess, retries=2)
+        # Three attempts, each stopping at the homepage — except the last,
+        # which tries the page anyway in case only the homepage said no. Two
+        # blocked page fetches saved, which is what pays for a wide budget.
+        self.assertEqual(sess.warms, 3)
+        self.assertEqual(len(sess.calls), 1)
+        self.assertEqual(len(self.slept), 2)
+
+    def test_last_attempt_tries_the_page_even_if_refused(self):
+        sess = FakeSession([FLIGHT_PAGE], warm_refusal="http-403:cloudflare-challenge")
+        self.assertIn("__next_f",
+                      amc.fetch_page("https://amc/x", session=sess, retries=0))
+
+    def test_admitted_session_goes_straight_to_the_page(self):
+        sess = FakeSession([FLIGHT_PAGE])
+        amc.fetch_page("https://amc/x", session=sess)
+        self.assertEqual(len(sess.calls), 1)
+        self.assertEqual(sess.resets, 0)
+
+    def test_real_session_reports_the_refusal_diagnosis(self):
+        sess = amc.Session()
+        with unittest.mock.patch.object(
+                amc.Session, "open", side_effect=_blocked()):
+            self.assertEqual(sess.warm(), "http-403:cloudflare-challenge")
+
+    def test_real_session_admitted_returns_none(self):
+        sess = amc.Session()
+        with unittest.mock.patch.object(
+                amc.Session, "open", return_value=("<html>home</html>", "u", 200)):
+            self.assertIsNone(sess.warm())
 
 
 class SessionTests(unittest.TestCase):

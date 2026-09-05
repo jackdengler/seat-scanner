@@ -64,14 +64,15 @@ MAX_HOPS = 8
 HOME_URL = "https://www.amctheatres.com/"
 
 # A blocked fetch is retried this many times from a clean session, waiting
-# ~5s, ~10s, then ~20s (plus jitter, and capped so a long tail stays bounded).
-# Measured from a GitHub runner in Sep 2026, roughly two cold attempts in
-# three come back 403 and the next one sails through, so a budget of 2 landed
-# on the last allowed try — hence 4. The poller passes its own smaller budget
-# (check.POLL_RETRIES): it re-checks every ~15s anyway, and its sessions stay
-# warm between passes.
-RETRIES = 4
-RETRY_BACKOFF = 5.0
+# ~2s, ~4s, ~8s, ~16s then ~20s (plus jitter, capped so the tail stays
+# bounded). Measured from a GitHub runner in Sep 2026, cold attempts were
+# refused about three times in four before one sailed through, so the budget
+# has to be generous — affordable because a refused attempt costs a single
+# homepage request (see _fetch_page_once). The poller passes its own smaller
+# budget (check.POLL_RETRIES): it re-checks every ~15s anyway, and its
+# sessions stay warm between passes.
+RETRIES = 6
+RETRY_BACKOFF = 2.0
 RETRY_MAX_DELAY = 20.0
 
 # Jittered gap between the day-pages of a multi-day browse: a human clicking
@@ -183,18 +184,25 @@ class Session:
     def warm(self, log=lambda msg: None):
         """Land on the site root once, for the cookies a deep page expects.
 
-        Best-effort: if the homepage itself is blocked there is nothing to be
-        gained by giving up here, so we note it and go on to the real page.
+        Returns None once the session is admitted, or a diagnosis if the
+        homepage refused it — which is the cheap way to find out, since
+        admission is what the whole fetch turns on.
         """
         if self._warmed:
-            return
+            return None
         self._warmed = True  # one attempt per session, whether or not it worked
         try:
             _, url, status = self.open(HOME_URL)
+        except urllib.error.HTTPError as e:
+            refused = f"http-{e.code}:{diagnose(_read_body(e))}"
+        except OSError as e:  # URLError and timeouts are OSError too
+            refused = f"warm-failed:{e}"
+        else:
             log(f"[warm] HTTP {status} {url}, "
                 f"cookies: {', '.join(self.cookie_names()) or 'none'}")
-        except OSError as e:  # URLError/HTTPError/timeouts are all OSError
-            log(f"[warm] homepage fetch failed ({e}); continuing without it")
+            return None
+        log(f"[warm] homepage refused us ({refused})")
+        return refused
 
 
 def fetch_page(url, log=lambda msg: None, session=None,
@@ -212,7 +220,7 @@ def fetch_page(url, log=lambda msg: None, session=None,
     sess = session or Session()
     for attempt in range(retries + 1):
         try:
-            return _fetch_page_once(url, sess, log)
+            return _fetch_page_once(url, sess, log, last_chance=attempt == retries)
         except (FetchBlocked, OSError) as e:  # URLError/timeouts are OSError
             retryable = is_transient(e) if isinstance(e, FetchBlocked) else True
             if attempt == retries or not retryable:
@@ -224,9 +232,19 @@ def fetch_page(url, log=lambda msg: None, session=None,
             time.sleep(delay)
 
 
-def _fetch_page_once(url, sess, log):
-    """One attempt at fetch_page: warm the session, then follow the hops."""
-    sess.warm(log)
+def _fetch_page_once(url, sess, log, last_chance=True):
+    """One attempt at fetch_page: get admitted, then follow the hops.
+
+    Measured from a runner, a session the homepage refuses is refused at the
+    page too — every time so far — so a refusal short-circuits to the backoff
+    instead of spending a second blocked request to prove it. That keeps a
+    blocked attempt down to one cheap request, which is what pays for the
+    retry budget. On the last attempt we try the page regardless, in case it
+    is ever only the homepage saying no.
+    """
+    refused = sess.warm(log)
+    if refused and not last_chance:
+        raise FetchBlocked(refused)
     referer = HOME_URL
 
     for hop in range(1, MAX_HOPS + 1):

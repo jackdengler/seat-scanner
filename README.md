@@ -94,12 +94,15 @@ Queue-It set, and sends every later page a `Referer` and the `Sec-Fetch-Site`
 a browser would — a cold, cookie-less hit straight at a deep URL is what gets
 challenged, especially from a datacenter IP like a GitHub runner. The headers
 are a real Chrome's, gzip included (urllib's default `Accept-Encoding:
-identity` is a giveaway). A block that happens anyway is retried from a fresh
-session with jittered backoff, since it is nearly always transient — measured
-from a runner in Sep 2026, about two cold attempts in three came back 403 and
-the next went straight through, which is what `amc.RETRIES` is sized for; a
-multi-day browse shares one session across its days and keeps the days that
-came back, listing any it lost in `failedDates`.
+identity` is a giveaway). Admission is the thing that actually decides a
+fetch: measured from a runner in Sep 2026, roughly three cold sessions in
+four were refused, and a session the homepage refused was refused at the page
+too — every time — while one it admitted fetched the page first try. So a
+refusal short-circuits to the backoff after that single cheap request rather
+than spending a blocked page fetch to learn the same thing, which is what
+makes `amc.RETRIES` affordable at 6. A multi-day browse shares one session
+across its days — so only the first day pays for admission — and keeps the
+days that came back, listing any it lost in `failedDates`.
 
 The **browse** feature fetches the same way from
 `/movie-theatres/<market>/<slug>/showtimes?date=<YYYY-MM-DD>`, but that page
