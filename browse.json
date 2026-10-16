@@ -1,145 +1,295 @@
 {
-  "date": "2026-09-03",
+  "date": "2026-10-16",
   "days": 1,
-  "fetchedAtUtc": "2026-08-29T00:10:25Z",
+  "fetchedAtUtc": "2026-10-16T19:42:22Z",
   "movies": [
     {
       "showings": [
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-03T18:30:00.000Z",
-          "showtimeId": 145491941,
-          "time": "11:30 am"
+          "format": "IMAX with Laser at AMC",
+          "showDateTimeUtc": "2026-10-16T20:00:00.000Z",
+          "showtimeId": 147226355,
+          "time": "1:00 pm"
         },
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-03T21:15:00.000Z",
-          "showtimeId": 145491942,
-          "time": "2:15 pm"
+          "format": "IMAX with Laser at AMC",
+          "showDateTimeUtc": "2026-10-16T23:00:00.000Z",
+          "showtimeId": 147226363,
+          "time": "4:00 pm"
         },
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T00:00:00.000Z",
-          "showtimeId": 145491943,
-          "time": "5:00 pm"
+          "format": "IMAX with Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T02:00:00.000Z",
+          "showtimeId": 147226362,
+          "time": "7:00 pm"
         },
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T02:45:00.000Z",
-          "showtimeId": 145491944,
-          "time": "7:45 pm"
+          "format": "Dolby Cinema at AMC",
+          "showDateTimeUtc": "2026-10-17T03:00:00.000Z",
+          "showtimeId": 147226414,
+          "time": "8:00 pm"
         },
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T05:30:00.000Z",
-          "showtimeId": 145491945,
-          "time": "10:30 pm"
+          "format": "IMAX with Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T05:00:00.000Z",
+          "showtimeId": 147226356,
+          "time": "10:00 pm"
+        },
+        {
+          "format": "Dolby Cinema at AMC",
+          "showDateTimeUtc": "2026-10-17T06:00:00.000Z",
+          "showtimeId": 147399690,
+          "time": "11:00 pm"
         }
       ],
-      "slug": "coyote-vs-acme-65798",
-      "title": "Coyote vs. Acme"
+      "slug": "street-fighter-77447",
+      "title": "Street Fighter"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-03T21:00:00.000Z",
-          "showtimeId": 146126374,
-          "time": "2:00 pm"
+          "showDateTimeUtc": "2026-10-16T21:30:00.000Z",
+          "showtimeId": 147843496,
+          "time": "2:30 pm"
         },
         {
           "format": "Dolby Cinema at AMC",
-          "showDateTimeUtc": "2026-09-03T23:15:00.000Z",
-          "showtimeId": 146126329,
-          "time": "4:15 pm"
+          "showDateTimeUtc": "2026-10-17T00:00:00.000Z",
+          "showtimeId": 147399687,
+          "time": "5:00 pm"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T02:30:00.000Z",
-          "showtimeId": 146126375,
+          "showDateTimeUtc": "2026-10-17T02:30:00.000Z",
+          "showtimeId": 147843435,
           "time": "7:30 pm"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T05:15:00.000Z",
-          "showtimeId": 146126369,
+          "showDateTimeUtc": "2026-10-17T05:30:00.000Z",
+          "showtimeId": 147843436,
+          "time": "10:30 pm"
+        }
+      ],
+      "slug": "whalefall-80471",
+      "title": "Whalefall"
+    },
+    {
+      "showings": [
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-10-16T21:45:00.000Z",
+          "showtimeId": 147843415,
+          "time": "2:45 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-16T23:45:00.000Z",
+          "showtimeId": 147843437,
+          "time": "4:45 pm"
+        },
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-10-17T01:45:00.000Z",
+          "showtimeId": 147843414,
+          "time": "6:45 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T05:15:00.000Z",
+          "showtimeId": 147935136,
           "time": "10:15 pm"
         }
       ],
-      "slug": "by-any-means-82711",
-      "title": "By Any Means"
+      "slug": "you-can-see-everything-85142",
+      "title": "You Can See Everything"
     },
     {
       "showings": [
         {
-          "format": "PRIME at AMC",
-          "showDateTimeUtc": "2026-09-03T21:00:00.000Z",
-          "showtimeId": 146389988,
-          "time": "2:00 pm"
+          "format": "Dolby Cinema at AMC",
+          "showDateTimeUtc": "2026-10-16T20:45:00.000Z",
+          "showtimeId": 147399688,
+          "time": "1:45 pm"
         },
         {
-          "format": "PRIME at AMC",
-          "showDateTimeUtc": "2026-09-04T00:00:00.000Z",
-          "showtimeId": 146389989,
-          "time": "5:00 pm"
-        },
-        {
-          "format": "PRIME at AMC",
-          "showDateTimeUtc": "2026-09-04T03:00:00.000Z",
-          "showtimeId": 146389990,
-          "time": "8:00 pm"
-        }
-      ],
-      "slug": "akira-84498",
-      "title": "Akira"
-    },
-    {
-      "showings": [
-        {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-03T23:00:00.000Z",
-          "showtimeId": 146274083,
-          "time": "4:00 pm"
+          "format": "Open Caption (On-screen Subtitles)",
+          "showDateTimeUtc": "2026-10-17T00:15:00.000Z",
+          "showtimeId": 147843507,
+          "time": "5:15 pm"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T01:30:00.000Z",
-          "showtimeId": 146274084,
+          "showDateTimeUtc": "2026-10-17T01:30:00.000Z",
+          "showtimeId": 147399729,
           "time": "6:30 pm"
         },
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T04:00:00.000Z",
-          "showtimeId": 146274085,
-          "time": "9:00 pm"
+          "showDateTimeUtc": "2026-10-17T04:45:00.000Z",
+          "showtimeId": 147399730,
+          "time": "9:45 pm"
         }
       ],
-      "slug": "onslaught-84108",
-      "title": "Onslaught"
+      "slug": "sense-and-sensibility-82178",
+      "title": "Sense and Sensibility"
     },
     {
       "showings": [
         {
           "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T01:00:00.000Z",
-          "showtimeId": 146378081,
+          "showDateTimeUtc": "2026-10-16T20:00:00.000Z",
+          "showtimeId": 147843519,
+          "time": "1:00 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-16T22:45:00.000Z",
+          "showtimeId": 147843518,
+          "time": "3:45 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T03:30:00.000Z",
+          "showtimeId": 147843495,
+          "time": "8:30 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T06:00:00.000Z",
+          "showtimeId": 147843494,
+          "time": "11:00 pm"
+        }
+      ],
+      "slug": "other-mommy-80303",
+      "title": "Other Mommy"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-16T20:15:00.000Z",
+          "showtimeId": 147843490,
+          "time": "1:15 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-16T23:15:00.000Z",
+          "showtimeId": 147843489,
+          "time": "4:15 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T02:15:00.000Z",
+          "showtimeId": 147843487,
+          "time": "7:15 pm"
+        }
+      ],
+      "slug": "the-social-reckoning-81643",
+      "title": "The Social Reckoning"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-16T21:15:00.000Z",
+          "showtimeId": 147843466,
+          "time": "2:15 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T00:15:00.000Z",
+          "showtimeId": 147843465,
+          "time": "5:15 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T03:15:00.000Z",
+          "showtimeId": 147843469,
+          "time": "8:15 pm"
+        },
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-17T06:15:00.000Z",
+          "showtimeId": 147843464,
+          "time": "11:15 pm"
+        }
+      ],
+      "slug": "verity-79853",
+      "title": "Verity"
+    },
+    {
+      "showings": [
+        {
+          "format": "PRIME at AMC",
+          "showDateTimeUtc": "2026-10-17T05:45:00.000Z",
+          "showtimeId": 147843424,
+          "time": "10:45 pm"
+        }
+      ],
+      "slug": "resident-evil-79697",
+      "title": "Resident Evil"
+    },
+    {
+      "showings": [
+        {
+          "format": "Laser at AMC",
+          "showDateTimeUtc": "2026-10-16T20:45:00.000Z",
+          "showtimeId": 147856477,
+          "time": "1:45 pm"
+        }
+      ],
+      "slug": "primetime-84605",
+      "title": "Primetime"
+    },
+    {
+      "showings": [
+        {
+          "format": "VistaVision 35MM",
+          "showDateTimeUtc": "2026-10-16T20:15:00.000Z",
+          "showtimeId": 147298860,
+          "time": "1:15 pm"
+        },
+        {
+          "format": "VistaVision 35MM",
+          "showDateTimeUtc": "2026-10-16T21:00:00.000Z",
+          "showtimeId": 147308895,
+          "time": "2:00 pm"
+        },
+        {
+          "format": "VistaVision 35MM",
+          "showDateTimeUtc": "2026-10-16T23:30:00.000Z",
+          "showtimeId": 147298862,
+          "time": "4:30 pm"
+        },
+        {
+          "format": "VistaVision 35MM",
+          "showDateTimeUtc": "2026-10-17T01:00:00.000Z",
+          "showtimeId": 147308893,
           "time": "6:00 pm"
-        }
-      ],
-      "slug": "the-uprising-early-access-live-q-a-with-paul-greengrass-and-andrew-garfield-84821",
-      "title": "The Uprising: Early Access Live Q&A with Paul Greengrass and Andrew Garfield"
-    },
-    {
-      "showings": [
+        },
         {
-          "format": "Laser at AMC",
-          "showDateTimeUtc": "2026-09-04T02:00:00.000Z",
-          "showtimeId": 144902951,
-          "time": "7:00 pm"
+          "format": "VistaVision 35MM",
+          "showDateTimeUtc": "2026-10-17T02:45:00.000Z",
+          "showtimeId": 147298851,
+          "time": "7:45 pm"
+        },
+        {
+          "format": "VistaVision 35MM",
+          "showDateTimeUtc": "2026-10-17T05:00:00.000Z",
+          "showtimeId": 147308894,
+          "time": "10:00 pm"
+        },
+        {
+          "format": "VistaVision 35MM",
+          "showDateTimeUtc": "2026-10-17T06:00:00.000Z",
+          "showtimeId": 147298852,
+          "time": "11:00 pm"
         }
       ],
-      "slug": "the-hunger-games-2026-84388",
-      "title": "The Hunger Games (2026)"
+      "slug": "digger-79125",
+      "title": "Digger"
     }
   ],
   "theatre": "los-angeles/amc-the-grove-14",
