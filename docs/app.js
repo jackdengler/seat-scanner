@@ -252,6 +252,7 @@ async function loadSeatmap(sidArg) {
   try {
     status("asking GitHub Actions to fetch the seat map…");
     const ref = await defaultBranch();
+    const prevId = (await latestRun("fetch-seatmap.yml"))?.id || 0;
     const res = await gh(`/actions/workflows/fetch-seatmap.yml/dispatches`, {
       method: "POST",
       body: JSON.stringify({ ref, inputs: { showtimeId: sid } }),
@@ -271,6 +272,7 @@ async function loadSeatmap(sidArg) {
           return;
         }
       }
+      await throwIfRunFailed("fetch-seatmap.yml", prevId);
     }
     status("timed out — check the fetch-seatmap run in the Actions tab.");
   } catch (e) {
@@ -278,6 +280,23 @@ async function loadSeatmap(sidArg) {
   } finally {
     btn.disabled = false;
   }
+}
+
+// Newest dispatched run of a workflow, or null. Read before dispatching so the
+// wait loop can tell its own run apart from older ones by id (no clock skew).
+async function latestRun(wf) {
+  const res = await gh(`/actions/workflows/${wf}/runs?event=workflow_dispatch&per_page=1`);
+  if (!res.ok) return null;
+  const j = await res.json();
+  return (j.workflow_runs && j.workflow_runs[0]) || null;
+}
+
+// Throw if the run dispatched after `prevId` finished without succeeding, so a
+// wait loop fails fast instead of polling for output that will never land.
+async function throwIfRunFailed(wf, prevId) {
+  const run = await latestRun(wf);
+  if (!run || run.id <= prevId || run.status !== "completed" || run.conclusion === "success") return;
+  throw new Error(`the ${wf.replace(".yml", "")} run ${run.conclusion} — usually AMC blocking GitHub's servers; details: ${run.html_url}`);
 }
 
 /* ---------- browse a theatre by date ---------- */
@@ -348,6 +367,7 @@ async function browseShowtimes() {
   try {
     status("asking GitHub Actions to fetch showtimes…");
     const ref = await defaultBranch();
+    const prevId = (await latestRun("fetch-showtimes.yml"))?.id || 0;
     const res = await gh(`/actions/workflows/fetch-showtimes.yml/dispatches`, {
       method: "POST",
       body: JSON.stringify({ ref, inputs: { theatre, date, days: String(days) } }),
@@ -373,6 +393,7 @@ async function browseShowtimes() {
           return;
         }
       }
+      await throwIfRunFailed("fetch-showtimes.yml", prevId);
     }
     status("timed out — check the fetch-showtimes run in the Actions tab.");
   } catch (e) {
