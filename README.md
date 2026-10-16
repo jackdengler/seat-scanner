@@ -52,15 +52,13 @@ one format. (Under the hood this asks Actions to fetch one theatre showtimes
 page per day, merges them by movie, and writes `browse.json` to the `data`
 branch, which the app renders.)
 
-**When AMC blocks "Find showtimes".** AMC's Cloudflare has been rejecting
-GitHub's runners on the showtimes page (`http-403:cloudflare-challenge`); the
-app now says so within seconds and opens the fallback. The fallback reads the
-showtimes in *your* browser instead: copy the **grab bookmark** once (Browse
-shows → "AMC blocking…" → Copy grab bookmark) and save it as a Safari
-bookmark's address. Then tap **Open on AMC**, run the bookmark on the AMC page,
-pick a day count, and Seat Scanner reopens with the list loaded, same as a
-normal browse. The bookmark's parser (`docs/grab.js`) is a JS port of
-`amc.parse_showtimes`; keep the two in step.
+**Why browsing needs an iOS Shortcut.** AMC's Cloudflare blocks GitHub's
+runners from the showtimes page, but not your phone. So **Find showtimes**
+runs a Shortcut named **Seat Scanner Fetch** that downloads the day pages on
+the phone, zips them, and uploads `inbox/<id>.zip` to the `data` branch.
+`fetch-showtimes` (with its `inbox` input) then only parses that upload into
+`browse.json`. The one-time Shortcut setup steps are in the app under Browse
+shows.
 
 **Bulk-watch (same criteria for many shows).** Tap any number of showtimes to
 select them — selection persists as you change dates — then set the row /

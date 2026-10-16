@@ -2,6 +2,10 @@
 # browsing shows. Writes browse.json to the data branch, which the UI polls
 # and renders as a tappable list so you never paste a URL. One file, always
 # overwritten, so the data branch doesn't accumulate per-date junk.
+#
+# AMC's Cloudflare blocks GitHub's runners, so the app normally has an iOS
+# Shortcut fetch the pages on the phone and upload them zipped to
+# data/inbox/<id>.zip; with `inbox` set this run only parses that upload.
 name: fetch-showtimes
 
 on:
@@ -17,6 +21,10 @@ on:
         description: How many consecutive days to fetch
         required: false
         default: "1"
+      inbox:
+        description: Upload id under data/inbox/ to parse instead of fetching AMC
+        required: false
+        default: ""
 
 permissions:
   contents: write
@@ -42,19 +50,40 @@ jobs:
           THEATRE: ${{ github.event.inputs.theatre }}
           DATE: ${{ github.event.inputs.date }}
           DAYS: ${{ github.event.inputs.days }}
+          INBOX: ${{ github.event.inputs.inbox }}
         run: |
           python3 - <<'EOF'
-          import json, os, sys
+          import json, os, re, sys, zipfile
           sys.path.insert(0, "scripts")
           import amc
           theatre = os.environ["THEATRE"].strip()
           date = os.environ["DATE"].strip()
           days = int((os.environ.get("DAYS") or "1").strip() or "1")
-          listing = amc.fetch_showtimes_range(theatre, date, days, log=print)
+          inbox = (os.environ.get("INBOX") or "").strip()
+          if inbox:
+              if not re.fullmatch(r"[a-z0-9]{6,40}", inbox):
+                  sys.exit(f"bad inbox id: {inbox!r}")
+              zpath = f"data/inbox/{inbox}.zip"
+              # The Shortcut names each day's page by its 1-based index in date
+              # order ("1", "1.html", ...); folders and __MACOSX entries are noise.
+              with zipfile.ZipFile(zpath) as z:
+                  named = {}
+                  for n in z.namelist():
+                      m = re.fullmatch(r"(?:.*/)?(\d+)(?:\.[A-Za-z]+)*", n)
+                      if m and not n.startswith("__MACOSX"):
+                          named[int(m.group(1))] = z.read(n).decode("utf-8", "replace")
+              pages = [named[k] for k in sorted(named)]
+              print(f"{zpath}: {len(pages)} page(s)", [len(p) for p in pages])
+              if not pages:
+                  sys.exit("upload had no numbered pages")
+              os.remove(zpath)
+              listing = amc.showtimes_range_listing(theatre, date, pages)
+          else:
+              listing = amc.fetch_showtimes_range(theatre, date, days, log=print)
           with open("data/browse.json", "w") as f:
               json.dump(listing, f, indent=2, sort_keys=True)
               f.write("\n")
-          print(f"wrote data/browse.json: {days} day(s),",
+          print(f"wrote data/browse.json: {listing['days']} day(s),",
                 f"{len(listing['movies'])} movies,",
                 sum(len(m["showings"]) for m in listing["movies"]), "showings")
           EOF

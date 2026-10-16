@@ -86,10 +86,9 @@
   }
   .row { display: flex; gap: 12px; align-items: flex-end; flex-wrap: wrap; }
   .row button { margin-top: 0; }
-  #grabHelp { margin-top: 10px; }
-  #grabHelp summary { cursor: pointer; color: #ccc; font-size: 14px; }
-  #grabHelp ol { padding-left: 20px; font-size: 14px; }
-  #grabCode { width: 100%; box-sizing: border-box; font-size: 12px; margin-top: 8px; }
+  #shortcutHelp { margin-top: 10px; }
+  #shortcutHelp summary { cursor: pointer; color: #ccc; font-size: 14px; }
+  #shortcutHelp ol { padding-left: 20px; font-size: 14px; }
   input[type=date], select {
     width: auto; padding: 9px 10px; border-radius: 8px; border: 1px solid #3a3a40;
     background: #1a1a1e; color: #eee; font-size: 16px;
@@ -160,18 +159,21 @@
     </div>
     <button id="browseBtn">Find showtimes</button>
   </div>
-  <button id="amcBtn" class="secondary">Open on AMC</button>
   <div id="browseStatus" class="muted"></div>
-  <details id="grabHelp">
-    <summary>AMC blocking “Find showtimes”? Grab them from your browser</summary>
+  <details id="shortcutHelp">
+    <summary>One-time setup: the “Seat Scanner Fetch” Shortcut</summary>
+    <p class="muted">AMC blocks GitHub's servers, so your iPhone fetches the showtimes pages with a Shortcut. In the <b>Shortcuts</b> app tap <b>+</b>, name it exactly <b>Seat Scanner Fetch</b>, and add these actions in order (search for each by name):</p>
     <ol class="muted">
-      <li>One time: tap <b>Copy grab bookmark</b>. In Safari, bookmark any page, then Bookmarks → Edit → tap it, name it <i>grab</i>, and paste over its address.</li>
-      <li>Tap <b>Open on AMC</b> to open your theatre's showtimes for the date above.</li>
-      <li>On the AMC page, tap the address bar, type <i>grab</i>, tap the bookmark, and choose how many days.</li>
-      <li>Seat Scanner reopens with the showtimes listed. On iPhone that's in Safari, not the home-screen app, so save your token in Safari once too. Watches and alerts work the same.</li>
+      <li><b>Get Dictionary from Input</b>. If it shows “Input”, tap it and choose <i>Shortcut Input</i>.</li>
+      <li><b>Repeat with Each</b>. Tap “Items” → <i>Dictionary</i>, then tap the <i>Dictionary</i> bubble and type <code>urls</code> as the Key.</li>
+      <li>Inside the repeat: <b>Get Contents of URL</b>, with URL set to <i>Repeat Item</i>.</li>
+      <li>Inside the repeat: <b>Set Name</b>. Set it to rename <i>Contents of URL</i> to <i>Repeat Index</i>.</li>
+      <li>After “End Repeat”: <b>Make Archive</b> from <i>Repeat Results</i>. Format: <b>.zip</b>.</li>
+      <li><b>Base64 Encode</b> the <i>Archive</i>. Tap the arrow and set Line Breaks to <b>None</b>.</li>
+      <li><b>Get Contents of URL</b>. URL: <i>Dictionary</i> with Key <code>upload</code>. Tap the arrow and set Method to <b>PUT</b>. Add a header <code>Authorization</code> = <i>Dictionary</i> with Key <code>auth</code>. Set Request Body to <b>JSON</b> with three text fields: <code>message</code> = <code>showtimes</code>, <code>branch</code> = <code>data</code>, and <code>content</code> = <i>Base64 Encoded</i>.</li>
+      <li>Optional: <b>Show Notification</b> “Done — back to Seat Scanner”.</li>
     </ol>
-    <button id="copyGrab" class="secondary">Copy grab bookmark</button>
-    <textarea id="grabCode" readonly rows="3" hidden></textarea>
+    <p class="muted">Then tap <b>Find showtimes</b>. Shortcuts opens and runs. When it finishes, switch back here and the list appears.</p>
   </details>
   <p class="muted" id="browseHint" hidden>Tap showtimes to select them, then set criteria below and watch them all at once.</p>
   <div class="row" id="filterRow" hidden>

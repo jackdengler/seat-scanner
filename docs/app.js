@@ -103,9 +103,6 @@ async function init() {
   $("loadBtn").onclick = () => loadSeatmap();
   $("saveWatch").onclick = saveWatch;
   $("browseBtn").onclick = browseShowtimes;
-  $("amcBtn").onclick = openAmcShowtimes;
-  $("copyGrab").onclick = copyGrabBookmark;
-  prepareGrabBookmark();
   $("bulkWatch").onclick = bulkWatch;
   $("pickSeats").onclick = pickSeatsForSelected;
   $("clearSel").onclick = clearSelection;
@@ -138,9 +135,8 @@ async function init() {
   // quickly switching in and out doesn't refetch every time.
   document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshAlerts(false); });
   refreshSetupStatus();
-  const imported = importFromHash();
-  // backfill needs the watch list, so wait for it
-  loadConfigAndWatches().then(() => { if (imported) backfillWatchMeta(imported); });
+  loadConfigAndWatches();
+  resumePendingBrowse();
 }
 
 async function saveToken() {
@@ -354,6 +350,19 @@ function renderPresets() {
   }
 }
 
+// AMC's Cloudflare blocks GitHub's runners, so the phone fetches the showtimes
+// pages: the app runs an iOS Shortcut that downloads them, zips them and
+// uploads data/inbox/<id>.zip; then fetch-showtimes (with `inbox`) only parses
+// that upload into browse.json. The request is kept in localStorage because
+// iOS often reloads the app while it's in the background running the Shortcut.
+const SHORTCUT_NAME = "Seat Scanner Fetch";
+
+function addDays(iso, n) {
+  const d = new Date(iso + "T12:00:00Z");
+  d.setUTCDate(d.getUTCDate() + n);
+  return d.toISOString().slice(0, 10);
+}
+
 async function browseShowtimes() {
   const theatre = theatrePath($("theatre").value.trim());
   const date = $("date").value || todayLocal();
@@ -365,26 +374,65 @@ async function browseShowtimes() {
   if (!token()) { toast("save your token first"); return; }
   localStorage.setItem("theatre", $("theatre").value.trim());
   const days = parseInt($("days").value, 10) || 1;
+  const req = {
+    inbox: Math.random().toString(36).slice(2, 10) + Date.now().toString(36),
+    theatre, date, days, startedAt: Date.now(),
+  };
+  localStorage.setItem("pendingBrowse", JSON.stringify(req));
+  const input = {
+    urls: [...Array(days)].map((_, i) =>
+      `https://www.amctheatres.com/movie-theatres/${theatre}/showtimes?date=${addDays(date, i)}`),
+    upload: `${API}/repos/${OWNER}/${REPO}/contents/inbox/${req.inbox}.zip`,
+    auth: "Bearer " + token(),
+  };
+  location.href = "shortcuts://run-shortcut?name=" + encodeURIComponent(SHORTCUT_NAME)
+    + "&input=text&text=" + encodeURIComponent(JSON.stringify(input));
+  await finishBrowse(req);
+}
+
+// Resume a browse whose Shortcut was launched before iOS reloaded the app.
+function resumePendingBrowse() {
+  let req = null;
+  try { req = JSON.parse(localStorage.getItem("pendingBrowse") || "null"); } catch (e) { /* bad json */ }
+  if (!req) return;
+  if (Date.now() - req.startedAt > 15 * 60 * 1000) { localStorage.removeItem("pendingBrowse"); return; }
+  $("date").value = req.date;
+  finishBrowse(req);
+}
+
+async function finishBrowse(req) {
+  const { inbox, theatre, date, days } = req;
   const btn = $("browseBtn");
   btn.disabled = true;
   $("showlist").innerHTML = "";
   const status = (m) => ($("browseStatus").textContent = m);
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   try {
-    status("asking GitHub Actions to fetch showtimes…");
+    // 1. wait for the Shortcut's upload (the loop pauses while we're backgrounded)
+    status("running the Shortcut — come back here when it finishes…");
+    for (;;) {
+      const res = await gh(`/contents/inbox/${inbox}.zip?ref=data`, { method: "HEAD" });
+      if (res.ok) break;
+      if (Date.now() - req.startedAt > 10 * 60 * 1000) {
+        $("shortcutHelp").open = true;
+        throw new Error(`no upload from the “${SHORTCUT_NAME}” Shortcut — check it's set up (steps below)`);
+      }
+      await sleep(3000);
+    }
+
+    // 2. have Actions parse it into browse.json
+    status("got the pages — reading showtimes…");
     const ref = await defaultBranch();
     const prevId = (await latestRun("fetch-showtimes.yml"))?.id || 0;
     const res = await gh(`/actions/workflows/fetch-showtimes.yml/dispatches`, {
       method: "POST",
-      body: JSON.stringify({ ref, inputs: { theatre, date, days: String(days) } }),
+      body: JSON.stringify({ ref, inputs: { theatre, date, days: String(days), inbox } }),
     });
     if (!res.ok) throw new Error("dispatch failed — check token Actions permission");
     const started = Date.now();
-    // multi-day fetches take longer (one AMC request per day)
-    const timeoutMs = Math.min(9, 3 + days) * 60 * 1000;
-    while (Date.now() - started < timeoutMs) {
-      await new Promise((r) => setTimeout(r, 5000));
-      const secs = Math.round((Date.now() - started) / 1000);
-      status(`waiting for ${days === 1 ? "showtimes" : days + " days of showtimes"}… ${secs}s`);
+    while (Date.now() - started < 4 * 60 * 1000) {
+      await sleep(4000);
+      status(`reading showtimes… ${Math.round((Date.now() - started) / 1000)}s`);
       const f = await getFile("browse.json", "data");
       if (f) {
         const listing = JSON.parse(f.text);
@@ -401,78 +449,11 @@ async function browseShowtimes() {
       await throwIfRunFailed("fetch-showtimes.yml", prevId);
     }
     status("timed out — check the fetch-showtimes run in the Actions tab.");
-    $("grabHelp").open = true;
   } catch (e) {
     status("failed: " + e.message);
-    $("grabHelp").open = true;   // the browser grab works when AMC blocks Actions
   } finally {
+    localStorage.removeItem("pendingBrowse");
     btn.disabled = false;
-  }
-}
-
-/* ---------- browse via your own browser (AMC blocks GitHub's runners) ---------- */
-
-function amcShowtimesUrl() {
-  const theatre = theatrePath($("theatre").value.trim());
-  if (!theatre || !theatre.includes("/")) return null;
-  return `https://www.amctheatres.com/movie-theatres/${theatre}/showtimes?date=${$("date").value || todayLocal()}`;
-}
-
-function openAmcShowtimes() {
-  const url = amcShowtimesUrl();
-  if (!url) { toast("pick a theatre first", 4000); return; }
-  localStorage.setItem("theatre", $("theatre").value.trim());
-  window.open(url, "_blank");
-}
-
-// Build the bookmarklet up front so the copy tap can write the clipboard
-// synchronously (iOS drops clipboard writes that follow an await).
-let grabBookmark = "";
-async function prepareGrabBookmark() {
-  try {
-    const res = await fetch("grab.js", { cache: "no-cache" });
-    const src = (await res.text())
-      .replace(/^\s*\/\/.*$/gm, "")                       // drop comment lines
-      .replace(/^\s+/gm, "")                                // and indentation
-      .replaceAll("__APP_URL__", location.origin + location.pathname);
-    grabBookmark = "javascript:" + encodeURIComponent(src);
-    $("grabCode").value = grabBookmark;
-  } catch (e) { /* offline: the copy button reports it */ }
-}
-
-function copyGrabBookmark() {
-  if (!grabBookmark) { toast("couldn't load the bookmark — reload and try again"); return; }
-  const showManual = () => {
-    $("grabCode").hidden = false;
-    $("grabCode").select();
-    toast("select all in the box and copy it", 5000);
-  };
-  if (!navigator.clipboard) return showManual();
-  navigator.clipboard.writeText(grabBookmark)
-    .then(() => toast("bookmark copied ✓ — now paste it as a bookmark's address", 5000), showManual);
-}
-
-// The grab bookmark lands here with #import=<listing>; render it exactly as a
-// Find-showtimes result. Returns the listing (for watch backfill) or null.
-function importFromHash() {
-  const m = location.hash.match(/^#import=(.+)$/);
-  if (!m) return null;
-  history.replaceState(null, "", location.pathname + location.search);
-  try {
-    const listing = JSON.parse(decodeURIComponent(m[1]));
-    if (listing.theatre) {
-      $("theatre").value = "https://www.amctheatres.com/movie-theatres/" + listing.theatre;
-      localStorage.setItem("theatre", $("theatre").value);
-    }
-    if (listing.date) $("date").value = listing.date;
-    populateFormatFilter(listing);
-    renderShowlist(listing);
-    $("browseStatus").textContent = `loaded ${listing.days || 1} day(s) from AMC`;
-    $("showlist").scrollIntoView({ block: "start" });
-    return listing;
-  } catch (e) {
-    toast("couldn't read the showtimes from AMC — try the bookmark again", 6000);
-    return null;
   }
 }
 

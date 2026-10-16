@@ -247,6 +247,26 @@ class MergeShowtimesTests(unittest.TestCase):
         self.assertEqual([m["slug"] for m in merged], ["a-1", "b-2"])
 
 
+class ShowtimesRangeListingTests(unittest.TestCase):
+    def test_builds_merged_listing_from_pages(self):
+        day2 = (SHOWTIMES_FLIGHT.replace("2026-07-21", "2026-07-22")
+                .replace('"showtimeId":11', '"showtimeId":21'))
+        pages = [_showtimes_html(SHOWTIMES_FLIGHT), _showtimes_html(day2)]
+        listing = amc.showtimes_range_listing(
+            "/boston/amc-testtown-1/", "2026-07-21", pages)
+        self.assertEqual(listing["theatre"], "boston/amc-testtown-1")
+        self.assertEqual(listing["theatreSlug"], "amc-testtown-1")
+        self.assertEqual((listing["date"], listing["days"]), ("2026-07-21", 2))
+        moana = listing["movies"][0]
+        self.assertEqual(len(moana["showings"]), 6)
+        self.assertIn("fetchedAtUtc", listing)
+
+    def test_blocked_page_raises(self):
+        with self.assertRaises(amc.FetchBlocked):
+            amc.showtimes_range_listing(
+                "boston/amc-testtown-1", "2026-07-21",
+                ["<title>Just a moment...</title>"])
+
 class FlightDecodeTests(unittest.TestCase):
     def test_chunks_concatenated(self):
         with open(FIXTURE, encoding="utf-8") as f:

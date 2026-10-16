@@ -390,6 +390,25 @@ def merge_showtimes(listings):
     return [movies[s] for s in order]
 
 
+def showtimes_range_listing(theatre, start_date, pages):
+    """Build a multi-day listing from already-fetched showtimes pages.
+
+    ``pages`` is the HTML for consecutive days starting at ``start_date``, in
+    order. Shared by the direct fetch and the phone-upload path (an iOS
+    Shortcut fetches the pages, since AMC's Cloudflare blocks CI runners).
+    """
+    path = theatre.strip().strip("/").split("?")[0]
+    return {
+        "theatre": path,
+        "theatreSlug": _theatre_slug(path),
+        "date": start_date,
+        "days": len(pages),
+        "movies": merge_showtimes([parse_showtimes(h, path) for h in pages]),
+        "fetchedAtUtc": (datetime.datetime.now(datetime.timezone.utc)
+                         .strftime("%Y-%m-%dT%H:%M:%SZ")),
+    }
+
+
 def fetch_showtimes_range(theatre, start_date, days, log=lambda msg: None):
     """Fetch ``days`` consecutive days starting at ``start_date`` and merge.
 
@@ -400,17 +419,11 @@ def fetch_showtimes_range(theatre, start_date, days, log=lambda msg: None):
     days = max(1, int(days))
     d0 = datetime.date.fromisoformat(start_date)
     path = theatre.strip().strip("/").split("?")[0]
-    listings = []
+    pages = []
     for i in range(days):
         day = (d0 + datetime.timedelta(days=i)).isoformat()
         log(f"fetching {day} ({i + 1}/{days})")
-        listings.append(fetch_showtimes(path, day, log))
-    return {
-        "theatre": path,
-        "theatreSlug": _theatre_slug(path),
-        "date": start_date,
-        "days": days,
-        "movies": merge_showtimes(listings),
-        "fetchedAtUtc": (datetime.datetime.now(datetime.timezone.utc)
-                         .strftime("%Y-%m-%dT%H:%M:%SZ")),
-    }
+        pages.append(fetch_page(
+            f"https://www.amctheatres.com/movie-theatres/{path}/showtimes"
+            f"?date={day}", log))
+    return showtimes_range_listing(path, start_date, pages)
