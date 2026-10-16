@@ -103,6 +103,9 @@ async function init() {
   $("loadBtn").onclick = () => loadSeatmap();
   $("saveWatch").onclick = saveWatch;
   $("browseBtn").onclick = browseShowtimes;
+  $("amcBtn").onclick = openAmcShowtimes;
+  $("copyGrab").onclick = copyGrabBookmark;
+  prepareGrabBookmark();
   $("bulkWatch").onclick = bulkWatch;
   $("pickSeats").onclick = pickSeatsForSelected;
   $("clearSel").onclick = clearSelection;
@@ -135,7 +138,9 @@ async function init() {
   // quickly switching in and out doesn't refetch every time.
   document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshAlerts(false); });
   refreshSetupStatus();
-  loadConfigAndWatches();
+  const imported = importFromHash();
+  // backfill needs the watch list, so wait for it
+  loadConfigAndWatches().then(() => { if (imported) backfillWatchMeta(imported); });
 }
 
 async function saveToken() {
@@ -396,10 +401,78 @@ async function browseShowtimes() {
       await throwIfRunFailed("fetch-showtimes.yml", prevId);
     }
     status("timed out — check the fetch-showtimes run in the Actions tab.");
+    $("grabHelp").open = true;
   } catch (e) {
     status("failed: " + e.message);
+    $("grabHelp").open = true;   // the browser grab works when AMC blocks Actions
   } finally {
     btn.disabled = false;
+  }
+}
+
+/* ---------- browse via your own browser (AMC blocks GitHub's runners) ---------- */
+
+function amcShowtimesUrl() {
+  const theatre = theatrePath($("theatre").value.trim());
+  if (!theatre || !theatre.includes("/")) return null;
+  return `https://www.amctheatres.com/movie-theatres/${theatre}/showtimes?date=${$("date").value || todayLocal()}`;
+}
+
+function openAmcShowtimes() {
+  const url = amcShowtimesUrl();
+  if (!url) { toast("pick a theatre first", 4000); return; }
+  localStorage.setItem("theatre", $("theatre").value.trim());
+  window.open(url, "_blank");
+}
+
+// Build the bookmarklet up front so the copy tap can write the clipboard
+// synchronously (iOS drops clipboard writes that follow an await).
+let grabBookmark = "";
+async function prepareGrabBookmark() {
+  try {
+    const res = await fetch("grab.js", { cache: "no-cache" });
+    const src = (await res.text())
+      .replace(/^\s*\/\/.*$/gm, "")                       // drop comment lines
+      .replace(/^\s+/gm, "")                                // and indentation
+      .replaceAll("__APP_URL__", location.origin + location.pathname);
+    grabBookmark = "javascript:" + encodeURIComponent(src);
+    $("grabCode").value = grabBookmark;
+  } catch (e) { /* offline: the copy button reports it */ }
+}
+
+function copyGrabBookmark() {
+  if (!grabBookmark) { toast("couldn't load the bookmark — reload and try again"); return; }
+  const showManual = () => {
+    $("grabCode").hidden = false;
+    $("grabCode").select();
+    toast("select all in the box and copy it", 5000);
+  };
+  if (!navigator.clipboard) return showManual();
+  navigator.clipboard.writeText(grabBookmark)
+    .then(() => toast("bookmark copied ✓ — now paste it as a bookmark's address", 5000), showManual);
+}
+
+// The grab bookmark lands here with #import=<listing>; render it exactly as a
+// Find-showtimes result. Returns the listing (for watch backfill) or null.
+function importFromHash() {
+  const m = location.hash.match(/^#import=(.+)$/);
+  if (!m) return null;
+  history.replaceState(null, "", location.pathname + location.search);
+  try {
+    const listing = JSON.parse(decodeURIComponent(m[1]));
+    if (listing.theatre) {
+      $("theatre").value = "https://www.amctheatres.com/movie-theatres/" + listing.theatre;
+      localStorage.setItem("theatre", $("theatre").value);
+    }
+    if (listing.date) $("date").value = listing.date;
+    populateFormatFilter(listing);
+    renderShowlist(listing);
+    $("browseStatus").textContent = `loaded ${listing.days || 1} day(s) from AMC`;
+    $("showlist").scrollIntoView({ block: "start" });
+    return listing;
+  } catch (e) {
+    toast("couldn't read the showtimes from AMC — try the bookmark again", 6000);
+    return null;
   }
 }
 
